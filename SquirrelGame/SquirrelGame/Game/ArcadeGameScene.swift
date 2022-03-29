@@ -111,33 +111,6 @@ extension ArcadeGameScene {
     func createWood(){
         treeNode = TreesNode()
         addChild(treeNode)
-        
-//        leftWood = SKShapeNode(rectOf: CGSize(width: 60, height: self.size.height * 1.5))
-//        leftWood.name = "cLeftWood"
-//        leftWood.fillColor = .brown
-//        leftWood.lineWidth = 0
-//        leftWood.position = CGPoint(x: self.frame.minX, y: 0)
-//        leftWood.physicsBody = SKPhysicsBody(rectangleOf: leftWood.frame.size)
-//        leftWood.physicsBody?.categoryBitMask = PhysicsCategory.cSideWood
-//        leftWood.physicsBody?.contactTestBitMask = PhysicsCategory.bSquirrel
-//        leftWood.physicsBody?.collisionBitMask = PhysicsCategory.bSquirrel
-//        leftWood.physicsBody?.isDynamic = false
-//        leftWood.physicsBody?.restitution = 0
-//        addChild(leftWood)
-//
-//        rightWood = SKShapeNode(rectOf: CGSize(width: 60, height: self.size.height * 1.5))
-//        rightWood.name = "cRightWood"
-//        rightWood.fillColor = .brown
-//        rightWood.lineWidth = 0
-//        rightWood.position = CGPoint(x: self.frame.maxX, y: 0)
-//        rightWood.physicsBody = SKPhysicsBody(rectangleOf: leftWood.frame.size)
-//        rightWood.physicsBody?.categoryBitMask = PhysicsCategory.cSideWood
-//        rightWood.physicsBody?.contactTestBitMask = PhysicsCategory.bSquirrel
-//        rightWood.physicsBody?.collisionBitMask = PhysicsCategory.bSquirrel
-//        rightWood.physicsBody?.isDynamic = false
-//        rightWood.physicsBody?.restitution = 0
-//
-//        addChild(rightWood)
     }
 }
 
@@ -146,9 +119,13 @@ extension ArcadeGameScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchesCount += 1
-        squirrel.physicsBody?.applyImpulse(CGVector(dx: physicsWorld.gravity.dx < 0 ? 350 : -350, dy: 0))
-        squirrel.animateJump()
-        physicsWorld.gravity = CGVector(dx: -physicsWorld.gravity.dx, dy: 0)
+        gameLogic.score(points: 5)
+        print(touchesCount)
+        if squirrel.isInAir == false {
+            squirrel.physicsBody?.applyImpulse(CGVector(dx: physicsWorld.gravity.dx < 0 ? 350 : -350, dy: 0))
+            squirrel.animateJump()
+            physicsWorld.gravity = CGVector(dx: -physicsWorld.gravity.dx, dy: 0)
+        }
     }
 }
 
@@ -168,13 +145,13 @@ extension ArcadeGameScene {
      **/
     
     var isGameOver: Bool {
-        if touchesCount == 10 {
-            gameLogic.isGameOver = true
+        if touchesCount > 9 {
+            finishGame()
         }
         return gameLogic.isGameOver
     }
     
-    private func finishGame() {
+    func finishGame() {
         gameLogic.isGameOver = true
     }
 }

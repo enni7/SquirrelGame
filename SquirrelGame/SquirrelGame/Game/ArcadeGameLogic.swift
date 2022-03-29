@@ -8,7 +8,10 @@
 import Foundation
 
 class ArcadeGameLogic: ObservableObject {
-    
+    @Published var finalTime: Int = 0
+    @Published var finalPoints: Int = 0
+    @Published var finalScore: Int = 0
+
     // Single instance of the class
     static let shared: ArcadeGameLogic = ArcadeGameLogic()
     
@@ -19,6 +22,7 @@ class ArcadeGameLogic: ObservableObject {
         
         self.currentScore = 0
         self.sessionDuration = 0
+        self.finalScore = 0
         
         self.isGameOver = false
     }
@@ -28,9 +32,6 @@ class ArcadeGameLogic: ObservableObject {
     
     // Increases the score by a certain amount of points
     func score(points: Int) {
-        
-        // TODO: Customize!
-        
         self.currentScore = self.currentScore + points
     }
     
@@ -52,6 +53,7 @@ class ArcadeGameLogic: ObservableObject {
     @Published var isGameOver: Bool = false
     
     func finishTheGame() {
+        self.finalScore = finalTime + finalPoints
         if self.isGameOver == false {
             self.isGameOver = true
         }

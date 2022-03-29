@@ -17,17 +17,30 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
         let firstNode = sortedNodes[0]
         let secondNode = sortedNodes[1]
         
-        if firstNode.name == "bSquirrel" {
-            if secondNode.name == "cLeftWood" {
-                
-                squirrel.touchingWoodOnSide = .left
-                squirrel.animateLanding()
-            } else if secondNode.name == "cRightWood" {
+        if secondNode.name == "cLeftWood" || secondNode.name == "cRightWood" || secondNode.name == "cMiddleWood" {
+            if firstNode.name == "bSquirrel" {
                 if physicsWorld.gravity.dx > 0 {
                     squirrel.touchingWoodOnSide = .right
+                } else {
+                    squirrel.touchingWoodOnSide = .left
                 }
                 squirrel.animateLanding()
             }
+        }
+        if secondNode.name == "dGhianda" {
+            gameLogic.score(points: 5)
+            self.run(pickUpSound)
+        }
+        if secondNode.name == "eSpines" {
+            squirrel.life -= 1
+//            self.run(pickUpSound)
+            if squirrel.life == 0 {
+                self.finishGame()
+            }
+        }
+        if secondNode.name == "fGoldGhianda"{
+            self.run(pickUpSound)
+            gameLogic.score(points: 10)
         }
     }
 }

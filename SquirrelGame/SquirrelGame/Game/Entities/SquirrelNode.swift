@@ -12,6 +12,7 @@ class SquirrelNode: SKSpriteNode {
     private var firstTexture: SKTexture!
     private var jumpTextureFromLeft: SKTexture!
     
+    var isInAir: Bool = false
     var touchingWoodOnSide: TouchingWoodOnSide!
     var life: Int = 2
     
@@ -32,6 +33,7 @@ class SquirrelNode: SKSpriteNode {
         self.jumpTextureFromLeft = runningFramesOnLeft[1]
         
         super.init(texture: firstTexture, color: .white, size: CGSize(width: firstTexture.size().width * 3.2, height: firstTexture.size().height * 3.2))
+        self.life = 2
         self.position = position
         self.name = "bSquirrel"
         
@@ -63,11 +65,14 @@ class SquirrelNode: SKSpriteNode {
     func animateJump(){
         self.removeAction(forKey: "runningSquirrel")
         self.texture = jumpTextureFromLeft
-        self.run(SKAction.rotate(toAngle: touchingWoodOnSide == .left ? .pi/6 : -.pi/6, duration: 0.1, shortestUnitArc: true))
+        self.run(SKAction.rotate(toAngle: touchingWoodOnSide == .left ? .pi/6 : -.pi/6, duration: 0.1, shortestUnitArc: true)){
+            self.isInAir = true
+        }
     }
     
     func animateLanding(){
         self.run(SKAction.setTexture(firstTexture)){
+            self.isInAir = false
             self.animateRun()
         }
         self.run(SKAction.scaleX(to: abs(self.xScale) * (touchingWoodOnSide == .left ? 1 : -1), duration: 0.05))

@@ -21,45 +21,80 @@ struct GameOverView: View {
     
     @Binding var currentGameState: GameState
     @State var backgroundMusicAV : AVAudioPlayer!
+    var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
+
     
     var body: some View {
         ZStack {
-            Color.cyan
+            Color(uiColor: UIColor.cyan)
                 .ignoresSafeArea()
             
             VStack(alignment: .center) {
                 Spacer()
-                Spacer()
+                VStack{
+                    HStack{
+                        Text("TIME:")
+                        Spacer()
+                        Text("\(Int(gameLogic.finalTime))")
+                    }
+                    .padding(.horizontal)
+                    .padding(10)
+                    HStack{
+                        Text("POINTS:")
+                        Spacer()
+                        Text("\(gameLogic.finalPoints)")
+                    }
+                    .padding(.horizontal)
+                    .padding(10)
+                    VStack{
+                        Text("TOTAL SCORE")
+                            .bold()
 
-                Button {
-                    withAnimation { self.backToMainScreen() }
-                } label: {
-                    Image(systemName: "arrow.backward")
-                        .foregroundColor(.yellow)
-                        .font(.largeTitle)
+                        Text("\(gameLogic.finalScore)")
+                            .bold()
+                            .font(.system(.largeTitle, design: .monospaced))
+                    }
+                    .padding()
+                    
                 }
-                .background(Circle().foregroundColor(Color(uiColor: UIColor.brown)).frame(width: 100, height: 100, alignment: .center))
+                .background(Rectangle().cornerRadius(10).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)))
+                .font(.system(.title, design: .monospaced))
+                .foregroundColor(Color(uiColor: UIColor.systemOrange))
+                .padding(.horizontal, 50)
+                .padding(.bottom, 50)
                 
-                Spacer()
                 
-                Button {
-                    withAnimation { self.restartGame() }
-                } label: {
-                    Image(systemName: "arrow.clockwise")
-                        .foregroundColor(.yellow)
-                        .font(.largeTitle)
+                HStack{
+                    Spacer()
+                    Button {
+                        withAnimation { self.backToMainScreen() }
+                    } label: {
+                        Image(systemName: "arrow.backward")
+                            .foregroundColor(Color(uiColor: UIColor.systemOrange))
+                            .font(.largeTitle)
+                    }
+                    .background(Rectangle().cornerRadius(10).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)).frame(width: 80, height: 80, alignment: .center))
+                    
+                    Spacer()
+                    
+                    Button {
+                        withAnimation { self.restartGame() }
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                            .foregroundColor(Color(uiColor: UIColor.systemOrange))
+                            .font(.largeTitle)
+                    }
+                    .background(Rectangle().cornerRadius(10).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)).frame(width: 80, height: 80, alignment: .center))
+                    Spacer()
                 }
-                .background(Circle().foregroundColor(Color(uiColor: UIColor.brown)).frame(width: 100, height: 100, alignment: .center))
-                
-                Spacer()
                 Spacer()
             }
         }
         .statusBar(hidden: true)
         .onAppear {
             if let sound = Bundle.main.path(forResource: "bensound-cute", ofType: "mp3") {
-            self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
-            backgroundMusicAV.play()
+                self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+                backgroundMusicAV.play()
             }
         }
     }
