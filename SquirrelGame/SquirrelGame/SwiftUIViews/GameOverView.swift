@@ -24,20 +24,21 @@ struct GameOverView: View {
     
     var body: some View {
         ZStack {
-            Color.white
+            Color.cyan
                 .ignoresSafeArea()
             
             VStack(alignment: .center) {
                 Spacer()
-                
+                Spacer()
+
                 Button {
                     withAnimation { self.backToMainScreen() }
                 } label: {
                     Image(systemName: "arrow.backward")
-                        .foregroundColor(.black)
-                        .font(.title)
+                        .foregroundColor(.yellow)
+                        .font(.largeTitle)
                 }
-                .background(Circle().foregroundColor(Color(uiColor: UIColor.systemGray6)).frame(width: 100, height: 100, alignment: .center))
+                .background(Circle().foregroundColor(Color(uiColor: UIColor.brown)).frame(width: 100, height: 100, alignment: .center))
                 
                 Spacer()
                 
@@ -45,11 +46,12 @@ struct GameOverView: View {
                     withAnimation { self.restartGame() }
                 } label: {
                     Image(systemName: "arrow.clockwise")
-                        .foregroundColor(.black)
-                        .font(.title)
+                        .foregroundColor(.yellow)
+                        .font(.largeTitle)
                 }
-                .background(Circle().foregroundColor(Color(uiColor: UIColor.systemGray6)).frame(width: 100, height: 100, alignment: .center))
+                .background(Circle().foregroundColor(Color(uiColor: UIColor.brown)).frame(width: 100, height: 100, alignment: .center))
                 
+                Spacer()
                 Spacer()
             }
         }

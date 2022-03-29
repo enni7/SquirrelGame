@@ -56,22 +56,21 @@ struct ArcadeGameView: View {
                 .statusBar(hidden: true)
             
             HStack() {
+                Spacer()
                 /**
                  * UI element showing the duration of the game session.
                  * Remove it if your game is not based on time.
                  */
                 GameDurationView(time: $gameLogic.sessionDuration)
-                
                 Spacer()
-                
                 /**
                  * UI element showing the current score of the player.
                  * Remove it if your game is not based on scoring points.
                  */
                 GameScoreView(score: $gameLogic.currentScore)
+                Spacer()
             }
-            .padding()
-            .padding(.top, 40)
+            .padding([.horizontal, .top], 24)
         }
         .onChange(of: gameLogic.isGameOver) { _ in
             if gameLogic.isGameOver {

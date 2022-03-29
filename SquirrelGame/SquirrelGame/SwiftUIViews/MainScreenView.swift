@@ -51,13 +51,23 @@ struct MainScreenView: View {
              * To customize the instructions, check the **Constants.swift** file
              */
             ForEach(self.gameInstructions, id: \.title) { instruction in
-                GroupBox(label: Label("\(instruction.title)", systemImage: "\(instruction.icon)").foregroundColor(self.accentColor)) {
-                    HStack {
-                        Text("\(instruction.description)")
-                            .font(.callout)
-                        Spacer()
+                
+                HStack{
+                    Image(systemName: "\(instruction.icon)")
+                        .font(.system(.title2, design: .monospaced))
+                        .foregroundColor(.orange)
+                        .padding()
+                    Spacer()
+                    VStack{
+                    Text("\(instruction.title)")
+                            .font(.system(.title2, design: .monospaced))
+                        .foregroundColor(.brown)
+//                        Text("\(instruction.description)")
+//                            .font(.system(.title3, design: .monospaced))
                     }
+                    Spacer()
                 }
+                .padding(.vertical)
             }
             
             Spacer()
@@ -68,12 +78,14 @@ struct MainScreenView: View {
             Button {
                 withAnimation { self.startGame() }
             } label: {
-                Text("Insert a coin")
+                Text("START")
+                    .bold()
+                    .font(.system(.title, design: .monospaced))
                     .padding()
                     .frame(maxWidth: .infinity)
+
             }
-            .foregroundColor(.white)
-            .background(self.accentColor)
+            .foregroundColor(.orange)
             .cornerRadius(10.0)
             
         }

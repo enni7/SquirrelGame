@@ -19,17 +19,13 @@ struct GameDurationView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "clock")
-                .font(.headline)
-            Spacer()
-            Text("\(Int(time))")
-                .font(.headline)
+            Image("Clock")
+            Text(String(format: "%.1f", Double(time)))
+                .font(.system(.title2, design: .monospaced))
+                .bold()
         }
-        .frame(minWidth: 100)
         .padding(24)
-        .foregroundColor(.black)
-        .background(Color(UIColor.systemGray6))
-        .cornerRadius(10)
+        .foregroundColor(Color(UIColor.systemOrange))
     }
 }
 

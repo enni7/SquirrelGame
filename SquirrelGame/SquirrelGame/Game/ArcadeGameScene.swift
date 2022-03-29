@@ -24,8 +24,10 @@ class ArcadeGameScene: SKScene {
     var squirrel: SquirrelNode!
 //    var scaleFactor: CGFloat!
     
-    var leftWood: SKShapeNode!
-    var rightWood: SKShapeNode!
+//    var leftWood: SKShapeNode!
+//    var rightWood: SKShapeNode!
+    
+    var treeNode: TreesNode!
     
     let pickUpSound = SKAction.playSoundFileNamed(SoundFile.pickUpSound, waitForCompletion: false)
 
@@ -93,7 +95,11 @@ extension ArcadeGameScene {
 // MARK: - Create PLAYER
 extension ArcadeGameScene {
     private func createPlayer() {
-        let position = CGPoint(x: leftWood.frame.maxX, y: 200)
+        var position = CGPoint.zero
+        if let leftTree = treeNode.childNode(withName: "cLeftWood") as? SKShapeNode {
+            position = CGPoint(x: leftTree.frame.maxX, y: 200)
+        }
+        
         self.squirrel = SquirrelNode(at: position)
         addChild(self.squirrel)
     }
@@ -103,34 +109,35 @@ extension ArcadeGameScene {
 extension ArcadeGameScene {
     
     func createWood(){
-        let treesNode = SKNode()
+        treeNode = TreesNode()
+        addChild(treeNode)
         
-        leftWood = SKShapeNode(rectOf: CGSize(width: 60, height: self.size.height * 1.5))
-        leftWood.name = "cLeftWood"
-        leftWood.fillColor = .brown
-        leftWood.lineWidth = 0
-        leftWood.position = CGPoint(x: self.frame.minX, y: 0)
-        leftWood.physicsBody = SKPhysicsBody(rectangleOf: leftWood.frame.size)
-        leftWood.physicsBody?.categoryBitMask = PhysicsCategory.cSideWood
-        leftWood.physicsBody?.contactTestBitMask = PhysicsCategory.bSquirrel
-        leftWood.physicsBody?.collisionBitMask = PhysicsCategory.bSquirrel
-        leftWood.physicsBody?.isDynamic = false
-        leftWood.physicsBody?.restitution = 0
-        addChild(leftWood)
-        
-        rightWood = SKShapeNode(rectOf: CGSize(width: 60, height: self.size.height * 1.5))
-        rightWood.name = "cRightWood"
-        rightWood.fillColor = .brown
-        rightWood.lineWidth = 0
-        rightWood.position = CGPoint(x: self.frame.maxX, y: 0)
-        rightWood.physicsBody = SKPhysicsBody(rectangleOf: leftWood.frame.size)
-        rightWood.physicsBody?.categoryBitMask = PhysicsCategory.cSideWood
-        rightWood.physicsBody?.contactTestBitMask = PhysicsCategory.bSquirrel
-        rightWood.physicsBody?.collisionBitMask = PhysicsCategory.bSquirrel
-        rightWood.physicsBody?.isDynamic = false
-        rightWood.physicsBody?.restitution = 0
-        
-        addChild(rightWood)
+//        leftWood = SKShapeNode(rectOf: CGSize(width: 60, height: self.size.height * 1.5))
+//        leftWood.name = "cLeftWood"
+//        leftWood.fillColor = .brown
+//        leftWood.lineWidth = 0
+//        leftWood.position = CGPoint(x: self.frame.minX, y: 0)
+//        leftWood.physicsBody = SKPhysicsBody(rectangleOf: leftWood.frame.size)
+//        leftWood.physicsBody?.categoryBitMask = PhysicsCategory.cSideWood
+//        leftWood.physicsBody?.contactTestBitMask = PhysicsCategory.bSquirrel
+//        leftWood.physicsBody?.collisionBitMask = PhysicsCategory.bSquirrel
+//        leftWood.physicsBody?.isDynamic = false
+//        leftWood.physicsBody?.restitution = 0
+//        addChild(leftWood)
+//
+//        rightWood = SKShapeNode(rectOf: CGSize(width: 60, height: self.size.height * 1.5))
+//        rightWood.name = "cRightWood"
+//        rightWood.fillColor = .brown
+//        rightWood.lineWidth = 0
+//        rightWood.position = CGPoint(x: self.frame.maxX, y: 0)
+//        rightWood.physicsBody = SKPhysicsBody(rectangleOf: leftWood.frame.size)
+//        rightWood.physicsBody?.categoryBitMask = PhysicsCategory.cSideWood
+//        rightWood.physicsBody?.contactTestBitMask = PhysicsCategory.bSquirrel
+//        rightWood.physicsBody?.collisionBitMask = PhysicsCategory.bSquirrel
+//        rightWood.physicsBody?.isDynamic = false
+//        rightWood.physicsBody?.restitution = 0
+//
+//        addChild(rightWood)
     }
 }
 

@@ -23,7 +23,9 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
                 squirrel.touchingWoodOnSide = .left
                 squirrel.animateLanding()
             } else if secondNode.name == "cRightWood" {
-                squirrel.touchingWoodOnSide = .right
+                if physicsWorld.gravity.dx > 0 {
+                    squirrel.touchingWoodOnSide = .right
+                }
                 squirrel.animateLanding()
             }
         }
