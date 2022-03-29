@@ -56,5 +56,4 @@ class ArcadeGameLogic: ObservableObject {
             self.isGameOver = true
         }
     }
-    
 }

@@ -5,6 +5,7 @@
 //  Created by Anna Izzo on 29/03/22.
 //
 
+import AVFoundation
 import SwiftUI
 import SpriteKit
 
@@ -18,6 +19,7 @@ import SpriteKit
 
 struct ArcadeGameView: View {
     
+    @State var backgroundMusicAV: AVAudioPlayer!
     /**
      * # The Game Logic
      *     The game logic keeps track of the game variables
@@ -84,8 +86,10 @@ struct ArcadeGameView: View {
             }
         }
         .onAppear {
-            print(self.screenHeight)
-            print(self.arcadeGameScene.size)
+                if let sound = Bundle.main.path(forResource: "ES_Megapixel - Lasse Lyx", ofType: "mp3") {
+                self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+                backgroundMusicAV.play()
+                }
             gameLogic.restartGame()
         }
     }
@@ -95,6 +99,7 @@ struct ArcadeGameView: View {
      * At the moment it is not being used, but it could be used in a Pause menu for example.
      */
     private func presentMainScreen() {
+        backgroundMusicAV.stop()
         self.currentGameState = .mainScreen
     }
     
@@ -103,6 +108,7 @@ struct ArcadeGameView: View {
      * It changes the current game state to present the GameOverView.
      */
     private func presentGameOverScreen() {
+        backgroundMusicAV.stop()
         self.currentGameState = .gameOver
     }
 }

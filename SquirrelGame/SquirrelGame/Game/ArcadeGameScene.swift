@@ -31,12 +31,11 @@ class ArcadeGameScene: SKScene {
 
     var backgroundMusicAV : AVAudioPlayer!
     
+    var touchesCount: Int = 0
+    
     override func didMove(to view: SKView) {
         self.setUpGame()
         self.setUpPhysicsWorld()
-        self.setUpBgMusic(fileName: SoundFile.backgroundMusicGame)
-        self.backgroundMusicAV.play()
-
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -139,6 +138,7 @@ extension ArcadeGameScene {
 extension ArcadeGameScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touchesCount += 1
         squirrel.physicsBody?.applyImpulse(CGVector(dx: physicsWorld.gravity.dx < 0 ? 350 : -350, dy: 0))
         squirrel.animateJump()
         physicsWorld.gravity = CGVector(dx: -physicsWorld.gravity.dx, dy: 0)
@@ -161,10 +161,9 @@ extension ArcadeGameScene {
      **/
     
     var isGameOver: Bool {
-        // Did you reach the time limit?
-        // Are the health points depleted?
-        // Did an enemy cross a position it should not have crossed?
-        
+        if touchesCount == 10 {
+            gameLogic.isGameOver = true
+        }
         return gameLogic.isGameOver
     }
     
@@ -178,22 +177,5 @@ extension ArcadeGameScene {
 extension ArcadeGameScene {
     
     private func registerScore() {
-    }
-}
-
-//MARK: - MUSIC
-extension ArcadeGameScene {
-    func setUpBgMusic(fileName: String){
-        if self.backgroundMusicAV == nil {
-            guard let backgroundMusicURL = Bundle.main.url(forResource: fileName, withExtension: nil) else {return}
-            do {
-                let theme = try AVAudioPlayer(contentsOf: backgroundMusicURL)
-                self.backgroundMusicAV = theme
-            } catch {
-                print("Couldn't load file")
-            }
-            backgroundMusicAV.prepareToPlay()
-            self.backgroundMusicAV.numberOfLoops = -1
-        }
     }
 }
