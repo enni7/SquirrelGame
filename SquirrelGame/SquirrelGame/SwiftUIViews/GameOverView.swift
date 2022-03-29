@@ -5,6 +5,7 @@
 //  Created by Anna Izzo on 29/03/22.
 //
 
+import AVFoundation
 import SwiftUI
 
 /**
@@ -19,6 +20,7 @@ import SwiftUI
 struct GameOverView: View {
     
     @Binding var currentGameState: GameState
+    @State var backgroundMusicAV : AVAudioPlayer!
     
     var body: some View {
         ZStack {
@@ -52,13 +54,21 @@ struct GameOverView: View {
             }
         }
         .statusBar(hidden: true)
+        .onAppear {
+            if let sound = Bundle.main.path(forResource: "bensound-cute", ofType: "mp3") {
+            self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+            backgroundMusicAV.play()
+            }
+        }
     }
     
     private func backToMainScreen() {
+        backgroundMusicAV.stop()
         self.currentGameState = .mainScreen
     }
     
     private func restartGame() {
+        backgroundMusicAV.stop()
         self.currentGameState = .playing
     }
 }

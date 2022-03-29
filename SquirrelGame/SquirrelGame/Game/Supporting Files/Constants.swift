@@ -56,3 +56,9 @@ struct MainScreenProperties {
     
     static let accentColor: Color = Color.accentColor
 }
+
+enum SoundFile {
+    static let backgroundMusicMenu = "bensound-cute.mp3"
+    static let backgroundMusicGame = "ES_Megapixel - Lasse Lyx.mp3"
+    static let pickUpSound = "nut+1.m4a"
+}

@@ -5,6 +5,7 @@
 //  Created by Anna Izzo on 29/03/22.
 //
 
+import AVFoundation
 import SpriteKit
 import SwiftUI
 
@@ -26,9 +27,16 @@ class ArcadeGameScene: SKScene {
     var leftWood: SKShapeNode!
     var rightWood: SKShapeNode!
     
+    let pickUpSound = SKAction.playSoundFileNamed(SoundFile.pickUpSound, waitForCompletion: false)
+
+    var backgroundMusicAV : AVAudioPlayer!
+    
     override func didMove(to view: SKView) {
         self.setUpGame()
         self.setUpPhysicsWorld()
+        self.setUpBgMusic(fileName: SoundFile.backgroundMusicGame)
+        self.backgroundMusicAV.play()
+
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -60,6 +68,7 @@ extension ArcadeGameScene {
 
         self.gameLogic.setUpGame()
         self.backgroundColor = SKColor.cyan
+        
         createWood()
         createPlayer()
         startRunning()
@@ -169,5 +178,22 @@ extension ArcadeGameScene {
 extension ArcadeGameScene {
     
     private func registerScore() {
+    }
+}
+
+//MARK: - MUSIC
+extension ArcadeGameScene {
+    func setUpBgMusic(fileName: String){
+        if self.backgroundMusicAV == nil {
+            guard let backgroundMusicURL = Bundle.main.url(forResource: fileName, withExtension: nil) else {return}
+            do {
+                let theme = try AVAudioPlayer(contentsOf: backgroundMusicURL)
+                self.backgroundMusicAV = theme
+            } catch {
+                print("Couldn't load file")
+            }
+            backgroundMusicAV.prepareToPlay()
+            self.backgroundMusicAV.numberOfLoops = -1
+        }
     }
 }
