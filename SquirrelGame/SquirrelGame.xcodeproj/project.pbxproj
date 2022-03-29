@@ -22,6 +22,7 @@
 		95E2124A27F37B9300FB9C6D /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2124927F37B9300FB9C6D /* PhysicsCategory.swift */; };
 		95E2124C27F37B9F00FB9C6D /* ArcadeGameScene+ContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2124B27F37B9F00FB9C6D /* ArcadeGameScene+ContactDelegate.swift */; };
 		95E2124E27F37BAF00FB9C6D /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2124D27F37BAF00FB9C6D /* GameOverView.swift */; };
+		95E2125327F37CAA00FB9C6D /* squirrelRunning.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		95E2124927F37B9300FB9C6D /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		95E2124B27F37B9F00FB9C6D /* ArcadeGameScene+ContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArcadeGameScene+ContactDelegate.swift"; sourceTree = "<group>"; };
 		95E2124D27F37BAF00FB9C6D /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = squirrelRunning.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				95E2125027F37BD400FB9C6D /* SwiftUIViews */,
 				95E2124F27F37BCA00FB9C6D /* Game */,
 				95E2122F27F37A3300FB9C6D /* Assets.xcassets */,
+				95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */,
 				95E2123127F37A3300FB9C6D /* Preview Content */,
 			);
 			path = SquirrelGame;
@@ -182,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95E2125327F37CAA00FB9C6D /* squirrelRunning.atlas in Resources */,
 				95E2123327F37A3300FB9C6D /* Preview Assets.xcassets in Resources */,
 				95E2123027F37A3300FB9C6D /* Assets.xcassets in Resources */,
 			);
