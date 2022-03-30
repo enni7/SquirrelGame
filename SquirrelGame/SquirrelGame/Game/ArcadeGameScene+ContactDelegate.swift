@@ -32,11 +32,8 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
             self.run(pickUpSound)
         }
         if secondNode.name == "eSpines" {
-            squirrel.life -= 1
 //            self.run(pickUpSound)
-            if squirrel.life == 0 {
                 self.finishGame()
-            }
         }
         if secondNode.name == "fGoldGhianda"{
             self.run(pickUpSound)

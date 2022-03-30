@@ -43,9 +43,7 @@ class ArcadeGameLogic: ObservableObject {
     }
     
     func restartGame() {
-        
-        // TODO: Customize!
-        
+                
         self.setUpGame()
     }
     

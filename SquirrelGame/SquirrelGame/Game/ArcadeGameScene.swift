@@ -17,27 +17,24 @@ class ArcadeGameScene: SKScene {
      *   for example, and comunicate with the Game Scene.
      **/
     var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
-    
+    let frameSpawner = FrameSpawner()
     // Keeps track of when the last update happend.
     // Used to calculate how much time has passed between updates.
     var lastUpdate: TimeInterval = 0
     var squirrel: SquirrelNode!
 //    var scaleFactor: CGFloat!
-    
-//    var leftWood: SKShapeNode!
-//    var rightWood: SKShapeNode!
-    
+        
     var treeNode: TreesNode!
     
     let pickUpSound = SKAction.playSoundFileNamed(SoundFile.pickUpSound, waitForCompletion: false)
 
     var backgroundMusicAV : AVAudioPlayer!
     
-    var touchesCount: Int = 0
     
     override func didMove(to view: SKView) {
         self.setUpGame()
         self.setUpPhysicsWorld()
+        self.frameSpawner.startCreatingObstacles()
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -58,7 +55,6 @@ class ArcadeGameScene: SKScene {
         
         self.lastUpdate = currentTime
     }
-    
 }
 
 // MARK: - Game Scene Set Up
@@ -68,8 +64,7 @@ extension ArcadeGameScene {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
         self.gameLogic.setUpGame()
-        self.backgroundColor = SKColor.cyan
-        
+        addChild(frameSpawner)
         createWood()
         createPlayer()
         startRunning()
@@ -84,7 +79,6 @@ extension ArcadeGameScene {
     
     private func startRunning() {
         self.squirrel.animateRun()
-        
     }
     
     private func restartGame() {
@@ -118,9 +112,6 @@ extension ArcadeGameScene {
 extension ArcadeGameScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touchesCount += 1
-        gameLogic.score(points: 5)
-        print(touchesCount)
         if squirrel.isInAir == false {
             squirrel.physicsBody?.applyImpulse(CGVector(dx: physicsWorld.gravity.dx < 0 ? 350 : -350, dy: 0))
             squirrel.animateJump()
@@ -145,9 +136,6 @@ extension ArcadeGameScene {
      **/
     
     var isGameOver: Bool {
-        if touchesCount > 9 {
-            finishGame()
-        }
         return gameLogic.isGameOver
     }
     

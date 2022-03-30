@@ -26,7 +26,9 @@ struct GameOverView: View {
     
     var body: some View {
         ZStack {
-            Color(uiColor: UIColor.cyan)
+            Image("background")
+                .resizable()
+                .scaledToFill()
                 .ignoresSafeArea()
             
             VStack(alignment: .center) {

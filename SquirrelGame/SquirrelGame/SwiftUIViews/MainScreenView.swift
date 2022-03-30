@@ -34,67 +34,77 @@ struct MainScreenView: View {
     let accentColor: Color = MainScreenProperties.accentColor
     
     var body: some View {
-        VStack(alignment: .center, spacing: 16.0) {
-            Spacer()
-            
-            /**
-             * # PRO TIP!
-             * The game title can be customized to represent the visual identity of the game
-             */
-            Text("\(self.gameTitle)")
-                .font(.title)
-                .fontWeight(.black)
-            
-            Spacer()
-            
-            /**
-             * To customize the instructions, check the **Constants.swift** file
-             */
-            ForEach(self.gameInstructions, id: \.title) { instruction in
+        ZStack{
+            Image("background")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+            VStack(alignment: .center, spacing: 16.0) {
+                Spacer()
                 
-                HStack{
-                    Image(systemName: "\(instruction.icon)")
-                        .font(.system(.title2, design: .monospaced))
-                        .foregroundColor(.orange)
-                        .padding()
-                    Spacer()
-                    VStack{
-                    Text("\(instruction.title)")
-                            .font(.system(.title2, design: .monospaced))
-                        .foregroundColor(.brown)
-//                        Text("\(instruction.description)")
-//                            .font(.system(.title3, design: .monospaced))
+                /**
+                 * # PRO TIP!
+                 * The game title can be customized to represent the visual identity of the game
+                 */
+                Text("\(self.gameTitle)")
+                    .font(.title)
+                    .fontWeight(.black)
+                
+                Spacer()
+                
+                /**
+                 * To customize the instructions, check the **Constants.swift** file
+                 */
+                VStack {
+                    ForEach(self.gameInstructions, id: \.title) { instruction in
+                        
+                        HStack{
+                            Image(systemName: "\(instruction.icon)")
+                                .font(.system(.title2, design: .monospaced))
+                                .foregroundColor(Color(uiColor: UIColor(named: "lightBrown")!))
+                                .padding()
+                            Spacer()
+                            VStack{
+                                Text("\(instruction.title)")
+                                    .font(.system(.title2, design: .monospaced))
+                                    .foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!))
+                                //                        Text("\(instruction.description)")
+                                //                            .font(.system(.title3, design: .monospaced))
+                            }
+                            Spacer()
+                        }
+                        .padding(.vertical)
                     }
-                    Spacer()
                 }
-                .padding(.vertical)
+                .frame(width: 300)
+                .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "cloud")!)))
+                
+                Spacer()
+                
+                /**
+                 * Customize the appearance of the **Insert a Coin** button to match the visual identity of your game
+                 */
+                Button {
+                    withAnimation { self.startGame() }
+                } label: {
+                    Text("START")
+                        .bold()
+                        .font(.system(.title, design: .monospaced))
+                        .foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!))
+                        .padding()
+                        .background(Color(uiColor: UIColor(named: "lighterBrown")!))
+                    
+                }
+                .cornerRadius(15)
+                Spacer()
             }
-            
-            Spacer()
-            
-            /**
-             * Customize the appearance of the **Insert a Coin** button to match the visual identity of your game
-             */
-            Button {
-                withAnimation { self.startGame() }
-            } label: {
-                Text("START")
-                    .bold()
-                    .font(.system(.title, design: .monospaced))
-                    .padding()
-                    .frame(maxWidth: .infinity)
-
-            }
-            .foregroundColor(.orange)
-            .cornerRadius(10.0)
-            
+            .padding()
         }
-        .padding()
         .statusBar(hidden: true)
         .onAppear {
             if let sound = Bundle.main.path(forResource: "bensound-cute", ofType: "mp3") {
-            self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
-            backgroundMusicAV.play()
+                self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+                backgroundMusicAV.play()
             }
         }
     }

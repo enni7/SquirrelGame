@@ -21,7 +21,7 @@ class TreesNode: SKNode {
     override init() {
         super.init()
         createWood()
-        createMovingGround()
+        createMovingGroundAndSky()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,7 +30,7 @@ class TreesNode: SKNode {
     
     func createWood(){
         
-        leftWood = SKShapeNode(rectOf: CGSize(width: 60, height: screenSize.height * 1.5))
+        leftWood = SKShapeNode(rectOf: CGSize(width: 60, height: screenSize.height))
         leftWood.name = "cLeftWood"
         leftWood.fillColor = .white
         leftWood.fillTexture = SKTexture(imageNamed: "WoodLeft")
@@ -44,11 +44,9 @@ class TreesNode: SKNode {
         leftWood.physicsBody?.isDynamic = false
         leftWood.physicsBody?.restitution = 0
         
-        let spine = SpinesSprite(at: CGPoint(x: leftWood.frame.maxX - 2, y: 100))
-        addChild(spine)
         addChild(leftWood)
         
-        rightWood = SKShapeNode(rectOf: CGSize(width: 60, height: screenSize.height * 1.5))
+        rightWood = SKShapeNode(rectOf: CGSize(width: 60, height: screenSize.height))
         rightWood.name = "cRightWood"
         rightWood.fillColor = .white
         rightWood.fillTexture = SKTexture(imageNamed: "WoodRight")
@@ -64,7 +62,7 @@ class TreesNode: SKNode {
         addChild(rightWood)
     }
     
-    func createMovingGround() {
+    func createMovingGroundAndSky() {
         for i in 0 ... 1 {
             let dumbNode = SKNode()
             let newLeftGround = SKShapeNode(rectOf: self.leftWood.frame.size)
@@ -80,8 +78,20 @@ class TreesNode: SKNode {
             newRightGround.lineWidth = 0
             newRightGround.position = CGPoint(x: rightWood.position.x, y: rightWood.position.y - (newLeftGround.frame.height * CGFloat(i)))
             dumbNode.addChild(newRightGround)
+            
+            let bg1 = SKSpriteNode(texture: SKTexture(imageNamed: "background1"))
+            bg1.size = screenSize
+            bg1.zPosition = -50
+            bg1.position = CGPoint(x: 0, y: 0 - (bg1.frame.height * CGFloat(i)))
 
-            let moveUp = SKAction.moveBy(x: 0, y: newLeftGround.frame.size.height, duration: 7)
+//            let bg2 = SKSpriteNode(texture: SKTexture(imageNamed: "background2"))
+//            bg2.size = bg1.size
+//            bg2.zPosition = -50
+//            bg2.position = CGPoint(x: 0, y: 0 - 2*(bg1.frame.height * CGFloat(i)))
+
+            dumbNode.addChild(bg1)
+
+            let moveUp = SKAction.moveBy(x: 0, y: newLeftGround.frame.size.height, duration: 5)
             let moveReset = SKAction.moveBy(x: 0, y: -newLeftGround.frame.size.height, duration: 0)
             let moveLoop = SKAction.sequence([moveUp, moveReset])
             let moveForever = SKAction.repeatForever(moveLoop)
@@ -89,7 +99,6 @@ class TreesNode: SKNode {
             addChild(dumbNode)
         }
     }
-    
         
     func createMiddleWood(){
         rightWood = SKShapeNode(rectOf: CGSize(width: 60, height: screenSize.height * 1.5))
@@ -103,6 +112,5 @@ class TreesNode: SKNode {
         rightWood.physicsBody?.collisionBitMask = PhysicsCategory.bSquirrel
         rightWood.physicsBody?.isDynamic = false
         rightWood.physicsBody?.restitution = 0
-
     }
 }

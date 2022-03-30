@@ -14,7 +14,6 @@ class SquirrelNode: SKSpriteNode {
     
     var isInAir: Bool = false
     var touchingWoodOnSide: TouchingWoodOnSide!
-    var life: Int = 2
     
     init(at position: CGPoint) {
         touchingWoodOnSide = .left
@@ -33,7 +32,7 @@ class SquirrelNode: SKSpriteNode {
         self.jumpTextureFromLeft = runningFramesOnLeft[1]
         
         super.init(texture: firstTexture, color: .white, size: CGSize(width: firstTexture.size().width * 2, height: firstTexture.size().height * 2))
-        self.life = 2
+        self.zPosition = 50
         self.position = position
         self.name = "bSquirrel"
         

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B200627F3D30B00D7490E /* SpinesSprite.swift */; };
 		95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95370BD027F3919B00B7EAEE /* TreesNode.swift */; };
+		953A3F7227F4526D009DCAF7 /* SequenceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953A3F7127F4526D009DCAF7 /* SequenceNode.swift */; };
+		95812A6D27F49EE400B79C32 /* PixelLoop.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95812A6C27F49E6200B79C32 /* PixelLoop.m4a */; };
+		9589F75227F4794100FF1B53 /* GoldenNutSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */; };
 		95E2122C27F37A3200FB9C6D /* SquirrelGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2122B27F37A3200FB9C6D /* SquirrelGameApp.swift */; };
 		95E2122E27F37A3200FB9C6D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2122D27F37A3200FB9C6D /* ContentView.swift */; };
 		95E2123027F37A3300FB9C6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95E2122F27F37A3300FB9C6D /* Assets.xcassets */; };
@@ -26,13 +29,15 @@
 		95E2124E27F37BAF00FB9C6D /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2124D27F37BAF00FB9C6D /* GameOverView.swift */; };
 		95E2125327F37CAA00FB9C6D /* squirrelRunning.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */; };
 		95E2125827F3817300FB9C6D /* nut+1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125527F3817300FB9C6D /* nut+1.m4a */; };
-		95E2125927F3817300FB9C6D /* ES_Megapixel - Lasse Lyx.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125627F3817300FB9C6D /* ES_Megapixel - Lasse Lyx.mp3 */; };
 		95E2125A27F3817300FB9C6D /* bensound-cute.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125727F3817300FB9C6D /* bensound-cute.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		952B200627F3D30B00D7490E /* SpinesSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinesSprite.swift; sourceTree = "<group>"; };
 		95370BD027F3919B00B7EAEE /* TreesNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreesNode.swift; sourceTree = "<group>"; };
+		953A3F7127F4526D009DCAF7 /* SequenceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceNode.swift; sourceTree = "<group>"; };
+		95812A6C27F49E6200B79C32 /* PixelLoop.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = PixelLoop.m4a; sourceTree = "<group>"; };
+		9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenNutSprite.swift; sourceTree = "<group>"; };
 		95E2122827F37A3200FB9C6D /* SquirrelGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SquirrelGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95E2122B27F37A3200FB9C6D /* SquirrelGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquirrelGameApp.swift; sourceTree = "<group>"; };
 		95E2122D27F37A3200FB9C6D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,7 +56,6 @@
 		95E2124D27F37BAF00FB9C6D /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = squirrelRunning.atlas; sourceTree = "<group>"; };
 		95E2125527F3817300FB9C6D /* nut+1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "nut+1.m4a"; sourceTree = "<group>"; };
-		95E2125627F3817300FB9C6D /* ES_Megapixel - Lasse Lyx.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ES_Megapixel - Lasse Lyx.mp3"; sourceTree = "<group>"; };
 		95E2125727F3817300FB9C6D /* bensound-cute.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-cute.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +75,9 @@
 			children = (
 				95E2124727F37B8A00FB9C6D /* SquirrelNode.swift */,
 				95370BD027F3919B00B7EAEE /* TreesNode.swift */,
+				9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */,
 				952B200627F3D30B00D7490E /* SpinesSprite.swift */,
+				953A3F7127F4526D009DCAF7 /* SequenceNode.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -152,8 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				95E2125527F3817300FB9C6D /* nut+1.m4a */,
-				95E2125627F3817300FB9C6D /* ES_Megapixel - Lasse Lyx.mp3 */,
 				95E2125727F3817300FB9C6D /* bensound-cute.mp3 */,
+				95812A6C27F49E6200B79C32 /* PixelLoop.m4a */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -216,9 +222,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95812A6D27F49EE400B79C32 /* PixelLoop.m4a in Resources */,
 				95E2125827F3817300FB9C6D /* nut+1.m4a in Resources */,
 				95E2125327F37CAA00FB9C6D /* squirrelRunning.atlas in Resources */,
-				95E2125927F3817300FB9C6D /* ES_Megapixel - Lasse Lyx.mp3 in Resources */,
 				95E2123327F37A3300FB9C6D /* Preview Assets.xcassets in Resources */,
 				95E2123027F37A3300FB9C6D /* Assets.xcassets in Resources */,
 				95E2125A27F3817300FB9C6D /* bensound-cute.mp3 in Resources */,
@@ -244,9 +250,11 @@
 				95E2122C27F37A3200FB9C6D /* SquirrelGameApp.swift in Sources */,
 				95E2123A27F37B2D00FB9C6D /* Constants.swift in Sources */,
 				95E2124827F37B8A00FB9C6D /* SquirrelNode.swift in Sources */,
+				953A3F7227F4526D009DCAF7 /* SequenceNode.swift in Sources */,
 				95E2124C27F37B9F00FB9C6D /* ArcadeGameScene+ContactDelegate.swift in Sources */,
 				95E2124E27F37BAF00FB9C6D /* GameOverView.swift in Sources */,
 				95E2123C27F37B4300FB9C6D /* MainScreenView.swift in Sources */,
+				9589F75227F4794100FF1B53 /* GoldenNutSprite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -61,8 +61,8 @@ struct ArcadeGameView: View {
                  * UI element showing the duration of the game session.
                  * Remove it if your game is not based on time.
                  */
-                GameDurationView(time: $gameLogic.sessionDuration)
-                Spacer()
+//                GameDurationView(time: $gameLogic.sessionDuration)
+//                Spacer()
                 /**
                  * UI element showing the current score of the player.
                  * Remove it if your game is not based on scoring points.
@@ -85,7 +85,7 @@ struct ArcadeGameView: View {
             }
         }
         .onAppear {
-                if let sound = Bundle.main.path(forResource: "ES_Megapixel - Lasse Lyx", ofType: "mp3") {
+                if let sound = Bundle.main.path(forResource: "PixelLoop", ofType: "m4a") {
                 self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
                 backgroundMusicAV.play()
                 }
