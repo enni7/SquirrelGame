@@ -20,7 +20,7 @@ struct GameScoreView: View {
     var body: some View {
         
         HStack {
-            Image("nut_1")
+            Image("nut_111")
             Text("\(score)")
                 .font(.system(.title2, design: .monospaced))
                 .bold()

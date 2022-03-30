@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B200627F3D30B00D7490E /* SpinesSprite.swift */; };
 		95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95370BD027F3919B00B7EAEE /* TreesNode.swift */; };
 		95E2122C27F37A3200FB9C6D /* SquirrelGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2122B27F37A3200FB9C6D /* SquirrelGameApp.swift */; };
 		95E2122E27F37A3200FB9C6D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2122D27F37A3200FB9C6D /* ContentView.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		952B200627F3D30B00D7490E /* SpinesSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinesSprite.swift; sourceTree = "<group>"; };
 		95370BD027F3919B00B7EAEE /* TreesNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreesNode.swift; sourceTree = "<group>"; };
 		95E2122827F37A3200FB9C6D /* SquirrelGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SquirrelGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95E2122B27F37A3200FB9C6D /* SquirrelGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquirrelGameApp.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			children = (
 				95E2124727F37B8A00FB9C6D /* SquirrelNode.swift */,
 				95370BD027F3919B00B7EAEE /* TreesNode.swift */,
+				952B200627F3D30B00D7490E /* SpinesSprite.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				95E2124027F37B5F00FB9C6D /* GameDurationView.swift in Sources */,
 				95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */,
 				95E2124227F37B6800FB9C6D /* GameScoreView.swift in Sources */,
+				952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */,
 				95E2123E27F37B5300FB9C6D /* ArcadeGameView.swift in Sources */,
 				95E2124A27F37B9300FB9C6D /* PhysicsCategory.swift in Sources */,
 				95E2122E27F37A3200FB9C6D /* ContentView.swift in Sources */,

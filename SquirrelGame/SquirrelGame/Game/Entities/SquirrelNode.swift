@@ -32,12 +32,12 @@ class SquirrelNode: SKSpriteNode {
         self.firstTexture = runningFramesOnLeft[0]
         self.jumpTextureFromLeft = runningFramesOnLeft[1]
         
-        super.init(texture: firstTexture, color: .white, size: CGSize(width: firstTexture.size().width * 3.2, height: firstTexture.size().height * 3.2))
+        super.init(texture: firstTexture, color: .white, size: CGSize(width: firstTexture.size().width * 2, height: firstTexture.size().height * 2))
         self.life = 2
         self.position = position
         self.name = "bSquirrel"
         
-        physicsBody = SKPhysicsBody(texture: firstTexture, size: CGSize(width: self.size.width * 0.95, height: self.size.height * 0.95))
+        physicsBody = SKPhysicsBody(texture: firstTexture, size: CGSize(width: self.size.width * 0.96, height: self.size.height * 0.96))
         physicsBody?.affectedByGravity = true
         physicsBody?.restitution = 0
         physicsBody?.mass = 1
