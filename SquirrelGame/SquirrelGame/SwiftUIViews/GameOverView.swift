@@ -59,7 +59,7 @@ struct GameOverView: View {
                     .padding()
                     
                 }
-                .background(Rectangle().cornerRadius(10).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)))
+                .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)))
                 .font(.system(.title, design: .monospaced))
                 .foregroundColor(Color(uiColor: UIColor.systemOrange))
                 .padding(.horizontal, 50)
@@ -75,7 +75,7 @@ struct GameOverView: View {
                             .foregroundColor(Color(uiColor: UIColor.systemOrange))
                             .font(.largeTitle)
                     }
-                    .background(Rectangle().cornerRadius(10).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)).frame(width: 80, height: 80, alignment: .center))
+                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)).frame(width: 80, height: 80, alignment: .center))
                     
                     Spacer()
                     
@@ -86,7 +86,7 @@ struct GameOverView: View {
                             .foregroundColor(Color(uiColor: UIColor.systemOrange))
                             .font(.largeTitle)
                     }
-                    .background(Rectangle().cornerRadius(10).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)).frame(width: 80, height: 80, alignment: .center))
+                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)).frame(width: 80, height: 80, alignment: .center))
                     Spacer()
                 }
                 Spacer()

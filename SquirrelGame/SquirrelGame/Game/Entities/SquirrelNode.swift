@@ -36,6 +36,9 @@ class SquirrelNode: SKSpriteNode {
         self.position = position
         self.name = "bSquirrel"
         
+        let constrain = SKConstraint.positionY(SKRange(constantValue: position.y))
+        self.constraints = [constrain]
+        
         physicsBody = SKPhysicsBody(texture: firstTexture, size: CGSize(width: self.size.width * 0.96, height: self.size.height * 0.96))
         physicsBody?.affectedByGravity = true
         physicsBody?.restitution = 0
@@ -46,6 +49,8 @@ class SquirrelNode: SKSpriteNode {
         
         physicsBody?.contactTestBitMask = PhysicsCategory.cSideWood
         physicsBody?.collisionBitMask = PhysicsCategory.cSideWood
+        print("squir: \(self.size)")
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,7 +62,7 @@ class SquirrelNode: SKSpriteNode {
             SKAction.animate(with: runningFramesOnLeft,
                              timePerFrame: 0.15,
                              resize: false,
-                             restore: true)),
+                             restore: false)),
                  withKey: "runningSquirrel")
     }
     

@@ -71,7 +71,7 @@ extension ArcadeGameScene {
     }
     
     private func setUpPhysicsWorld() {
-        physicsWorld.gravity = CGVector(dx: -1, dy: 0)
+        physicsWorld.gravity = CGVector(dx: -10, dy: 0)
         physicsWorld.contactDelegate = self
         
         view?.showsPhysics = true
