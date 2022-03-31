@@ -202,7 +202,7 @@ struct FramesDatabase {
               leftBrunchesYArray: [-260],
               rightBrunchesYArray: [],
 
-              normalNutsPositionsArray: [CGPoint(x: -100, y: 300), CGPoint(x: 100, y: 180), CGPoint(x: 0, y: -360)],
+              normalNutsPositionsArray: [CGPoint(x: -100, y: 300), CGPoint(x: 100, y: 180)],
               boxNutPositionsArray: [CGPoint(x: 0, y: -360)]),
 
         //13
