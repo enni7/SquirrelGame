@@ -51,7 +51,7 @@ struct MainScreenView: View {
 //                    .fontWeight(.bold)
 //                    .font(.system(.largeTitle, design: .monospaced))
 //                    .foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!))
-                Image("Group 195")
+                Image("LOGO")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 300)
@@ -65,10 +65,11 @@ struct MainScreenView: View {
                     ForEach(self.gameInstructions, id: \.title) { instruction in
                         
                         HStack{
+                            Spacer()
                             Image(systemName: "\(instruction.icon)")
-                                .font(.system(.title2, design: .monospaced))
+                                .font(.system(.title, design: .monospaced))
                                 .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-                                .padding()
+                                .padding(10)
                             Spacer()
                             VStack{
                                 Text("\(instruction.title)")
@@ -111,6 +112,7 @@ struct MainScreenView: View {
         .onAppear {
             if let sound = Bundle.main.path(forResource: "bensound-cute", ofType: "mp3") {
                 self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+                backgroundMusicAV.numberOfLoops = -1
                 backgroundMusicAV.play()
             }
         }

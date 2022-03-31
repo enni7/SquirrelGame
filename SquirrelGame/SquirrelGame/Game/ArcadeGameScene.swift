@@ -111,7 +111,7 @@ extension ArcadeGameScene {
     }
 }
 
-// MARK: - Create side wood
+// MARK: - Create stuff
 extension ArcadeGameScene {
     
     func createWood(){
@@ -124,7 +124,7 @@ extension ArcadeGameScene {
 extension ArcadeGameScene {
     func pauseTry(){
         for child in self.children {
-            if child.name != "camera" && child.name != "bSquirrel"{
+            if child.name != "particle" && child.name != "bSquirrel"{
             child.isPaused = true
             }
         }

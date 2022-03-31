@@ -44,7 +44,7 @@ struct MainScreenProperties {
     static let gameInstructions: [Instruction] = [
 //        (icon: "hand.raised", title: "Instruction 1", description: "Instruction description."),
         (icon: "hand.tap", title: "Tap to jump on the opposite wall", description: "Instruction description."),
-        (icon: "hand.tap", title: "Tap while jumping to dash down and break nuts boxes", description: "Instruction description."),
+        (icon: "hand.tap", title: "While jumping tap to bounce down on top of boxes to break them", description: "Instruction description."),
 //        (icon: "hand.tap", title: "Instruction 4", description: "Instruction description."),
 //        (icon: "hand.raised", title: "Instruction 5", description: "Instruction description."),
 //        (icon: "hands.sparkles", title: "Instruction 6", description: "Instruction description."),
@@ -69,12 +69,14 @@ struct Frame {
 struct FramesDatabase {
     let framesArray = [
         
-        Frame(leftSpinesPositionsArray: [300],
+        Frame(leftSpinesPositionsArray:  [300],
               rightSpinesPositionsArray: [],
-              leftBrunchesYArray: [],
-              rightBrunchesYArray: [-200],
-              normalNutsPositionsArray: [],
-              boxNutPositionsArray: [CGPoint.zero] ),
+              
+              leftBrunchesYArray:        [],
+              rightBrunchesYArray:       [-200],
+              
+              normalNutsPositionsArray:  [],
+              boxNutPositionsArray:      [CGPoint.zero] ),
         
         Frame(leftSpinesPositionsArray: [],
               rightSpinesPositionsArray: [250],

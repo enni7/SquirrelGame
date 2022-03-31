@@ -87,6 +87,7 @@ struct ArcadeGameView: View {
         .onAppear {
                 if let sound = Bundle.main.path(forResource: "PixelLoop", ofType: "m4a") {
                 self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+                    backgroundMusicAV.numberOfLoops = -1
                 backgroundMusicAV.play()
                 }
             gameLogic.restartGame()

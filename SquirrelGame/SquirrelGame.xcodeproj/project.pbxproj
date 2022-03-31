@@ -10,6 +10,7 @@
 		952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B200627F3D30B00D7490E /* SpinesSprite.swift */; };
 		95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95370BD027F3919B00B7EAEE /* TreesNode.swift */; };
 		953A3F7227F4526D009DCAF7 /* SequenceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953A3F7127F4526D009DCAF7 /* SequenceNode.swift */; };
+		9567854D27F5FB8100C493A9 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9567854C27F5FB8100C493A9 /* MyParticle.sks */; };
 		95812A6D27F49EE400B79C32 /* PixelLoop.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95812A6C27F49E6200B79C32 /* PixelLoop.m4a */; };
 		9589F75227F4794100FF1B53 /* GoldenNutSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */; };
 		95E2122C27F37A3200FB9C6D /* SquirrelGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2122B27F37A3200FB9C6D /* SquirrelGameApp.swift */; };
@@ -37,6 +38,7 @@
 		952B200627F3D30B00D7490E /* SpinesSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinesSprite.swift; sourceTree = "<group>"; };
 		95370BD027F3919B00B7EAEE /* TreesNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreesNode.swift; sourceTree = "<group>"; };
 		953A3F7127F4526D009DCAF7 /* SequenceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceNode.swift; sourceTree = "<group>"; };
+		9567854C27F5FB8100C493A9 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		95812A6C27F49E6200B79C32 /* PixelLoop.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = PixelLoop.m4a; sourceTree = "<group>"; };
 		95812A6E27F4A28700B79C32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenNutSprite.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				95E2124F27F37BCA00FB9C6D /* Game */,
 				95E2125127F37C4400FB9C6D /* Supporting Files */,
 				95E2122F27F37A3300FB9C6D /* Assets.xcassets */,
+				9567854C27F5FB8100C493A9 /* MyParticle.sks */,
 				95F60C0A27F59D2F003EB6A6 /* Font */,
 				95E2125427F3817300FB9C6D /* sounds */,
 				95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */,
@@ -242,6 +245,7 @@
 				95E2123027F37A3300FB9C6D /* Assets.xcassets in Resources */,
 				95ED96EF27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf in Resources */,
 				95E2125A27F3817300FB9C6D /* bensound-cute.mp3 in Resources */,
+				9567854D27F5FB8100C493A9 /* MyParticle.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

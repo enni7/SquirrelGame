@@ -38,8 +38,11 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
         }
         if secondNode.name == "dNutGold"{
             if squirrel.isDashing {
-                
+                if let nut = secondNode as? GoldenNutSprite {
+                    nut.animateBoxBreake(at: contact.contactPoint)
+                }
                 secondNode.removeFromParent()
+
                 squirrel.bounceOnOtherSide()
                 self.makeHaptic()
                 self.run(pickUpSound)
@@ -48,3 +51,4 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
         }
     }
 }
+

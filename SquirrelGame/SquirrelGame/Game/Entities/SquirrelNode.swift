@@ -11,7 +11,9 @@ class SquirrelNode: SKSpriteNode {
     private var runningFramesOnLeft: [SKTexture] = []
     private var firstTexture: SKTexture!
     private var jumpTextureFromLeft: SKTexture!
-    
+    private var ballTexture = SKTexture(imageNamed: "squirrelball 1 3")
+    private var dashTexture = SKTexture(imageNamed: "dash2")
+
     var isInAir: Bool = false
     var isDashing: Bool = false
     var touchingWoodOnSide: TouchingWoodOnSide!
@@ -96,7 +98,7 @@ class SquirrelNode: SKSpriteNode {
     }
     
     func restoreYPosition(){
-        let action = SKAction.moveTo(y: 200, duration: 2.5)
+        let action = SKAction.moveTo(y: 200, duration: 2.7)
         self.run(action)
     }
         
@@ -112,7 +114,11 @@ class SquirrelNode: SKSpriteNode {
     func animateUpBounce(){
         self.run(SKAction.rotate(toAngle: touchingWoodOnSide == .left ? .pi/1.6 : -.pi/1.6, duration: 0.1, shortestUnitArc: true))
     }
+    
     func animateDownDash(){
+        self.texture = ballTexture
+//        self.run(SKAction.setTexture(dashTexture, resize: false))
+//        self.texture = dashTexture
         self.run(SKAction.rotate(toAngle: 0, duration: 0.1, shortestUnitArc: true))
     }
     

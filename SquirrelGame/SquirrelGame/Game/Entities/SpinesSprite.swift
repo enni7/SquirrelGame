@@ -16,7 +16,7 @@ class SpinesSprite: SKSpriteNode {
         self.name = "eSpines"
         self.zPosition = 20
         self.anchorPoint = CGPoint(x: 0, y: 0.5)
-        self.position = CGPoint(x: (-screenSize.width / 2) + 28, y: positionY)
+        self.position = CGPoint(x: (-screenSize.width / 2) + 26, y: positionY)
 
         physicsBody = SKPhysicsBody(rectangleOf: self.size)
         physicsBody?.categoryBitMask = PhysicsCategory.eSpines
@@ -30,7 +30,7 @@ class SpinesSprite: SKSpriteNode {
         self.name = "eSpines"
         self.zPosition = 20
         self.anchorPoint = CGPoint(x: 1, y: 0.5)
-        self.position = CGPoint(x: (screenSize.width / 2) - 28, y: positionY)
+        self.position = CGPoint(x: (screenSize.width / 2) - 26, y: positionY)
 
         physicsBody = SKPhysicsBody(rectangleOf: self.size)
         physicsBody?.categoryBitMask = PhysicsCategory.eSpines

@@ -109,6 +109,7 @@ struct GameOverView: View {
         .onAppear {
             if let sound = Bundle.main.path(forResource: "bensound-cute", ofType: "mp3") {
                 self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+                backgroundMusicAV.numberOfLoops = -1
                 backgroundMusicAV.play()
             }
         }
