@@ -19,11 +19,11 @@ class SequenceNode: SKNode {
 
         addChild(frameShape)
         
-        for leftSpineY in frame.leftSpinesPositionsArray {
-            addLeftSpine(atY: leftSpineY)
+        for (leftSpineY, num) in frame.leftSpinesPositionsArray {
+            addLeftSpine(atY: leftSpineY, num: num)
         }
-        for rightSpineY in frame.rightSpinesPositionsArray{
-            addRightSpine(atY: rightSpineY)
+        for (rightSpineY, num) in frame.rightSpinesPositionsArray{
+            addRightSpine(atY: rightSpineY, num: num)
         }
         for leftBrunchY in frame.leftBrunchesYArray{
             createLeftBrunch(at: leftBrunchY)
@@ -42,12 +42,12 @@ class SequenceNode: SKNode {
     func addTextureTrees(){
         
     }
-    func addRightSpine(atY: CGFloat){
-        let spine = SpinesSprite(onRightAt: atY)
+    func addRightSpine(atY: CGFloat, num: Int){
+        let spine = SpinesSprite(onRightAt: atY, numberOfSpines123: num)
         self.frameShape.addChild(spine)
     }
-    func addLeftSpine(atY: CGFloat){
-        let spine = SpinesSprite(onLeftAt: atY)
+    func addLeftSpine(atY: CGFloat, num: Int){
+        let spine = SpinesSprite(onLeftAt: atY, numberOfSpines123: num)
         self.frameShape.addChild(spine)
     }
     func moveUpFrame(){

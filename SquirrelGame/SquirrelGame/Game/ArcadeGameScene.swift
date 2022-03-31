@@ -27,6 +27,8 @@ class ArcadeGameScene: SKScene {
     var treeNode: TreesNode!
 
     let pickUpSound = SKAction.playSoundFileNamed(SoundFile.pickUpSound, waitForCompletion: false)
+    let jumpSound = SKAction.playSoundFileNamed(SoundFile.jump, waitForCompletion: false)
+    let gameOverSound = SKAction.playSoundFileNamed(SoundFile.gameOver, waitForCompletion: true)
 
     var backgroundMusicAV : AVAudioPlayer!
     
@@ -138,7 +140,7 @@ extension ArcadeGameScene {
         
         if squirrel.isInAir == false {
 //            squirrel.physicsBody?.applyImpulse(CGVector(dx: physicsWorld.gravity.dx < 0 ? 350 : -350, dy: 0))
-//            squirrel.animateJump()
+//            self.run(jumpSound)
             squirrel.jump()
             physicsWorld.gravity = CGVector(dx: -physicsWorld.gravity.dx, dy: 0)
         } else {
@@ -183,8 +185,9 @@ extension ArcadeGameScene {
     }
     
     func finishGame() {
-        gameLogic.finalScore = gameLogic.currentScore
-        gameLogic.isGameOver = true
+//        self.run(gameOverSound)
+            self.gameLogic.finalScore = self.gameLogic.currentScore
+            self.gameLogic.isGameOver = true
     }
 }
 

@@ -8,10 +8,8 @@
 import SpriteKit
 
 class SpinesSprite: SKSpriteNode {
-    let leftTexture = SKTexture(imageNamed: "thorn_left")
-    let rightTexture = SKTexture(imageNamed: "thorn_right")
-
-    init(onLeftAt positionY: CGFloat) {
+    init(onLeftAt positionY: CGFloat, numberOfSpines123: Int) {
+        let leftTexture = SKTexture(imageNamed: "spines\(numberOfSpines123)left")
         super.init(texture: leftTexture, color: .white, size: CGSize(width: leftTexture.size().width * 1.5, height: leftTexture.size().height * 1.5) )
         self.name = "eSpines"
         self.zPosition = 20
@@ -25,8 +23,10 @@ class SpinesSprite: SKSpriteNode {
         physicsBody?.isDynamic = false
     }
     
-    init(onRightAt positionY: CGFloat){
-        super.init(texture: rightTexture, color: .white, size: CGSize(width: leftTexture.size().width * 1.5, height: leftTexture.size().height * 1.5) )
+    init(onRightAt positionY: CGFloat, numberOfSpines123: Int){
+        let rightTexture = SKTexture(imageNamed: "spines\(numberOfSpines123)right")
+
+        super.init(texture: rightTexture, color: .white, size: CGSize(width: rightTexture.size().width * 1.5, height: rightTexture.size().height * 1.5) )
         self.name = "eSpines"
         self.zPosition = 20
         self.anchorPoint = CGPoint(x: 1, y: 0.5)

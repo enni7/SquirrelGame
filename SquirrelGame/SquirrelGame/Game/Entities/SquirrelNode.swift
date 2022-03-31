@@ -42,7 +42,7 @@ class SquirrelNode: SKSpriteNode {
 //        let constrain = SKConstraint.positionY(SKRange(constantValue: position.y))
 //        self.constraints = [constrain]
         
-        physicsBody = SKPhysicsBody(texture: firstTexture, size: CGSize(width: self.size.width * 0.96, height: self.size.height * 0.96))
+        physicsBody = SKPhysicsBody(texture: firstTexture, size: CGSize(width: self.size.width * 0.95, height: self.size.height * 0.95))
         physicsBody?.affectedByGravity = true
         physicsBody?.restitution = 0
         physicsBody?.mass = 1
@@ -116,9 +116,10 @@ class SquirrelNode: SKSpriteNode {
     }
     
     func animateDownDash(){
-        self.texture = ballTexture
-//        self.run(SKAction.setTexture(dashTexture, resize: false))
-//        self.texture = dashTexture
+//        self.texture = ballTexture
+        self.run(SKAction.setTexture(ballTexture))
+        //        self.run(SKAction.setTexture(dashTexture, resize: false))
+        //        self.texture = dashTexture
         self.run(SKAction.rotate(toAngle: 0, duration: 0.1, shortestUnitArc: true))
     }
     

@@ -19,6 +19,7 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
         
         if secondNode.name == "cLeftWood" || secondNode.name == "cRightWood" || secondNode.name == "cMiddleWood" {
             if firstNode.name == "bSquirrel" {
+                squirrel.isInAir = false
                 if physicsWorld.gravity.dx > 0 {
                     squirrel.touchingWoodOnSide = .right
                 } else {

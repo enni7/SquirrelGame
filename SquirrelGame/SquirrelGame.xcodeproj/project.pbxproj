@@ -11,6 +11,8 @@
 		95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95370BD027F3919B00B7EAEE /* TreesNode.swift */; };
 		953A3F7227F4526D009DCAF7 /* SequenceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953A3F7127F4526D009DCAF7 /* SequenceNode.swift */; };
 		9567854D27F5FB8100C493A9 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9567854C27F5FB8100C493A9 /* MyParticle.sks */; };
+		9567854F27F6127500C493A9 /* Jump.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9567854E27F6127500C493A9 /* Jump.m4a */; };
+		9567855127F6127E00C493A9 /* Game over.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9567855027F6127E00C493A9 /* Game over.m4a */; };
 		95812A6D27F49EE400B79C32 /* PixelLoop.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95812A6C27F49E6200B79C32 /* PixelLoop.m4a */; };
 		9589F75227F4794100FF1B53 /* GoldenNutSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */; };
 		95E2122C27F37A3200FB9C6D /* SquirrelGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2122B27F37A3200FB9C6D /* SquirrelGameApp.swift */; };
@@ -39,6 +41,8 @@
 		95370BD027F3919B00B7EAEE /* TreesNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreesNode.swift; sourceTree = "<group>"; };
 		953A3F7127F4526D009DCAF7 /* SequenceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceNode.swift; sourceTree = "<group>"; };
 		9567854C27F5FB8100C493A9 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		9567854E27F6127500C493A9 /* Jump.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jump.m4a; sourceTree = "<group>"; };
+		9567855027F6127E00C493A9 /* Game over.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Game over.m4a"; sourceTree = "<group>"; };
 		95812A6C27F49E6200B79C32 /* PixelLoop.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = PixelLoop.m4a; sourceTree = "<group>"; };
 		95812A6E27F4A28700B79C32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenNutSprite.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 		95E2125427F3817300FB9C6D /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				9567854E27F6127500C493A9 /* Jump.m4a */,
+				9567855027F6127E00C493A9 /* Game over.m4a */,
 				95E2125527F3817300FB9C6D /* nut+1.m4a */,
 				95E2125727F3817300FB9C6D /* bensound-cute.mp3 */,
 				95812A6C27F49E6200B79C32 /* PixelLoop.m4a */,
@@ -241,11 +247,13 @@
 				95812A6D27F49EE400B79C32 /* PixelLoop.m4a in Resources */,
 				95E2125827F3817300FB9C6D /* nut+1.m4a in Resources */,
 				95E2125327F37CAA00FB9C6D /* squirrelRunning.atlas in Resources */,
+				9567855127F6127E00C493A9 /* Game over.m4a in Resources */,
 				95E2123327F37A3300FB9C6D /* Preview Assets.xcassets in Resources */,
 				95E2123027F37A3300FB9C6D /* Assets.xcassets in Resources */,
 				95ED96EF27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf in Resources */,
 				95E2125A27F3817300FB9C6D /* bensound-cute.mp3 in Resources */,
 				9567854D27F5FB8100C493A9 /* MyParticle.sks in Resources */,
+				9567854F27F6127500C493A9 /* Jump.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
