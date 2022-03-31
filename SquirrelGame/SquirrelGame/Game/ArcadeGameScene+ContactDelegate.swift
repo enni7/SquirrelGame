@@ -33,13 +33,15 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
             self.run(pickUpSound)
         }
         if secondNode.name == "eSpines" || secondNode.name == "gBranch" {
-                self.finishGame()
+            self.makeHaptic()
+            self.finishGame()
         }
         if secondNode.name == "dNutGold"{
             if squirrel.isDashing {
-
+                
                 secondNode.removeFromParent()
                 squirrel.bounceOnOtherSide()
+                self.makeHaptic()
                 self.run(pickUpSound)
                 gameLogic.score(points: 10)
             }

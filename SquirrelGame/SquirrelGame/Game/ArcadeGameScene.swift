@@ -158,7 +158,6 @@ extension ArcadeGameScene {
     }
 }
 
-
 // MARK: - Game Over Condition
 extension ArcadeGameScene {
     
@@ -174,6 +173,7 @@ extension ArcadeGameScene {
      **/
     func playerOutOnBottom(){
         if squirrel.position.y < self.frame.minY {
+            makeHaptic()
             finishGame()
         }
     }
@@ -189,9 +189,13 @@ extension ArcadeGameScene {
 }
 
 
-// MARK: - Register Score
+// MARK: - Vibration
 extension ArcadeGameScene {
     
-    private func registerScore() {
+    func makeHaptic() {
+        let vibration = SKAction.run {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        }
+        self.run(vibration)
     }
 }
