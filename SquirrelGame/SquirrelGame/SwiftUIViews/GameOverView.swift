@@ -23,7 +23,6 @@ struct GameOverView: View {
     @State var backgroundMusicAV : AVAudioPlayer!
     var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
 
-    
     var body: some View {
         ZStack {
             Image("background")
@@ -33,49 +32,61 @@ struct GameOverView: View {
             
             VStack(alignment: .center) {
                 Spacer()
+//                VStack{
+//                    HStack{
+//                        Text("TIME:")
+//                        Spacer()
+//                        Text("\(Int(gameLogic.finalTime))")
+//                    }
+//                    .padding(.horizontal)
+//                    .padding(10)
+//                    HStack{
+//                        Text("POINTS:")
+//                        Spacer()
+//                        Text("\(gameLogic.finalPoints)")
+//                    }
+//                    .padding(.horizontal)
+//                    .padding(10)
                 VStack{
-                    HStack{
-                        Text("TIME:")
-                        Spacer()
-                        Text("\(Int(gameLogic.finalTime))")
-                    }
-                    .padding(.horizontal)
-                    .padding(10)
-                    HStack{
-                        Text("POINTS:")
-                        Spacer()
-                        Text("\(gameLogic.finalPoints)")
-                    }
-                    .padding(.horizontal)
-                    .padding(10)
                     VStack{
-                        Text("TOTAL SCORE")
+                        Image("hurtFace 1")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 150)
+                            .padding()
+                            
+                        Text("SCORE")
+//                            .foregroundColor(.white)
                             .bold()
+                            .padding(.vertical,5)
+                            .font(.system(.title, design: .monospaced))
+
 
                         Text("\(gameLogic.finalScore)")
                             .bold()
                             .font(.system(.largeTitle, design: .monospaced))
+                            .foregroundColor(.white)
                     }
                     .padding()
-                    
-                }
-                .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)))
+                    .frame(width: 250)
+
+//                }
+                .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
                 .font(.system(.title, design: .monospaced))
-                .foregroundColor(Color(uiColor: UIColor.systemOrange))
-                .padding(.horizontal, 50)
-                .padding(.bottom, 50)
-                
+                .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+//                .padding(.horizontal, 50)
+                .padding(.bottom, 20)
                 
                 HStack{
-                    Spacer()
                     Button {
                         withAnimation { self.backToMainScreen() }
                     } label: {
                         Image(systemName: "arrow.backward")
-                            .foregroundColor(Color(uiColor: UIColor.systemOrange))
+                            .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
                             .font(.largeTitle)
+                            .padding(25)
                     }
-                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)).frame(width: 80, height: 80, alignment: .center))
+                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)).frame(width: 80, height: 80, alignment: .center))
                     
                     Spacer()
                     
@@ -83,11 +94,13 @@ struct GameOverView: View {
                         withAnimation { self.restartGame() }
                     } label: {
                         Image(systemName: "arrow.clockwise")
-                            .foregroundColor(Color(uiColor: UIColor.systemOrange))
+                            .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
                             .font(.largeTitle)
+                            .padding(25)
+                            .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)).frame(width: 80, height: 80, alignment: .center))
+
                     }
-                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor.systemGroupedBackground)).frame(width: 80, height: 80, alignment: .center))
-                    Spacer()
+                }.frame(width: 250)
                 }
                 Spacer()
             }

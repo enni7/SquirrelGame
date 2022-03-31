@@ -46,9 +46,15 @@ struct MainScreenView: View {
                  * # PRO TIP!
                  * The game title can be customized to represent the visual identity of the game
                  */
-                Text("\(self.gameTitle)")
-                    .font(.title)
-                    .fontWeight(.black)
+//                Text("\(self.gameTitle)")
+////                    .font(.title)
+//                    .fontWeight(.bold)
+//                    .font(.system(.largeTitle, design: .monospaced))
+//                    .foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!))
+                Image("Group 195")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 300)
                 
                 Spacer()
                 
@@ -61,15 +67,16 @@ struct MainScreenView: View {
                         HStack{
                             Image(systemName: "\(instruction.icon)")
                                 .font(.system(.title2, design: .monospaced))
-                                .foregroundColor(Color(uiColor: UIColor(named: "lightBrown")!))
+                                .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
                                 .padding()
                             Spacer()
                             VStack{
                                 Text("\(instruction.title)")
-                                    .font(.system(.title2, design: .monospaced))
-                                    .foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!))
+//                                    .font(.custom("BMDoHyeon-Regular.ttf", size: 24))
+                                    .foregroundColor(.white)
+//                                    .foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!))
                                 //                        Text("\(instruction.description)")
-                                //                            .font(.system(.title3, design: .monospaced))
+                                    .font(.system(.title3, design: .monospaced))
                             }
                             Spacer()
                         }
@@ -77,7 +84,7 @@ struct MainScreenView: View {
                     }
                 }
                 .frame(width: 300)
-                .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "cloud")!)))
+                .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
                 
                 Spacer()
                 

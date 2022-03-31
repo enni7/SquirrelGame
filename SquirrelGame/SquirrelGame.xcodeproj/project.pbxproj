@@ -30,6 +30,7 @@
 		95E2125327F37CAA00FB9C6D /* squirrelRunning.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */; };
 		95E2125827F3817300FB9C6D /* nut+1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125527F3817300FB9C6D /* nut+1.m4a */; };
 		95E2125A27F3817300FB9C6D /* bensound-cute.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125727F3817300FB9C6D /* bensound-cute.mp3 */; };
+		95ED96EF27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95ED96EE27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = squirrelRunning.atlas; sourceTree = "<group>"; };
 		95E2125527F3817300FB9C6D /* nut+1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "nut+1.m4a"; sourceTree = "<group>"; };
 		95E2125727F3817300FB9C6D /* bensound-cute.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-cute.mp3"; sourceTree = "<group>"; };
+		95ED96EE27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BMDoHyeon-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				95E2125027F37BD400FB9C6D /* SwiftUIViews */,
 				95E2124F27F37BCA00FB9C6D /* Game */,
 				95E2122F27F37A3300FB9C6D /* Assets.xcassets */,
+				95F60C0A27F59D2F003EB6A6 /* Font */,
 				95E2125427F3817300FB9C6D /* sounds */,
 				95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */,
 				95E2123127F37A3300FB9C6D /* Preview Content */,
@@ -164,6 +167,14 @@
 				95812A6C27F49E6200B79C32 /* PixelLoop.m4a */,
 			);
 			path = sounds;
+			sourceTree = "<group>";
+		};
+		95F60C0A27F59D2F003EB6A6 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				95ED96EE27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +240,7 @@
 				95E2125327F37CAA00FB9C6D /* squirrelRunning.atlas in Resources */,
 				95E2123327F37A3300FB9C6D /* Preview Assets.xcassets in Resources */,
 				95E2123027F37A3300FB9C6D /* Assets.xcassets in Resources */,
+				95ED96EF27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf in Resources */,
 				95E2125A27F3817300FB9C6D /* bensound-cute.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +405,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SquirrelGame/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "RuNut!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -424,6 +437,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SquirrelGame/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "RuNut!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;

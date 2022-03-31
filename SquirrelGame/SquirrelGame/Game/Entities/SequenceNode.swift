@@ -14,7 +14,7 @@ class SequenceNode: SKNode {
         super.init()
         frameShape = SKShapeNode(rectOf: CGSize(width: 414, height: 896))
         frameShape.fillColor = .clear
-        frameShape.lineWidth = 2
+        frameShape.lineWidth = 0
         frameShape.position = CGPoint(x: 0, y: -screenSize.height)
 
         addChild(frameShape)
@@ -50,7 +50,6 @@ class SequenceNode: SKNode {
         let spine = SpinesSprite(onLeftAt: atY)
         self.frameShape.addChild(spine)
     }
-
     func moveUpFrame(){
         let moveUp = SKAction.moveBy(x: 0, y: frameShape.frame.size.height * 2, duration: 10)
         self.run(moveUp) {
@@ -79,22 +78,34 @@ class SequenceNode: SKNode {
         let leftBrunchTexture = SKTexture(imageNamed: "branch_left")
         
         let brunch = SKSpriteNode(texture: leftBrunchTexture, color: .white, size: CGSize(width: leftBrunchTexture.size().width * 2, height: leftBrunchTexture.size().height * 2))
-        brunch.name = "gBrunch"
+        brunch.name = "gBranch"
         brunch.zPosition = 20
         brunch.anchorPoint = CGPoint(x: 0, y: 0.5)
         brunch.position = CGPoint(x: (-screenSize.width / 2) + 28, y: positionY)
+        
+        brunch.physicsBody = SKPhysicsBody(rectangleOf: brunch.size)
+        brunch.physicsBody?.categoryBitMask = PhysicsCategory.gBranch
+        brunch.physicsBody?.contactTestBitMask = PhysicsCategory.bSquirrel
+        brunch.physicsBody?.collisionBitMask = PhysicsCategory.zNone
+        brunch.physicsBody?.isDynamic = false
         self.frameShape.addChild(brunch)
-
     }
     
     func createRightBrunch(at positionY: CGFloat){
         let rightBrunchTexture = SKTexture(imageNamed: "branch_right")
 
         let brunch = SKSpriteNode(texture: rightBrunchTexture, color: .white, size: CGSize(width: rightBrunchTexture.size().width * 2, height: rightBrunchTexture.size().height * 2))
-        brunch.name = "gBrunch"
+        brunch.name = "gBranch"
         brunch.zPosition = 20
         brunch.anchorPoint = CGPoint(x: 1, y: 0.5)
         brunch.position = CGPoint(x: (screenSize.width / 2) - 28, y: positionY)
+        
+        brunch.physicsBody = SKPhysicsBody(rectangleOf: brunch.size)
+        brunch.physicsBody?.categoryBitMask = PhysicsCategory.gBranch
+        brunch.physicsBody?.contactTestBitMask = PhysicsCategory.bSquirrel
+        brunch.physicsBody?.collisionBitMask = PhysicsCategory.zNone
+        brunch.physicsBody?.isDynamic = false
+
         self.frameShape.addChild(brunch)
     }
     
@@ -105,7 +116,14 @@ class SequenceNode: SKNode {
     func createBoxNut(at position: CGPoint){
         let nut = GoldenNutSprite(nutType: .gold, at: position)
         self.frameShape.addChild(nut)
+
     }
+    
+//    func pauseAndResumeTest(){
+//        let seq = SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.run{
+//            self.isPaused.toggle()}])
+//        self.run(SKAction.repeatForever(seq))
+//    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -113,6 +131,7 @@ class SequenceNode: SKNode {
 }
 
 class FrameSpawner: SKNode {
+    let framesDatabase = FramesDatabase()
     var frames = [Frame]()
     
     override init() {
@@ -125,26 +144,9 @@ class FrameSpawner: SKNode {
     }
     
     func populateFramesArray(){
-        frames.append(Frame.init(leftSpinesPositionsArray: [300],
-                                 rightSpinesPositionsArray: [-50],
-                                 leftBrunchesYArray: [-200],
-                                 rightBrunchesYArray: [80],
-                                 normalNutsPositionsArray: [CGPoint.zero],
-                                 boxNutPositionsArray: [] ))
-        
-        frames.append(Frame.init(leftSpinesPositionsArray: [],
-                                 rightSpinesPositionsArray: [200],
-                                 leftBrunchesYArray: [80],
-                                 rightBrunchesYArray: [-80],
-                                 normalNutsPositionsArray: [CGPoint.zero],
-                                 boxNutPositionsArray: [] ))
-        
-        frames.append(Frame.init(leftSpinesPositionsArray: [20],
-                                 rightSpinesPositionsArray: [300],
-                                 leftBrunchesYArray: [-200],
-                                 rightBrunchesYArray: [],
-                                 normalNutsPositionsArray: [CGPoint.zero],
-                                 boxNutPositionsArray: [] ))
+        for frame in framesDatabase.framesArray {
+            self.frames.append(frame)
+        }
     }
     
     func startCreatingObstacles(){
@@ -153,21 +155,19 @@ class FrameSpawner: SKNode {
         }
         let wait = SKAction.wait(forDuration: 5)
         let loopSpawn = SKAction.repeatForever(SKAction.sequence([spawn, wait]))
-        self.run(loopSpawn)
+        self.run(loopSpawn, withKey: "loopFramesSpawn")
     }
     
     func createMovingObstacle(){
         let node = SequenceNode(frame: self.frames.randomElement()!)
         scene?.addChild(node)
     }
+    
+//    func pauseAndResumeTest(){
+//        let seq = SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.run{
+//            self.isPaused.toggle()}])
+//        self.run(SKAction.repeatForever(seq))
+//    }
 }
 
 
-struct Frame {
-    var leftSpinesPositionsArray : [CGFloat]
-    var rightSpinesPositionsArray : [CGFloat]
-    var leftBrunchesYArray : [CGFloat]
-    var rightBrunchesYArray : [CGFloat]
-    var normalNutsPositionsArray : [CGPoint]
-    var boxNutPositionsArray : [CGPoint]
-}

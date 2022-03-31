@@ -27,17 +27,22 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
                 squirrel.animateLanding()
             }
         }
-        if secondNode.name == "dGhianda" {
+        if secondNode.name == "dNutNormal" {
+            secondNode.removeFromParent()
             gameLogic.score(points: 5)
             self.run(pickUpSound)
         }
-        if secondNode.name == "eSpines" {
-//            self.run(pickUpSound)
+        if secondNode.name == "eSpines" || secondNode.name == "gBranch" {
                 self.finishGame()
         }
-        if secondNode.name == "fGoldGhianda"{
-            self.run(pickUpSound)
-            gameLogic.score(points: 10)
+        if secondNode.name == "dNutGold"{
+            if squirrel.isDashing {
+
+                secondNode.removeFromParent()
+                squirrel.bounceOnOtherSide()
+                self.run(pickUpSound)
+                gameLogic.score(points: 10)
+            }
         }
     }
 }

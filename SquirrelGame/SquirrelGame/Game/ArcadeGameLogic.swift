@@ -51,7 +51,8 @@ class ArcadeGameLogic: ObservableObject {
     @Published var isGameOver: Bool = false
     
     func finishTheGame() {
-        self.finalScore = finalTime + finalPoints
+        self.finalScore = self.currentScore
+        
         if self.isGameOver == false {
             self.isGameOver = true
         }

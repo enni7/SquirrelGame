@@ -23,8 +23,6 @@ class SpinesSprite: SKSpriteNode {
         physicsBody?.contactTestBitMask = PhysicsCategory.bSquirrel
         physicsBody?.collisionBitMask = PhysicsCategory.bSquirrel
         physicsBody?.isDynamic = false
-        print("spine: \(self.size)")
-
     }
     
     init(onRightAt positionY: CGFloat){

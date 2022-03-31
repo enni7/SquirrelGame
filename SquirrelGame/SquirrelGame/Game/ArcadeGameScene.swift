@@ -25,7 +25,7 @@ class ArcadeGameScene: SKScene {
 //    var scaleFactor: CGFloat!
         
     var treeNode: TreesNode!
-    
+
     let pickUpSound = SKAction.playSoundFileNamed(SoundFile.pickUpSound, waitForCompletion: false)
 
     var backgroundMusicAV : AVAudioPlayer!
@@ -39,9 +39,14 @@ class ArcadeGameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
-        // ...
+        if squirrel.isDashing == true {
+            pauseTry()
+        } else {
+            resumeTry()
+        }
         
         // If the game over condition is met, the game will finish
+        playerOutOnBottom()
         if self.isGameOver { self.finishGame() }
         
         // The first time the update function is called we must initialize the
@@ -64,9 +69,11 @@ extension ArcadeGameScene {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
         self.gameLogic.setUpGame()
+        self.setUpSwipeDownGesture()
         addChild(frameSpawner)
         createWood()
         createPlayer()
+        setUpCamera()
         startRunning()
     }
     
@@ -83,6 +90,11 @@ extension ArcadeGameScene {
     
     private func restartGame() {
         self.gameLogic.restartGame()
+    }
+    private func setUpCamera(){
+        let cam = SKCameraNode()
+        self.camera = cam
+        self.camera!.name = "camera"
     }
 }
 
@@ -110,13 +122,39 @@ extension ArcadeGameScene {
 
 // MARK: - Handle Player Inputs
 extension ArcadeGameScene {
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if squirrel.isInAir == false {
-            squirrel.physicsBody?.applyImpulse(CGVector(dx: physicsWorld.gravity.dx < 0 ? 350 : -350, dy: 0))
-            squirrel.animateJump()
-            physicsWorld.gravity = CGVector(dx: -physicsWorld.gravity.dx, dy: 0)
+    func pauseTry(){
+        for child in self.children {
+            if child.name != "camera" && child.name != "bSquirrel"{
+            child.isPaused = true
+            }
         }
+    }
+    func resumeTry(){
+        for child in self.children{
+            child.isPaused = false
+        }
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if squirrel.isInAir == false {
+//            squirrel.physicsBody?.applyImpulse(CGVector(dx: physicsWorld.gravity.dx < 0 ? 350 : -350, dy: 0))
+//            squirrel.animateJump()
+            squirrel.jump()
+            physicsWorld.gravity = CGVector(dx: -physicsWorld.gravity.dx, dy: 0)
+        } else {
+            squirrel.dashDown()
+        }
+    }
+    
+    func setUpSwipeDownGesture(){
+        let swipeDown = UISwipeGestureRecognizer(target: self,
+                                                 action: #selector(self.swipeDown(sender:)))
+        swipeDown.direction = .down
+        view?.addGestureRecognizer(swipeDown)
+    }
+    
+    @objc func swipeDown(sender: UISwipeGestureRecognizer) {
+//        squirrel.dashDown()
     }
 }
 
@@ -134,12 +172,18 @@ extension ArcadeGameScene {
      * - The enemies have completed their goal!
      * - The screen is full!
      **/
+    func playerOutOnBottom(){
+        if squirrel.position.y < self.frame.minY {
+            finishGame()
+        }
+    }
     
     var isGameOver: Bool {
         return gameLogic.isGameOver
     }
     
     func finishGame() {
+        gameLogic.finalScore = gameLogic.currentScore
         gameLogic.isGameOver = true
     }
 }

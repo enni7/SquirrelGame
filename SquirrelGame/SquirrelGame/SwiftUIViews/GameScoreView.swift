@@ -24,7 +24,10 @@ struct GameScoreView: View {
             Text("SCORE: \(score)")
                 .font(.system(.title2, design: .monospaced))
                 .bold()
+                .padding()
+                .background(Color(uiColor: UIColor(named: "lighterBrown")!))
         }
+        .cornerRadius(15)
         .padding(24)
         .foregroundColor(Color(UIColor(named: "darkBrown")!))
     }

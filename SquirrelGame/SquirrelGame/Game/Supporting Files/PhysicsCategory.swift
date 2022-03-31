@@ -14,4 +14,5 @@ struct PhysicsCategory {
     static let cSideWood : UInt32 = 0b10
     static let dGhianda: UInt32 = 0b100
     static let eSpines: UInt32 = 0b1000
+    static let gBranch: UInt32 = 0b10000
 }

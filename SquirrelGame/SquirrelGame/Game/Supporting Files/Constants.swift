@@ -39,12 +39,12 @@ typealias Instruction = (icon: String, title: String, description: String)
  */
 
 struct MainScreenProperties {
-    static let gameTitle: String = "Game Title"
+    static let gameTitle: String = "RuNut!"
     
     static let gameInstructions: [Instruction] = [
 //        (icon: "hand.raised", title: "Instruction 1", description: "Instruction description."),
         (icon: "hand.tap", title: "Tap to jump on the opposite wall", description: "Instruction description."),
-        (icon: "hand.draw", title: "Swipe down to collect golden nuts", description: "Instruction description."),
+        (icon: "hand.tap", title: "Tap while jumping to dash down and break nuts boxes", description: "Instruction description."),
 //        (icon: "hand.tap", title: "Instruction 4", description: "Instruction description."),
 //        (icon: "hand.raised", title: "Instruction 5", description: "Instruction description."),
 //        (icon: "hands.sparkles", title: "Instruction 6", description: "Instruction description."),
@@ -55,6 +55,42 @@ struct MainScreenProperties {
      */
     
     static let accentColor: Color = Color.accentColor
+}
+
+struct Frame {
+    var leftSpinesPositionsArray : [CGFloat]
+    var rightSpinesPositionsArray : [CGFloat]
+    var leftBrunchesYArray : [CGFloat]
+    var rightBrunchesYArray : [CGFloat]
+    var normalNutsPositionsArray : [CGPoint]
+    var boxNutPositionsArray : [CGPoint]
+}
+
+struct FramesDatabase {
+    let framesArray = [
+        
+        Frame(leftSpinesPositionsArray: [300],
+              rightSpinesPositionsArray: [],
+              leftBrunchesYArray: [],
+              rightBrunchesYArray: [-200],
+              normalNutsPositionsArray: [],
+              boxNutPositionsArray: [CGPoint.zero] ),
+        
+        Frame(leftSpinesPositionsArray: [],
+              rightSpinesPositionsArray: [250],
+              leftBrunchesYArray: [0],
+              rightBrunchesYArray: [-200],
+              normalNutsPositionsArray: [],
+              boxNutPositionsArray: [CGPoint.zero] ),
+        
+        Frame(leftSpinesPositionsArray: [20],
+              rightSpinesPositionsArray: [300],
+              leftBrunchesYArray: [-200],
+              rightBrunchesYArray: [],
+              normalNutsPositionsArray: [CGPoint.zero],
+              boxNutPositionsArray: [] )
+        
+    ]
 }
 
 enum SoundFile {
