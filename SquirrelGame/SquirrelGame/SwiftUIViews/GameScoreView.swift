@@ -20,13 +20,14 @@ struct GameScoreView: View {
     var body: some View {
         
         HStack {
-//            Image("nut_111")
-            Text("SCORE: \(score)")
+            Image("nut_111")
+                .padding(8)
+            Text("\(score)")
                 .font(.system(.title2, design: .monospaced))
                 .bold()
                 .padding()
-                .background(Color(uiColor: UIColor(named: "lighterBrown")!))
         }
+        .background(Color(uiColor: UIColor(named: "lighterBrown")!))
         .cornerRadius(15)
         .padding(24)
         .foregroundColor(Color(UIColor(named: "darkBrown")!))

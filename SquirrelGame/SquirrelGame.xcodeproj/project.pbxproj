@@ -26,7 +26,6 @@
 		95E2123A27F37B2D00FB9C6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2123927F37B2D00FB9C6D /* Constants.swift */; };
 		95E2123C27F37B4300FB9C6D /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2123B27F37B4300FB9C6D /* MainScreenView.swift */; };
 		95E2123E27F37B5300FB9C6D /* ArcadeGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2123D27F37B5300FB9C6D /* ArcadeGameView.swift */; };
-		95E2124027F37B5F00FB9C6D /* GameDurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2123F27F37B5F00FB9C6D /* GameDurationView.swift */; };
 		95E2124227F37B6800FB9C6D /* GameScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2124127F37B6800FB9C6D /* GameScoreView.swift */; };
 		95E2124427F37B7800FB9C6D /* ArcadeGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2124327F37B7800FB9C6D /* ArcadeGameScene.swift */; };
 		95E2124627F37B8100FB9C6D /* ArcadeGameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2124527F37B8100FB9C6D /* ArcadeGameLogic.swift */; };
@@ -62,7 +61,6 @@
 		95E2123927F37B2D00FB9C6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		95E2123B27F37B4300FB9C6D /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		95E2123D27F37B5300FB9C6D /* ArcadeGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeGameView.swift; sourceTree = "<group>"; };
-		95E2123F27F37B5F00FB9C6D /* GameDurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDurationView.swift; sourceTree = "<group>"; };
 		95E2124127F37B6800FB9C6D /* GameScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScoreView.swift; sourceTree = "<group>"; };
 		95E2124327F37B7800FB9C6D /* ArcadeGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeGameScene.swift; sourceTree = "<group>"; };
 		95E2124527F37B8100FB9C6D /* ArcadeGameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeGameLogic.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 				95E2123B27F37B4300FB9C6D /* MainScreenView.swift */,
 				95E2124D27F37BAF00FB9C6D /* GameOverView.swift */,
 				95E2123D27F37B5300FB9C6D /* ArcadeGameView.swift */,
-				95E2123F27F37B5F00FB9C6D /* GameDurationView.swift */,
 				95E2124127F37B6800FB9C6D /* GameScoreView.swift */,
 			);
 			path = SwiftUIViews;
@@ -281,7 +278,6 @@
 			files = (
 				95E2124627F37B8100FB9C6D /* ArcadeGameLogic.swift in Sources */,
 				95E2124427F37B7800FB9C6D /* ArcadeGameScene.swift in Sources */,
-				95E2124027F37B5F00FB9C6D /* GameDurationView.swift in Sources */,
 				95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */,
 				95E2124227F37B6800FB9C6D /* GameScoreView.swift in Sources */,
 				952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */,
@@ -355,7 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -411,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -16,7 +16,7 @@ class SequenceNode: SKNode {
         frameShape.fillColor = .clear
         frameShape.lineWidth = 0
         frameShape.position = CGPoint(x: 0, y: -screenSize.height)
-
+        
         addChild(frameShape)
         
         for (leftSpineY, num) in frame.leftSpinesPositionsArray {
@@ -93,7 +93,7 @@ class SequenceNode: SKNode {
     
     func createRightBrunch(at positionY: CGFloat){
         let rightBrunchTexture = SKTexture(imageNamed: "branch_right")
-
+        
         let brunch = SKSpriteNode(texture: rightBrunchTexture, color: .white, size: CGSize(width: rightBrunchTexture.size().width * 2, height: rightBrunchTexture.size().height * 2))
         brunch.name = "gBranch"
         brunch.zPosition = 20
@@ -105,7 +105,7 @@ class SequenceNode: SKNode {
         brunch.physicsBody?.contactTestBitMask = PhysicsCategory.bSquirrel
         brunch.physicsBody?.collisionBitMask = PhysicsCategory.zNone
         brunch.physicsBody?.isDynamic = false
-
+        
         self.frameShape.addChild(brunch)
     }
     
@@ -116,15 +116,8 @@ class SequenceNode: SKNode {
     func createBoxNut(at position: CGPoint){
         let nut = GoldenNutSprite(nutType: .gold, at: position)
         self.frameShape.addChild(nut)
-
     }
     
-//    func pauseAndResumeTest(){
-//        let seq = SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.run{
-//            self.isPaused.toggle()}])
-//        self.run(SKAction.repeatForever(seq))
-//    }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -149,25 +142,22 @@ class FrameSpawner: SKNode {
         }
     }
     
-    func startCreatingObstacles(){
+    func startLoopingFramesCreation(){
         let spawn = SKAction.run {
-            self.createMovingObstacle()
+            self.createMovingFrame()
         }
         let wait = SKAction.wait(forDuration: 5)
         let loopSpawn = SKAction.repeatForever(SKAction.sequence([spawn, wait]))
         self.run(loopSpawn, withKey: "loopFramesSpawn")
     }
     
-    func createMovingObstacle(){
-        let node = SequenceNode(frame: self.frames.randomElement()!)
-        scene?.addChild(node)
+    func createMovingFrame(){
+        if let randomScrollingFrame = self.frames.randomElement() {
+            let scrollingFrame = SequenceNode(frame: randomScrollingFrame)
+            scrollingFrame.name = "scrollingFrame"
+            scene?.addChild(scrollingFrame)
+        }
     }
-    
-//    func pauseAndResumeTest(){
-//        let seq = SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.run{
-//            self.isPaused.toggle()}])
-//        self.run(SKAction.repeatForever(seq))
-//    }
 }
 
 

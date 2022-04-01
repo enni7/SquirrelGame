@@ -12,14 +12,12 @@ import SpriteKit
 /**
  * # ArcadeGameView
  *   This view is responsible for presenting the game and the game UI.
- *  In here you can add and customize:
- *  - UI elements
- *  - Different effects for transitions in and out of the game scene
  **/
 
 struct ArcadeGameView: View {
     
     @State var backgroundMusicAV: AVAudioPlayer!
+    
     /**
      * # The Game Logic
      *     The game logic keeps track of the game variables
@@ -36,8 +34,6 @@ struct ArcadeGameView: View {
     
     /**
      * # The Game Scene
-     *   If you need to do any configurations on your game scene, like changing it's size
-     *   for example, do it here.
      **/
     var arcadeGameScene: ArcadeGameScene {
         let scene = ArcadeGameScene()
@@ -57,16 +53,6 @@ struct ArcadeGameView: View {
             
             HStack() {
                 Spacer()
-                /**
-                 * UI element showing the duration of the game session.
-                 * Remove it if your game is not based on time.
-                 */
-//                GameDurationView(time: $gameLogic.sessionDuration)
-//                Spacer()
-                /**
-                 * UI element showing the current score of the player.
-                 * Remove it if your game is not based on scoring points.
-                 */
                 GameScoreView(score: $gameLogic.currentScore)
                 Spacer()
             }
@@ -74,11 +60,6 @@ struct ArcadeGameView: View {
         }
         .onChange(of: gameLogic.isGameOver) { _ in
             if gameLogic.isGameOver {
-                
-                /** # PRO TIP!
-                 * You can experiment by adding other types of animations here before presenting the game over screen.
-                 */
-                
                 withAnimation(.easeOut(duration: 0.3)) {
                     self.presentGameOverScreen()
                 }
@@ -94,7 +75,6 @@ struct ArcadeGameView: View {
      * At the moment it is not being used, but it could be used in a Pause menu for example.
      */
     private func presentMainScreen() {
-        backgroundMusicAV.stop()
         self.currentGameState = .mainScreen
     }
     

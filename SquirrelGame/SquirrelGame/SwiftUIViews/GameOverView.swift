@@ -20,9 +20,9 @@ import SwiftUI
 struct GameOverView: View {
     
     @Binding var currentGameState: GameState
-    @State var backgroundMusicAV : AVAudioPlayer!
     var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
-
+    @State var backgroundMusicAV : AVAudioPlayer!
+    
     var body: some View {
         ZStack {
             Image("background")
@@ -32,21 +32,6 @@ struct GameOverView: View {
             
             VStack(alignment: .center) {
                 Spacer()
-//                VStack{
-//                    HStack{
-//                        Text("TIME:")
-//                        Spacer()
-//                        Text("\(Int(gameLogic.finalTime))")
-//                    }
-//                    .padding(.horizontal)
-//                    .padding(10)
-//                    HStack{
-//                        Text("POINTS:")
-//                        Spacer()
-//                        Text("\(gameLogic.finalPoints)")
-//                    }
-//                    .padding(.horizontal)
-//                    .padding(10)
                 VStack{
                     VStack{
                         Image("hurtFace 1")
@@ -54,14 +39,13 @@ struct GameOverView: View {
                             .scaledToFit()
                             .frame(width: 150, height: 150)
                             .padding()
-                            
+                        
                         Text("SCORE")
-//                            .foregroundColor(.white)
                             .bold()
                             .padding(.vertical,5)
                             .font(.system(.title, design: .monospaced))
-
-
+                        
+                        
                         Text("\(gameLogic.finalScore)")
                             .bold()
                             .font(.system(.largeTitle, design: .monospaced))
@@ -69,38 +53,36 @@ struct GameOverView: View {
                     }
                     .padding()
                     .frame(width: 250)
-
-//                }
-                .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
-                .font(.system(.title, design: .monospaced))
-                .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-//                .padding(.horizontal, 50)
-                .padding(.bottom, 20)
-                
-                HStack{
-                    Button {
-                        withAnimation(.easeOut(duration: 0.3)) { self.backToMainScreen() }
-                    } label: {
-                        Image(systemName: "arrow.backward")
-                            .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-                            .font(.largeTitle)
-                            .padding(25)
-                    }
-                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)).frame(width: 80, height: 80, alignment: .center))
                     
-                    Spacer()
+                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
+                    .font(.system(.title, design: .monospaced))
+                    .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+                    .padding(.bottom, 20)
                     
-                    Button {
-                        withAnimation { self.restartGame() }
-                    } label: {
-                        Image(systemName: "arrow.clockwise")
-                            .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-                            .font(.largeTitle)
-                            .padding(25)
-                            .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)).frame(width: 80, height: 80, alignment: .center))
-
-                    }
-                }.frame(width: 250)
+                    HStack{
+                        Button {
+                            withAnimation(.easeOut(duration: 0.3)) { self.backToMainScreen() }
+                        } label: {
+                            Image(systemName: "arrow.backward")
+                                .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+                                .font(.largeTitle)
+                                .padding(25)
+                        }
+                        .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)).frame(width: 80, height: 80, alignment: .center))
+                        
+                        Spacer()
+                        
+                        Button {
+                            withAnimation { self.restartGame() }
+                        } label: {
+                            Image(systemName: "arrow.clockwise")
+                                .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+                                .font(.largeTitle)
+                                .padding(25)
+                                .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)).frame(width: 80, height: 80, alignment: .center))
+                            
+                        }
+                    }.frame(width: 250)
                 }
                 Spacer()
             }

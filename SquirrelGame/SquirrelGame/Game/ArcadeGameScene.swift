@@ -37,7 +37,7 @@ class ArcadeGameScene: SKScene {
     override func didMove(to view: SKView) {
         self.setUpGame()
         self.setUpPhysicsWorld()
-        self.frameSpawner.startCreatingObstacles()
+        self.frameSpawner.startLoopingFramesCreation()
         self.inscreseSpeedAction()
     }
     
@@ -69,6 +69,7 @@ extension ArcadeGameScene {
         let wait = SKAction.wait(forDuration: 7)
         let increse = SKAction.run {
             self.speed = self.speed * 1.1
+            self.physicsWorld.speed = self.physicsWorld.speed * 1.05
         }
         let seq = SKAction.sequence([wait, increse])
         let infiniteIncrese = SKAction.repeatForever(seq)
@@ -114,11 +115,6 @@ extension ArcadeGameScene {
     
     private func restartGame() {
         self.gameLogic.restartGame()
-    }
-    private func setUpCamera(){
-        let cam = SKCameraNode()
-        self.camera = cam
-        self.camera!.name = "camera"
     }
 }
 

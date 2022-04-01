@@ -84,11 +84,6 @@ class TreesNode: SKNode {
             bg1.zPosition = -50
             bg1.position = CGPoint(x: 0, y: 0 - (bg1.frame.height * CGFloat(i)))
 
-//            let bg2 = SKSpriteNode(texture: SKTexture(imageNamed: "background2"))
-//            bg2.size = bg1.size
-//            bg2.zPosition = -50
-//            bg2.position = CGPoint(x: 0, y: 0 - 2*(bg1.frame.height * CGFloat(i)))
-
             dumbNode.addChild(bg1)
 
             let moveUp = SKAction.moveBy(x: 0, y: newLeftGround.frame.size.height, duration: 5)

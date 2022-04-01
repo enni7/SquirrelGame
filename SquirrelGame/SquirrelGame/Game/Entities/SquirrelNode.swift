@@ -51,10 +51,7 @@ class SquirrelNode: SKSpriteNode {
         self.zPosition = 50
         self.position = position
         self.name = "bSquirrel"
-//
-//        let constrain = SKConstraint.positionY(SKRange(constantValue: position.y))
-//        self.constraints = [constrain]
-        
+
         physicsBody = SKPhysicsBody(texture: firstTexture, size: CGSize(width: self.size.width * 0.95, height: self.size.height * 0.95))
         physicsBody?.affectedByGravity = true
         physicsBody?.restitution = 0

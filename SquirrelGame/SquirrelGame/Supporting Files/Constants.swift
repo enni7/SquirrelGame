@@ -131,19 +131,7 @@ struct FramesDatabase {
               
               normalNutsPositionsArray: [CGPoint(x: -100, y: 350), CGPoint(x: 100, y: 60), CGPoint(x: 100, y: -290)],
               boxNutPositionsArray: [CGPoint(x: -100, y: -360)]),
-        
-        //
-//        Frame(leftSpinesPositionsArray: <#T##[(CGFloat, Int)]#>,
-//              rightSpinesPositionsArray: <#T##[(CGFloat, Int)]#>,
-//
-//              leftBrunchesYArray: <#T##[CGFloat]#>,
-//              rightBrunchesYArray: <#T##[CGFloat]#>,
-//
-//              normalNutsPositionsArray: <#T##[CGPoint]#>,
-//              boxNutPositionsArray: <#T##[CGPoint]#>)
-        
-//        100  -100 0
-        
+                
         //easy mode
         Frame(leftSpinesPositionsArray:  [(300, 1)],
               rightSpinesPositionsArray: [],
