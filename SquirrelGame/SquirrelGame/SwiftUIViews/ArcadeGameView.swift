@@ -79,17 +79,12 @@ struct ArcadeGameView: View {
                  * You can experiment by adding other types of animations here before presenting the game over screen.
                  */
                 
-                withAnimation {
+                withAnimation(.easeOut(duration: 0.3)) {
                     self.presentGameOverScreen()
                 }
             }
         }
         .onAppear {
-                if let sound = Bundle.main.path(forResource: "PixelLoop", ofType: "m4a") {
-                self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
-                    backgroundMusicAV.numberOfLoops = -1
-                backgroundMusicAV.play()
-                }
             gameLogic.restartGame()
         }
     }
@@ -108,7 +103,6 @@ struct ArcadeGameView: View {
      * It changes the current game state to present the GameOverView.
      */
     private func presentGameOverScreen() {
-        backgroundMusicAV.stop()
         self.currentGameState = .gameOver
     }
 }

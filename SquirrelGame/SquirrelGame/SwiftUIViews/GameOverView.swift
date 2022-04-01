@@ -79,7 +79,7 @@ struct GameOverView: View {
                 
                 HStack{
                     Button {
-                        withAnimation { self.backToMainScreen() }
+                        withAnimation(.easeOut(duration: 0.3)) { self.backToMainScreen() }
                     } label: {
                         Image(systemName: "arrow.backward")
                             .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))

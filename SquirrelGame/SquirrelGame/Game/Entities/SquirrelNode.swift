@@ -9,8 +9,10 @@ import SpriteKit
 
 class SquirrelNode: SKSpriteNode {
     private var runningFramesOnLeft: [SKTexture] = []
+    private var runningFramesOnRight: [SKTexture] = []
     private var firstTexture: SKTexture!
     private var jumpTextureFromLeft: SKTexture!
+    private var jumpTextureFromRight: SKTexture!
     private var ballTexture = SKTexture(imageNamed: "squirrelball 1 3")
     private var dashTexture = SKTexture(imageNamed: "dash2")
 
@@ -21,18 +23,29 @@ class SquirrelNode: SKSpriteNode {
     init(at position: CGPoint) {
         touchingWoodOnSide = .left
         
-        let squirrelAnimatedAtlas = SKTextureAtlas(named: "squirrelRunning")
+        let squirrelAnimatedAtlas = SKTextureAtlas(named: "squirrelRunning1")
         var runFrames: [SKTexture] = []
         
         let numImages = squirrelAnimatedAtlas.textureNames.count
         for i in 1...numImages {
-            let squirrelTextureName = "squirrelRunning\(i)@3x"
+            let squirrelTextureName = "squirrelRunning1\(i)@3x"
             runFrames.append(squirrelAnimatedAtlas.textureNamed(squirrelTextureName))
         }
         self.runningFramesOnLeft = runFrames
         
         self.firstTexture = runningFramesOnLeft[0]
         self.jumpTextureFromLeft = runningFramesOnLeft[1]
+        
+        let squirrelAnimatedAtlas2 = SKTextureAtlas(named: "squirrelRunning2")
+        var runFrames2: [SKTexture] = []
+        
+        let numImages2 = squirrelAnimatedAtlas2.textureNames.count
+        for i in 1...numImages2 {
+            let squirrelTextureName2 = "squirrelRunning2\(i)@3x"
+            runFrames2.append(squirrelAnimatedAtlas2.textureNamed(squirrelTextureName2))
+        }
+        self.runningFramesOnRight = runFrames2
+        self.jumpTextureFromRight = runningFramesOnRight[1]
         
         super.init(texture: firstTexture, color: .white, size: CGSize(width: firstTexture.size().width * 2, height: firstTexture.size().height * 2))
         self.zPosition = 50
@@ -68,6 +81,7 @@ class SquirrelNode: SKSpriteNode {
     func dashDown(){
         if self.isInAir && self.isDashing == false {
             self.isDashing = true
+            self.removeAction(forKey: "restoreY")
             self.physicsBody?.affectedByGravity = false
             self.physicsBody?.velocity = CGVector(dx: 0, dy: -700)
             self.animateDownDash()
@@ -99,12 +113,12 @@ class SquirrelNode: SKSpriteNode {
     
     func restoreYPosition(){
         let action = SKAction.moveTo(y: 200, duration: 2.7)
-        self.run(action)
+        self.run(action, withKey: "restoreY")
     }
         
     func animateRun() {
         self.run(SKAction.repeatForever(
-            SKAction.animate(with: runningFramesOnLeft,
+            SKAction.animate(with: self.touchingWoodOnSide == .left ? runningFramesOnLeft : runningFramesOnRight,
                              timePerFrame: 0.15,
                              resize: false,
                              restore: false)),
@@ -141,7 +155,7 @@ class SquirrelNode: SKSpriteNode {
             self.animateRun()
             self.physicsBody?.affectedByGravity = true
         }
-        self.run(SKAction.scaleX(to: abs(self.xScale) * (touchingWoodOnSide == .left ? 1 : -1), duration: 0.05))
+//        self.run(SKAction.scaleX(to: abs(self.xScale) * (touchingWoodOnSide == .left ? 1 : -1), duration: 0.05))
         self.run(SKAction.rotate(toAngle: 0, duration: 0.05, shortestUnitArc: true))
     }
     

@@ -10,6 +10,9 @@
 		952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B200627F3D30B00D7490E /* SpinesSprite.swift */; };
 		95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95370BD027F3919B00B7EAEE /* TreesNode.swift */; };
 		953A3F7227F4526D009DCAF7 /* SequenceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953A3F7127F4526D009DCAF7 /* SequenceNode.swift */; };
+		9549DB1B27F667550019382F /* ArcadeGameScene+inputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549DB1A27F667550019382F /* ArcadeGameScene+inputs.swift */; };
+		955398A327F6CF9400A116F2 /* squirrelRunning1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 955398A127F6CF9400A116F2 /* squirrelRunning1.atlas */; };
+		955398A427F6CF9400A116F2 /* squirrelRunning2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 955398A227F6CF9400A116F2 /* squirrelRunning2.atlas */; };
 		9567854D27F5FB8100C493A9 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9567854C27F5FB8100C493A9 /* MyParticle.sks */; };
 		9567854F27F6127500C493A9 /* Jump.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9567854E27F6127500C493A9 /* Jump.m4a */; };
 		9567855127F6127E00C493A9 /* Game over.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9567855027F6127E00C493A9 /* Game over.m4a */; };
@@ -40,6 +43,9 @@
 		952B200627F3D30B00D7490E /* SpinesSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinesSprite.swift; sourceTree = "<group>"; };
 		95370BD027F3919B00B7EAEE /* TreesNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreesNode.swift; sourceTree = "<group>"; };
 		953A3F7127F4526D009DCAF7 /* SequenceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceNode.swift; sourceTree = "<group>"; };
+		9549DB1A27F667550019382F /* ArcadeGameScene+inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArcadeGameScene+inputs.swift"; sourceTree = "<group>"; };
+		955398A127F6CF9400A116F2 /* squirrelRunning1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = squirrelRunning1.atlas; sourceTree = "<group>"; };
+		955398A227F6CF9400A116F2 /* squirrelRunning2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = squirrelRunning2.atlas; sourceTree = "<group>"; };
 		9567854C27F5FB8100C493A9 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		9567854E27F6127500C493A9 /* Jump.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jump.m4a; sourceTree = "<group>"; };
 		9567855027F6127E00C493A9 /* Game over.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Game over.m4a"; sourceTree = "<group>"; };
@@ -116,6 +122,8 @@
 				95E2124F27F37BCA00FB9C6D /* Game */,
 				95E2125127F37C4400FB9C6D /* Supporting Files */,
 				95E2122F27F37A3300FB9C6D /* Assets.xcassets */,
+				955398A127F6CF9400A116F2 /* squirrelRunning1.atlas */,
+				955398A227F6CF9400A116F2 /* squirrelRunning2.atlas */,
 				9567854C27F5FB8100C493A9 /* MyParticle.sks */,
 				95F60C0A27F59D2F003EB6A6 /* Font */,
 				95E2125427F3817300FB9C6D /* sounds */,
@@ -137,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				95E2124327F37B7800FB9C6D /* ArcadeGameScene.swift */,
+				9549DB1A27F667550019382F /* ArcadeGameScene+inputs.swift */,
 				95E2124527F37B8100FB9C6D /* ArcadeGameLogic.swift */,
 				95E2124B27F37B9F00FB9C6D /* ArcadeGameScene+ContactDelegate.swift */,
 				95370BD227F391A000B7EAEE /* Entities */,
@@ -247,6 +256,8 @@
 				95812A6D27F49EE400B79C32 /* PixelLoop.m4a in Resources */,
 				95E2125827F3817300FB9C6D /* nut+1.m4a in Resources */,
 				95E2125327F37CAA00FB9C6D /* squirrelRunning.atlas in Resources */,
+				955398A427F6CF9400A116F2 /* squirrelRunning2.atlas in Resources */,
+				955398A327F6CF9400A116F2 /* squirrelRunning1.atlas in Resources */,
 				9567855127F6127E00C493A9 /* Game over.m4a in Resources */,
 				95E2123327F37A3300FB9C6D /* Preview Assets.xcassets in Resources */,
 				95E2123027F37A3300FB9C6D /* Assets.xcassets in Resources */,
@@ -271,6 +282,7 @@
 				95E2124227F37B6800FB9C6D /* GameScoreView.swift in Sources */,
 				952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */,
 				95E2123E27F37B5300FB9C6D /* ArcadeGameView.swift in Sources */,
+				9549DB1B27F667550019382F /* ArcadeGameScene+inputs.swift in Sources */,
 				95E2124A27F37B9300FB9C6D /* PhysicsCategory.swift in Sources */,
 				95E2122E27F37A3200FB9C6D /* ContentView.swift in Sources */,
 				95E2122C27F37A3200FB9C6D /* SquirrelGameApp.swift in Sources */,
@@ -408,7 +420,7 @@
 		95E2123727F37A3300FB9C6D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -440,7 +452,7 @@
 		95E2123827F37A3300FB9C6D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

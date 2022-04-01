@@ -31,22 +31,20 @@ class ArcadeGameScene: SKScene {
     let gameOverSound = SKAction.playSoundFileNamed(SoundFile.gameOver, waitForCompletion: true)
 
     var backgroundMusicAV : AVAudioPlayer!
-    
+    var timeSinceLastUpdate : Int = 0
     
     override func didMove(to view: SKView) {
         self.setUpGame()
         self.setUpPhysicsWorld()
         self.frameSpawner.startCreatingObstacles()
+        self.inscreseSpeedAction()
     }
     
     override func update(_ currentTime: TimeInterval) {
         
-        if squirrel.isDashing == true {
-            pauseTry()
-        } else {
-            resumeTry()
+        if self.speed > 3 {
+            self.removeAction(forKey: "increseSpeed")
         }
-        
         // If the game over condition is met, the game will finish
         playerOutOnBottom()
         if self.isGameOver { self.finishGame() }
@@ -64,6 +62,22 @@ class ArcadeGameScene: SKScene {
     }
 }
 
+//MARK: - Increse Speed
+extension ArcadeGameScene {
+    func inscreseSpeedAction() {
+        let wait = SKAction.wait(forDuration: 7)
+        let increse = SKAction.run {
+            self.speed = self.speed * 1.1
+        }
+        let seq = SKAction.sequence([wait, increse])
+        let infiniteIncrese = SKAction.repeatForever(seq)
+        self.run(infiniteIncrese, withKey: "increseSpeed")
+    }
+    func increseSpeed(){
+        self.physicsWorld.speed = self.physicsWorld.speed * 1.01
+    }
+}
+
 // MARK: - Game Scene Set Up
 extension ArcadeGameScene {
     
@@ -71,21 +85,28 @@ extension ArcadeGameScene {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
         self.gameLogic.setUpGame()
+        setUpMusic()
         self.setUpSwipeDownGesture()
         addChild(frameSpawner)
         createWood()
         createPlayer()
-        setUpCamera()
         startRunning()
     }
     
     private func setUpPhysicsWorld() {
         physicsWorld.gravity = CGVector(dx: -10, dy: 0)
         physicsWorld.contactDelegate = self
+        physicsWorld.speed = 1
         
-        view?.showsPhysics = true
     }
     
+    private func setUpMusic(){
+        if let sound = Bundle.main.path(forResource: "PixelLoop", ofType: "m4a") {
+        self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+            backgroundMusicAV.numberOfLoops = -1
+        backgroundMusicAV.play()
+        }
+    }
     private func startRunning() {
         self.squirrel.animateRun()
     }
@@ -122,44 +143,6 @@ extension ArcadeGameScene {
     }
 }
 
-// MARK: - Handle Player Inputs
-extension ArcadeGameScene {
-    func pauseTry(){
-        for child in self.children {
-            if child.name != "particle" && child.name != "bSquirrel"{
-            child.isPaused = true
-            }
-        }
-    }
-    func resumeTry(){
-        for child in self.children{
-            child.isPaused = false
-        }
-    }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        if squirrel.isInAir == false {
-//            squirrel.physicsBody?.applyImpulse(CGVector(dx: physicsWorld.gravity.dx < 0 ? 350 : -350, dy: 0))
-//            self.run(jumpSound)
-            squirrel.jump()
-            physicsWorld.gravity = CGVector(dx: -physicsWorld.gravity.dx, dy: 0)
-        } else {
-            squirrel.dashDown()
-        }
-    }
-    
-    func setUpSwipeDownGesture(){
-        let swipeDown = UISwipeGestureRecognizer(target: self,
-                                                 action: #selector(self.swipeDown(sender:)))
-        swipeDown.direction = .down
-        view?.addGestureRecognizer(swipeDown)
-    }
-    
-    @objc func swipeDown(sender: UISwipeGestureRecognizer) {
-//        squirrel.dashDown()
-    }
-}
-
 // MARK: - Game Over Condition
 extension ArcadeGameScene {
     
@@ -174,7 +157,7 @@ extension ArcadeGameScene {
      * - The screen is full!
      **/
     func playerOutOnBottom(){
-        if squirrel.position.y < self.frame.minY {
+        if squirrel.frame.minY < self.frame.minY {
             makeHaptic()
             finishGame()
         }
@@ -186,6 +169,7 @@ extension ArcadeGameScene {
     
     func finishGame() {
 //        self.run(gameOverSound)
+        backgroundMusicAV.stop()
             self.gameLogic.finalScore = self.gameLogic.currentScore
             self.gameLogic.isGameOver = true
     }
