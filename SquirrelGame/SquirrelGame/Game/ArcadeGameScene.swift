@@ -28,6 +28,7 @@ class ArcadeGameScene: SKScene {
 
     let pickUpSound = SKAction.playSoundFileNamed(SoundFile.pickUpSound, waitForCompletion: false)
     let jumpSound = SKAction.playSoundFileNamed(SoundFile.jump, waitForCompletion: false)
+    let boxSound = SKAction.playSoundFileNamed(SoundFile.boxNut, waitForCompletion: false)
     let gameOverSound = SKAction.playSoundFileNamed(SoundFile.gameOver, waitForCompletion: true)
 
     var backgroundMusicAV : AVAudioPlayer!
@@ -168,7 +169,7 @@ extension ArcadeGameScene {
     }
     
     func finishGame() {
-//        self.run(gameOverSound)
+        self.run(gameOverSound)
         backgroundMusicAV.stop()
             self.gameLogic.finalScore = self.gameLogic.currentScore
             self.gameLogic.isGameOver = true

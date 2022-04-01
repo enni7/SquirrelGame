@@ -25,7 +25,7 @@ extension ArcadeGameScene {
         
         if squirrel.isInAir == false {
 //            squirrel.physicsBody?.applyImpulse(CGVector(dx: physicsWorld.gravity.dx < 0 ? 350 : -350, dy: 0))
-//            self.run(jumpSound)
+            self.run(jumpSound)
             squirrel.jump()
             physicsWorld.gravity = CGVector(dx: -physicsWorld.gravity.dx, dy: 0)
         } else {

@@ -233,5 +233,6 @@ enum SoundFile {
     static let backgroundMusicGame = "PixelLoop.m4a"
     static let pickUpSound = "nut+1.m4a"
     static let gameOver = "Game over.m4a"
-    static let jump = "Jump.m4a"
+    static let jump = "Jumping.m4a"
+    static let boxNut = "nut box.m4a"
 }

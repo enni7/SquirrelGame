@@ -46,7 +46,7 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
 
                 squirrel.bounceOnOtherSide()
                 self.makeHaptic()
-                self.run(pickUpSound)
+                self.run(boxSound)
                 gameLogic.score(points: 10)
             }
         }
