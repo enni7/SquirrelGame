@@ -37,6 +37,7 @@ class SequenceNode: SKNode {
         for nutBoxPoint in frame.boxNutPositionsArray{
             createBoxNut(at: nutBoxPoint)
         }
+        
         moveUpFrame()
     }
     func addTextureTrees(){
@@ -53,6 +54,7 @@ class SequenceNode: SKNode {
     func moveUpFrame(){
         let moveUp = SKAction.moveBy(x: 0, y: frameShape.frame.size.height * 2, duration: 10)
         self.run(moveUp) {
+            print("bla")
             self.removeFromParent()
         }
     }

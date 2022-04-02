@@ -10,29 +10,27 @@ import SpriteKit
 import SwiftUI
 
 class ArcadeGameScene: SKScene {
-    /**
-     * # The Game Logic
-     *     The game logic keeps track of the game variables
-     *   you can use it to display information on the SwiftUI view,
-     *   for example, and comunicate with the Game Scene.
-     **/
+    // The Game Logic that keeps track of the game variables
     var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
-    let frameSpawner = FrameSpawner()
     // Keeps track of when the last update happend.
-    // Used to calculate how much time has passed between updates.
     var lastUpdate: TimeInterval = 0
-    var squirrel: SquirrelNode!
-//    var scaleFactor: CGFloat!
-        
+    var timeSinceLastUpdate : Int = 0
+    
+    var backgroundMusicAV : AVAudioPlayer!
+    
+    //Responsable of spawning frames and side trees
+    let frameSpawner = FrameSpawner()
     var treeNode: TreesNode!
-
+    
+    var squirrel: SquirrelNode!
+    
+    //    var scaleFactor: CGFloat!
+    
     let pickUpSound = SKAction.playSoundFileNamed(SoundFile.pickUpSound, waitForCompletion: false)
     let jumpSound = SKAction.playSoundFileNamed(SoundFile.jump, waitForCompletion: false)
     let boxSound = SKAction.playSoundFileNamed(SoundFile.boxNut, waitForCompletion: false)
     let gameOverSound = SKAction.playSoundFileNamed(SoundFile.gameOver, waitForCompletion: true)
-
-    var backgroundMusicAV : AVAudioPlayer!
-    var timeSinceLastUpdate : Int = 0
+    
     
     override func didMove(to view: SKView) {
         self.setUpGame()
@@ -48,16 +46,20 @@ class ArcadeGameScene: SKScene {
         }
         // If the game over condition is met, the game will finish
         playerOutOnBottom()
-        if self.isGameOver { self.finishGame() }
+        //        if self.isGameOver {
+        //            self.run(gameOverSound){
+        //            self.finishGame()
+        //            }
+        //        }
         
         // The first time the update function is called we must initialize the
         // lastUpdate variable
         if self.lastUpdate == 0 { self.lastUpdate = currentTime }
         
         // Calculates how much time has passed since the last update
-        let timeElapsedSinceLastUpdate = currentTime - self.lastUpdate
-        // Increments the length of the game session at the game logic
-        self.gameLogic.increaseSessionTime(by: timeElapsedSinceLastUpdate)
+        //        let timeElapsedSinceLastUpdate = currentTime - self.lastUpdate
+        //        // Increments the length of the game session at the game logic
+        //        self.gameLogic.increaseSessionTime(by: timeElapsedSinceLastUpdate)
         
         self.lastUpdate = currentTime
     }
@@ -85,32 +87,25 @@ extension ArcadeGameScene {
     
     private func setUpGame() {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-
+        
         self.gameLogic.setUpGame()
         setUpMusic()
-        self.setUpSwipeDownGesture()
-        addChild(frameSpawner)
-        createWood()
+        createScrollingFrames()
         createPlayer()
-        startRunning()
     }
     
     private func setUpPhysicsWorld() {
         physicsWorld.gravity = CGVector(dx: -10, dy: 0)
         physicsWorld.contactDelegate = self
         physicsWorld.speed = 1
-        
     }
     
     private func setUpMusic(){
         if let sound = Bundle.main.path(forResource: "PixelLoop", ofType: "m4a") {
-        self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+            self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
             backgroundMusicAV.numberOfLoops = -1
-        backgroundMusicAV.play()
+            backgroundMusicAV.play()
         }
-    }
-    private func startRunning() {
-        self.squirrel.animateRun()
     }
     
     private func restartGame() {
@@ -127,14 +122,16 @@ extension ArcadeGameScene {
         }
         
         self.squirrel = SquirrelNode(at: position)
+        self.squirrel.animateRun()
+        
         addChild(self.squirrel)
     }
 }
 
-// MARK: - Create stuff
+// MARK: - Create scrolling frames
 extension ArcadeGameScene {
-    
-    func createWood(){
+    func createScrollingFrames(){
+        addChild(frameSpawner)
         treeNode = TreesNode()
         addChild(treeNode)
     }
@@ -142,22 +139,24 @@ extension ArcadeGameScene {
 
 // MARK: - Game Over Condition
 extension ArcadeGameScene {
-    
-    /**
-     * Implement the Game Over condition.
-     * Remember that an arcade game always ends! How will the player eventually lose?
-     *
-     * Some examples of game over conditions are:
-     * - The time is over!
-     * - The player health is depleated!
-     * - The enemies have completed their goal!
-     * - The screen is full!
-     **/
     func playerOutOnBottom(){
-        if squirrel.frame.minY < self.frame.minY {
-            makeHaptic()
-            finishGame()
+        if squirrel.isAlive{
+            if squirrel.frame.minY < self.frame.minY {
+                squirrel.isAlive = false
+                preFinish()
+            }
         }
+    }
+    var playerIsOutOnBottom: Bool {
+        if squirrel.frame.minY < self.frame.minY {
+            return true} else {return false}
+    }
+    
+    func preFinish(){
+        makeHaptic()
+        self.pauseTry()
+        self.backgroundMusicAV.stop()
+        self.finishGame()
     }
     
     var isGameOver: Bool {
@@ -165,10 +164,8 @@ extension ArcadeGameScene {
     }
     
     func finishGame() {
-        self.run(gameOverSound)
-        backgroundMusicAV.stop()
-            self.gameLogic.finalScore = self.gameLogic.currentScore
-            self.gameLogic.isGameOver = true
+        self.gameLogic.finalScore = self.gameLogic.currentScore
+        self.gameLogic.isGameOver = true
     }
 }
 

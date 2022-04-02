@@ -11,9 +11,7 @@ import SpriteKit
 extension ArcadeGameScene {
     func pauseTry(){
         for child in self.children {
-            if child.name != "particle" && child.name != "bSquirrel"{
             child.isPaused = true
-            }
         }
     }
     func resumeTry(){
@@ -30,16 +28,5 @@ extension ArcadeGameScene {
         } else {
             squirrel.dashDown()
         }
-    }
-    
-    func setUpSwipeDownGesture(){
-        let swipeDown = UISwipeGestureRecognizer(target: self,
-                                                 action: #selector(self.swipeDown(sender:)))
-        swipeDown.direction = .down
-        view?.addGestureRecognizer(swipeDown)
-    }
-    
-    @objc func swipeDown(sender: UISwipeGestureRecognizer) {
-//        squirrel.dashDown()
     }
 }

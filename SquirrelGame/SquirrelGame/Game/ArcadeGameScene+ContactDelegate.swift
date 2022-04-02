@@ -19,13 +19,15 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
         
         if secondNode.name == "cLeftWood" || secondNode.name == "cRightWood" || secondNode.name == "cMiddleWood" {
             if firstNode.name == "bSquirrel" {
-                squirrel.isInAir = false
-                if physicsWorld.gravity.dx > 0 {
-                    squirrel.touchingWoodOnSide = .right
-                } else {
-                    squirrel.touchingWoodOnSide = .left
+                if squirrel.isInAir == true {
+                    squirrel.isInAir = false
+                    if physicsWorld.gravity.dx > 0 {
+                        squirrel.touchingWoodOnSide = .right
+                    } else {
+                        squirrel.touchingWoodOnSide = .left
+                    }
+                    squirrel.animateLanding()
                 }
-                squirrel.animateLanding()
             }
         }
         if secondNode.name == "dNutNormal" {
@@ -34,8 +36,8 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
             self.run(pickUpSound)
         }
         if secondNode.name == "eSpines" || secondNode.name == "gBranch" {
-            self.makeHaptic()
-            self.finishGame()
+            squirrel.isAlive = false
+            preFinish()
         }
         if secondNode.name == "dNutGold"{
             if squirrel.isDashing {

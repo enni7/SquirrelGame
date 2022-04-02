@@ -52,11 +52,6 @@ class GoldenNutSprite: SKSpriteNode {
         if let particle = SKEmitterNode(fileNamed: "MyParticle"){
             particle.name = "particle"
             particle.position = point
-            particle.physicsBody = SKPhysicsBody(rectangleOf: particle.particleSize)
-            particle.physicsBody?.categoryBitMask = PhysicsCategory.hParticle
-            particle.physicsBody?.contactTestBitMask = PhysicsCategory.cSideWood
-            particle.physicsBody?.collisionBitMask = PhysicsCategory.cSideWood
-            particle.physicsBody?.affectedByGravity = false
             scene?.addChild(particle)
             particle.run(SKAction.wait(forDuration: 7)){
                 particle.removeFromParent()

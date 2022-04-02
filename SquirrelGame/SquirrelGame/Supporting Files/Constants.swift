@@ -158,7 +158,7 @@ struct FramesDatabase {
         
         //9
         Frame(leftSpinesPositionsArray: [],
-              rightSpinesPositionsArray: [(260, 2), (-200, 3)],
+              rightSpinesPositionsArray: [(260, 2), (-240, 3)],
               leftBrunchesYArray: [140],
               rightBrunchesYArray: [],
               normalNutsPositionsArray: [CGPoint(x: -100, y: 200)],
