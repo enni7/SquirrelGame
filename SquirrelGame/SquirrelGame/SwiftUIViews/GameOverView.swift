@@ -22,6 +22,7 @@ struct GameOverView: View {
     @Binding var currentGameState: GameState
     var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
     @State var backgroundMusicAV : AVAudioPlayer!
+    @State var disabled: Bool = true
     
     var body: some View {
         ZStack {
@@ -81,6 +82,12 @@ struct GameOverView: View {
                                 .padding(25)
                                 .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)).frame(width: 80, height: 80, alignment: .center))
                             
+                        }
+                        .disabled(disabled)
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                disabled = false
+                            }
                         }
                     }.frame(width: 250)
                 }

@@ -46,11 +46,6 @@ class ArcadeGameScene: SKScene {
         }
         // If the game over condition is met, the game will finish
         playerOutOnBottom()
-        //        if self.isGameOver {
-        //            self.run(gameOverSound){
-        //            self.finishGame()
-        //            }
-        //        }
         
         // The first time the update function is called we must initialize the
         // lastUpdate variable
@@ -108,9 +103,9 @@ extension ArcadeGameScene {
         }
     }
     
-    private func restartGame() {
-        self.gameLogic.restartGame()
-    }
+//    private func restartGame() {
+//        self.gameLogic.restartGame()
+//    }
 }
 
 // MARK: - Create PLAYER
@@ -154,6 +149,7 @@ extension ArcadeGameScene {
     
     func preFinish(){
         makeHaptic()
+        self.run(gameOverSound)
         self.pauseTry()
         self.backgroundMusicAV.stop()
         self.finishGame()
