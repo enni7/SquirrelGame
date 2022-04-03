@@ -15,6 +15,7 @@
 		955398A427F6CF9400A116F2 /* squirrelRunning2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 955398A227F6CF9400A116F2 /* squirrelRunning2.atlas */; };
 		9567854D27F5FB8100C493A9 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9567854C27F5FB8100C493A9 /* MyParticle.sks */; };
 		9567855127F6127E00C493A9 /* Game over.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9567855027F6127E00C493A9 /* Game over.m4a */; };
+		956ABFA727F9B35F001E42F1 /* DoHyeon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 956ABFA627F9B35F001E42F1 /* DoHyeon-Regular.ttf */; };
 		95812A6D27F49EE400B79C32 /* PixelLoop.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95812A6C27F49E6200B79C32 /* PixelLoop.m4a */; };
 		9589F75227F4794100FF1B53 /* GoldenNutSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */; };
 		95DD7CF827F6ED850058A38D /* Jumping.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95DD7CF727F6ED850058A38D /* Jumping.m4a */; };
@@ -36,7 +37,6 @@
 		95E2125327F37CAA00FB9C6D /* squirrelRunning.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */; };
 		95E2125827F3817300FB9C6D /* nut+1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125527F3817300FB9C6D /* nut+1.m4a */; };
 		95E2125A27F3817300FB9C6D /* bensound-cute.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125727F3817300FB9C6D /* bensound-cute.mp3 */; };
-		95ED96EF27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95ED96EE27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +48,7 @@
 		955398A227F6CF9400A116F2 /* squirrelRunning2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = squirrelRunning2.atlas; sourceTree = "<group>"; };
 		9567854C27F5FB8100C493A9 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		9567855027F6127E00C493A9 /* Game over.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Game over.m4a"; sourceTree = "<group>"; };
+		956ABFA627F9B35F001E42F1 /* DoHyeon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DoHyeon-Regular.ttf"; sourceTree = "<group>"; };
 		95812A6C27F49E6200B79C32 /* PixelLoop.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = PixelLoop.m4a; sourceTree = "<group>"; };
 		95812A6E27F4A28700B79C32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenNutSprite.swift; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = squirrelRunning.atlas; sourceTree = "<group>"; };
 		95E2125527F3817300FB9C6D /* nut+1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "nut+1.m4a"; sourceTree = "<group>"; };
 		95E2125727F3817300FB9C6D /* bensound-cute.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-cute.mp3"; sourceTree = "<group>"; };
-		95ED96EE27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BMDoHyeon-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,7 +190,7 @@
 		95F60C0A27F59D2F003EB6A6 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				95ED96EE27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf */,
+				956ABFA627F9B35F001E42F1 /* DoHyeon-Regular.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -257,13 +257,13 @@
 				95DD7CF827F6ED850058A38D /* Jumping.m4a in Resources */,
 				95E2125827F3817300FB9C6D /* nut+1.m4a in Resources */,
 				95E2125327F37CAA00FB9C6D /* squirrelRunning.atlas in Resources */,
+				956ABFA727F9B35F001E42F1 /* DoHyeon-Regular.ttf in Resources */,
 				955398A427F6CF9400A116F2 /* squirrelRunning2.atlas in Resources */,
 				955398A327F6CF9400A116F2 /* squirrelRunning1.atlas in Resources */,
 				9567855127F6127E00C493A9 /* Game over.m4a in Resources */,
 				95DD7CFA27F6ED8C0058A38D /* nut box.m4a in Resources */,
 				95E2123327F37A3300FB9C6D /* Preview Assets.xcassets in Resources */,
 				95E2123027F37A3300FB9C6D /* Assets.xcassets in Resources */,
-				95ED96EF27F59BBA00CC4037 /* BMDoHyeon-Regular.ttf in Resources */,
 				95E2125A27F3817300FB9C6D /* bensound-cute.mp3 in Resources */,
 				9567854D27F5FB8100C493A9 /* MyParticle.sks in Resources */,
 			);

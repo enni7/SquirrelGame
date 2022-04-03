@@ -26,6 +26,13 @@ struct GameOverView: View {
                 Spacer()
                 VStack{
                     VStack{
+                        if gameLogic.isBestScore(){
+                        Text("NEW RECORD!")
+                            .bold()
+                            .padding(.vertical,5)
+                            .font(.system(.title, design: .monospaced))
+                        }
+                        
                         Image("hurtFace 1")
                             .resizable()
                             .scaledToFit()
@@ -55,24 +62,25 @@ struct GameOverView: View {
                         Button {
                             withAnimation(.easeOut(duration: 0.3)) { self.backToMainScreen() }
                         } label: {
-                            Image(systemName: "arrow.backward")
-                                .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-                                .font(.largeTitle)
-                                .padding(25)
+                            ZStack {
+                                Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)).frame(width: 80, height: 80, alignment: .center)
+                                Image(systemName: "arrow.backward")
+                                    .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+                                    .font(.largeTitle)
+                            }
                         }
-                        .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)).frame(width: 80, height: 80, alignment: .center))
                         
                         Spacer()
                         
                         Button {
                             withAnimation { self.restartGame() }
                         } label: {
-                            Image(systemName: "arrow.clockwise")
-                                .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-                                .font(.largeTitle)
-                                .padding(25)
-                                .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)).frame(width: 80, height: 80, alignment: .center))
-                            
+                            ZStack {
+                                Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)).frame(width: 80, height: 80, alignment: .center)
+                                Image(systemName: "arrow.clockwise")
+                                    .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+                                    .font(.largeTitle)
+                            }
                         }
                         .disabled(disabled)
                         .onAppear {
