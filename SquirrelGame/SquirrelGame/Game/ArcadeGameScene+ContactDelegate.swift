@@ -32,7 +32,7 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
         }
         if secondNode.name == "dNutNormal" {
             secondNode.removeFromParent()
-            gameLogic.score(points: 5)
+            gameLogic.score(points: 1)
             self.run(pickUpSound)
         }
         if secondNode.name == "eSpines" || secondNode.name == "gBranch" {
@@ -49,7 +49,7 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
                 squirrel.bounceOnOtherSide()
                 self.makeHaptic()
                 self.run(boxSound)
-                gameLogic.score(points: 10)
+                gameLogic.score(points: 5)
             }
         }
     }

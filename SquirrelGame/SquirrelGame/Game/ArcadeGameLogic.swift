@@ -26,7 +26,6 @@ class ArcadeGameLogic: ObservableObject {
                 
         self.currentScore = 0
         self.sessionDuration = 0
-        self.finalScore = 0
         
         self.isGameOver = false
     }

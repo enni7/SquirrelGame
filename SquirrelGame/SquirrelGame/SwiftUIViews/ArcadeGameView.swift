@@ -21,8 +21,6 @@ struct ArcadeGameView: View {
     /**
      * # The Game Logic
      *     The game logic keeps track of the game variables
-     *   you can use it to display information on the SwiftUI view,
-     *   for example, and comunicate with the Game Scene.
      **/
     @StateObject var gameLogic: ArcadeGameLogic =  ArcadeGameLogic.shared
     
@@ -39,7 +37,7 @@ struct ArcadeGameView: View {
         let scene = ArcadeGameScene()
         
         scene.size = CGSize(width: screenWidth, height: screenHeight)
-        scene.scaleMode = .fill
+        scene.scaleMode = .aspectFill
         
         return scene
     }

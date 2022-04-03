@@ -42,15 +42,6 @@ struct MainScreenView: View {
             VStack(alignment: .center, spacing: 16.0) {
                 Spacer()
                 
-                /**
-                 * # PRO TIP!
-                 * The game title can be customized to represent the visual identity of the game
-                 */
-//                Text("\(self.gameTitle)")
-////                    .font(.title)
-//                    .fontWeight(.bold)
-//                    .font(.system(.largeTitle, design: .monospaced))
-//                    .foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!))
                 Image("LOGO")
                     .resizable()
                     .scaledToFit()
@@ -58,9 +49,6 @@ struct MainScreenView: View {
                 
                 Spacer()
                 
-                /**
-                 * To customize the instructions, check the **Constants.swift** file
-                 */
                 VStack {
                     ForEach(self.gameInstructions, id: \.title) { instruction in
                         
@@ -75,8 +63,6 @@ struct MainScreenView: View {
                                 Text("\(instruction.title)")
 //                                    .font(.custom("BMDoHyeon-Regular.ttf", size: 24))
                                     .foregroundColor(.white)
-//                                    .foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!))
-                                //                        Text("\(instruction.description)")
                                     .font(.system(.title3, design: .monospaced))
                             }
                             Spacer()
@@ -89,9 +75,6 @@ struct MainScreenView: View {
                 
                 Spacer()
                 
-                /**
-                 * Customize the appearance of the **Insert a Coin** button to match the visual identity of your game
-                 */
                 Button {
                     withAnimation { self.startGame() }
                 } label: {
