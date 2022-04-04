@@ -37,8 +37,6 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
 
             secondNode.removeFromParent()
             gameLogic.score(points: 1)
-            print("\(camera?.position)")
-
 
             self.run(pickUpSound)
         }

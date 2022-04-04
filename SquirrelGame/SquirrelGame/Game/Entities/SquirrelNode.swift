@@ -55,7 +55,6 @@ class SquirrelNode: SKSpriteNode {
         self.name = "bSquirrel"
         
         self.startingX = position.x
-        print("startingX: \(startingX)")
 
         physicsBody = SKPhysicsBody(texture: firstTexture, size: CGSize(width: self.size.width * 0.95, height: self.size.height * 0.95))
         setUpPhysicBody()
@@ -114,11 +113,16 @@ class SquirrelNode: SKSpriteNode {
     }
     func animateLanding(){
             self.isDashing = false
-        print("positionX: \(position.x)")
             self.animateRun()
             self.physicsBody?.affectedByGravity = true
 //        self.run(SKAction.scaleX(to: abs(self.xScale) * (touchingWoodOnSide == .left ? 1 : -1), duration: 0.05))
         self.run(SKAction.rotate(toAngle: 0, duration: 0.05, shortestUnitArc: true))
+        guard let sceneCamera = scene?.camera else {return}
+        let moveLeft = SKAction.moveBy(x: -1, y: 0, duration: 0.1)
+        let moveRight = SKAction.moveBy(x: 1, y: 0, duration: 0.1)
+        let seqLeft = SKAction.sequence([moveLeft, moveRight])
+        let seqRight = SKAction.sequence([moveRight, moveLeft])
+        sceneCamera.run(touchingWoodOnSide == .left ? seqRight : seqLeft)
     }
     
     func dashDown(){
