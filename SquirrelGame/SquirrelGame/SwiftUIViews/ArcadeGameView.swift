@@ -26,7 +26,8 @@ struct ArcadeGameView: View {
     
     // The game state is used to transition between the different states of the game
     @Binding var currentGameState: GameState
-    
+    let notificationCenter = NotificationCenter.default
+
     private var screenWidth: CGFloat { UIScreen.main.bounds.size.width }
     private var screenHeight: CGFloat { UIScreen.main.bounds.size.height }
     
@@ -63,8 +64,17 @@ struct ArcadeGameView: View {
                 }
             }
         }
+        .onDisappear(perform: {
+            print("disappeared")
+        })
         .onAppear {
-            gameLogic.restartGame()
+//            gameLogic.restartGame()
+            if let sound = Bundle.main.path(forResource: "PixelLoop", ofType: "m4a") {
+                self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+                backgroundMusicAV.numberOfLoops = -1
+                backgroundMusicAV.play()
+            }
+            notificationCenter.addObserver(arcadeGameScene, selector: #selector(arcadeGameScene.pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
         }
     }
     
@@ -73,6 +83,7 @@ struct ArcadeGameView: View {
      * At the moment it is not being used, but it could be used in a Pause menu for example.
      */
     private func presentMainScreen() {
+        self.backgroundMusicAV.stop()
         self.currentGameState = .mainScreen
     }
     
@@ -81,8 +92,10 @@ struct ArcadeGameView: View {
      * It changes the current game state to present the GameOverView.
      */
     private func presentGameOverScreen() {
+        self.backgroundMusicAV.stop()
         self.currentGameState = .gameOver
     }
+    
 }
 
 struct GameView_Previews: PreviewProvider {

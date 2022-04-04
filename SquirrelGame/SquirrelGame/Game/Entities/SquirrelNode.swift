@@ -20,6 +20,8 @@ class SquirrelNode: SKSpriteNode {
     var isDashing: Bool = false
     var touchingWoodOnSide: TouchingWoodOnSide!
     var isAlive = true
+    var startingX: CGFloat!
+    
     init(at position: CGPoint) {
         touchingWoodOnSide = .left
         
@@ -51,6 +53,9 @@ class SquirrelNode: SKSpriteNode {
         self.zPosition = 50
         self.position = position
         self.name = "bSquirrel"
+        
+        self.startingX = position.x
+        print("startingX: \(startingX)")
 
         physicsBody = SKPhysicsBody(texture: firstTexture, size: CGSize(width: self.size.width * 0.95, height: self.size.height * 0.95))
         setUpPhysicBody()
@@ -80,6 +85,15 @@ class SquirrelNode: SKSpriteNode {
                              restore: false)),
                  withKey: "runningSquirrel")
     }
+    func animateDashingDown() {
+        self.run(SKAction.repeatForever(
+            SKAction.animate(with: [ballTexture],
+                             timePerFrame: 0.15,
+                             resize: false,
+                             restore: false)),
+                 withKey: "dashingAnimation")
+        self.run(SKAction.rotate(toAngle: 0, duration: 0.1, shortestUnitArc: true))
+    }
 
     func jump(){
         if self.isInAir == false && self.isDashing == false {
@@ -99,12 +113,10 @@ class SquirrelNode: SKSpriteNode {
         
     }
     func animateLanding(){
-        self.run(SKAction.setTexture(firstTexture)){
-            self.isInAir = false
             self.isDashing = false
+        print("positionX: \(position.x)")
             self.animateRun()
             self.physicsBody?.affectedByGravity = true
-        }
 //        self.run(SKAction.scaleX(to: abs(self.xScale) * (touchingWoodOnSide == .left ? 1 : -1), duration: 0.05))
         self.run(SKAction.rotate(toAngle: 0, duration: 0.05, shortestUnitArc: true))
     }

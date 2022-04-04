@@ -15,9 +15,7 @@ class ArcadeGameScene: SKScene {
     // Keeps track of when the last update happend.
     var lastUpdate: TimeInterval = 0
     var timeSinceLastUpdate : Int = 0
-    
-    var backgroundMusicAV : AVAudioPlayer!
-    
+        
     //Responsable of spawning frames and side trees
     let frameSpawner = FrameSpawner()
     var treeNode: TreesNode!
@@ -25,6 +23,7 @@ class ArcadeGameScene: SKScene {
     var squirrel: SquirrelNode!
     
     //    var scaleFactor: CGFloat!
+    let notificationCenter = NotificationCenter.default
     
     let pickUpSound = SKAction.playSoundFileNamed(SoundFile.pickUpSound, waitForCompletion: false)
     let jumpSound = SKAction.playSoundFileNamed(SoundFile.jump, waitForCompletion: false)
@@ -33,6 +32,8 @@ class ArcadeGameScene: SKScene {
     
     
     override func didMove(to view: SKView) {
+        notificationCenter.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(resumeGame), name: UIApplication.didBecomeActiveNotification, object: nil)
         self.setUpGame()
         self.setUpPhysicsWorld()
         self.frameSpawner.startLoopingFramesCreation()
@@ -44,6 +45,7 @@ class ArcadeGameScene: SKScene {
         if self.speed > 3 {
             self.removeAction(forKey: "increseSpeed")
         }
+
         // If the game over condition is met, the game will finish
         playerOutOnBottom()
         
@@ -66,7 +68,7 @@ extension ArcadeGameScene {
         let wait = SKAction.wait(forDuration: 7)
         let increse = SKAction.run {
             self.speed = self.speed * 1.1
-            self.physicsWorld.speed = self.physicsWorld.speed * 1.05
+            self.physicsWorld.speed = self.physicsWorld.speed * 1.04
         }
         let seq = SKAction.sequence([wait, increse])
         let infiniteIncrese = SKAction.repeatForever(seq)
@@ -84,7 +86,6 @@ extension ArcadeGameScene {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         self.gameLogic.setUpGame()
-        setUpMusic()
         createScrollingFrames()
         createPlayer()
     }
@@ -95,17 +96,28 @@ extension ArcadeGameScene {
         physicsWorld.speed = 1
     }
     
-    private func setUpMusic(){
-        if let sound = Bundle.main.path(forResource: "PixelLoop", ofType: "m4a") {
-            self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
-            backgroundMusicAV.numberOfLoops = -1
-            backgroundMusicAV.play()
+    
+    //    private func restartGame() {
+    //        self.gameLogic.restartGame()
+    //    }
+    func pauseTry(){
+        for child in self.children {
+            child.isPaused = true
         }
     }
-    
-//    private func restartGame() {
-//        self.gameLogic.restartGame()
-//    }
+    func resumeTry(){
+        for child in self.children {
+            child.isPaused = false
+        }
+    }
+
+    @objc func pauseGame() {
+        pauseTry()
+    }
+    @objc func resumeGame() {
+        resumeTry()
+    }
+
 }
 
 // MARK: - Create PLAYER
@@ -151,7 +163,7 @@ extension ArcadeGameScene {
         makeHaptic()
         self.run(gameOverSound)
         self.pauseTry()
-        self.backgroundMusicAV.stop()
+//        self.backgroundMusicAV.stop()
         self.finishGame()
     }
     

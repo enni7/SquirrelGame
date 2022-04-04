@@ -24,7 +24,8 @@ struct MainScreenView: View {
     
     // Change it on the Constants.swift file
     let accentColor: Color = MainScreenProperties.accentColor
-    
+    var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
+
     let bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
     var body: some View {
         ZStack{
@@ -47,7 +48,8 @@ struct MainScreenView: View {
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                     
-                    Text(bestScore.formatted())
+//                    Text(bestScore.formatted())
+                    Text(gameLogic.finalScore.formatted())
                         .fontWeight(.semibold)
                     
                 }
@@ -98,13 +100,13 @@ struct MainScreenView: View {
         }
         .statusBar(hidden: true)
         .onAppear {
-//            for any in UIFont.familyNames {
-//                print(any)
-//            }
             if let sound = Bundle.main.path(forResource: "bensound-cute", ofType: "mp3") {
                 self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+                if self.backgroundMusicAV.isPlaying == false {
+
                 backgroundMusicAV.numberOfLoops = -1
                 backgroundMusicAV.play()
+                }
             }
         }
     }

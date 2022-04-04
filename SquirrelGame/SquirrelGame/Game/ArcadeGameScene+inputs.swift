@@ -9,16 +9,6 @@ import SpriteKit
 
 // MARK: - Handle Player Inputs
 extension ArcadeGameScene {
-    func pauseTry(){
-        for child in self.children {
-            child.isPaused = true
-        }
-    }
-    func resumeTry(){
-        for child in self.children {
-            child.isPaused = false
-        }
-    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if squirrel.isInAir == false {

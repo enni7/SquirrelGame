@@ -158,11 +158,11 @@ struct FramesDatabase {
         
         //9
         Frame(leftSpinesPositionsArray: [],
-              rightSpinesPositionsArray: [(260, 2), (-240, 3)],
+              rightSpinesPositionsArray: [(260, 2), (-270, 3)],
               leftBrunchesYArray: [140],
               rightBrunchesYArray: [],
               normalNutsPositionsArray: [CGPoint(x: -100, y: 200)],
-              boxNutPositionsArray: [CGPoint(x: 100, y: -110)]),
+              boxNutPositionsArray: [CGPoint(x: 100, y: -100)]),
         //10
         Frame(leftSpinesPositionsArray: [(60, 2)],
               rightSpinesPositionsArray: [(-160, 3)],
