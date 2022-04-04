@@ -31,8 +31,15 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
             }
         }
         if secondNode.name == "dNutNormal" {
+            if let nut = secondNode as? GoldenNutSprite {
+                nut.animateNutPick(nutType: .normal)
+            }
+
             secondNode.removeFromParent()
             gameLogic.score(points: 1)
+            print("\(camera?.position)")
+
+
             self.run(pickUpSound)
         }
         if secondNode.name == "eSpines" || secondNode.name == "gBranch" {
@@ -42,10 +49,10 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
         if secondNode.name == "dNutGold"{
             if squirrel.isDashing {
                 if let nut = secondNode as? GoldenNutSprite {
-                    nut.animateBoxBreake(at: contact.contactPoint)
+                    nut.animateBoxBreakeParticles()
                 }
                 secondNode.removeFromParent()
-
+                camera?.run(SKAction.sequence([SKAction.moveBy(x: 0, y: 4, duration: 0.1), SKAction.moveBy(x: 0, y: -4, duration: 0.1)]))
                 squirrel.bounceOnOtherSide()
                 self.makeHaptic()
                 self.run(boxSound)

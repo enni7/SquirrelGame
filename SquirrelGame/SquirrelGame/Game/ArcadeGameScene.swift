@@ -36,6 +36,7 @@ class ArcadeGameScene: SKScene {
         notificationCenter.addObserver(self, selector: #selector(resumeGame), name: UIApplication.didBecomeActiveNotification, object: nil)
         self.setUpGame()
         self.setUpPhysicsWorld()
+        self.setUpCamera()
         self.frameSpawner.startLoopingFramesCreation()
         self.inscreseSpeedAction()
     }
@@ -94,6 +95,15 @@ extension ArcadeGameScene {
         physicsWorld.gravity = CGVector(dx: -10, dy: 0)
         physicsWorld.contactDelegate = self
         physicsWorld.speed = 1
+    }
+    private func setUpCamera() {
+        var cameraNode = SKCameraNode()
+        self.addChild(cameraNode)
+        self.camera = cameraNode
+        
+        cameraNode.position = .zero
+        cameraNode.name = "camera"
+        print("camera \(self.camera?.position)")
     }
     
     
