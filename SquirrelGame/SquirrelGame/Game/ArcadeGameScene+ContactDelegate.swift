@@ -44,7 +44,6 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
             self.run(pickUpSound)
         }
         if secondNode.name == "eSpines" || secondNode.name == "gBranch" {
-//            squirrel.animateSquirrelDeath()
             if squirrel.isAlive == true{
                         squirrel.isAlive = false
                         preFinish()

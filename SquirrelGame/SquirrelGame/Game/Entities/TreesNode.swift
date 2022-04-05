@@ -79,19 +79,39 @@ class TreesNode: SKNode {
             newRightGround.position = CGPoint(x: rightWood.position.x, y: rightWood.position.y - (newLeftGround.frame.height * CGFloat(i)))
             dumbNode.addChild(newRightGround)
             
-            let bg1 = SKSpriteNode(texture: SKTexture(imageNamed: "background1"))
-            bg1.size = screenSize
-            bg1.zPosition = -50
-            bg1.position = CGPoint(x: 0, y: 0 - (bg1.frame.height * CGFloat(i)))
+//            let bg1 = SKSpriteNode(texture: SKTexture(imageNamed: "background1"))
+//            bg1.size = screenSize
+//            bg1.zPosition = -50
+//            bg1.position = CGPoint(x: 0, y: 0 - (bg1.frame.height * CGFloat(i)))
 
-            dumbNode.addChild(bg1)
+//            dumbNode.addChild(bg1)
 
             let moveUp = SKAction.moveBy(x: 0, y: newLeftGround.frame.size.height, duration: 5)
             let moveReset = SKAction.moveBy(x: 0, y: -newLeftGround.frame.size.height, duration: 0)
             let moveLoop = SKAction.sequence([moveUp, moveReset])
             let moveForever = SKAction.repeatForever(moveLoop)
-            dumbNode.run(moveForever, withKey: "scrolling sky and woods")
+            dumbNode.run(moveForever, withKey: "scrolling woods")
+            
             addChild(dumbNode)
+            createSKy()
+        }
+    }
+    
+    func createSKy(){
+        for i in 0 ... 1 {
+            let bg1 = SKSpriteNode(texture: SKTexture(imageNamed: "background1"))
+            bg1.size = screenSize
+            bg1.zPosition = -50
+            bg1.position = CGPoint(x: 0, y: 0 - (bg1.frame.height * CGFloat(i)))
+
+
+            let moveUp = SKAction.moveBy(x: 0, y: screenSize.height, duration: 6)
+            let moveReset = SKAction.moveBy(x: 0, y: -screenSize.height, duration: 0)
+            let moveLoop = SKAction.sequence([moveUp, moveReset])
+            let moveForever = SKAction.repeatForever(moveLoop)
+            bg1.run(moveForever, withKey: "scrolling sky")
+            
+            self.addChild(bg1)
         }
     }
 }
