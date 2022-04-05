@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "nutBroken 1.png",
+      "filename" : "nut-hit 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "nutBroken 1@2x.png",
+      "filename" : "nut-hit 1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "nutBroken 1@3x.png",
+      "filename" : "nut-hit 1@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

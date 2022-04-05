@@ -12,7 +12,8 @@ class GoldenNutSprite: SKSpriteNode {
     let nutTexture1 = SKTexture(imageNamed: "nut_1")
     let nutTexture2 = SKTexture(imageNamed: "nut_2")
     let boxTexture = SKTexture(imageNamed: "nutBox 1")
-    let boxBreakTexture = SKTexture(imageNamed: "BrokenBox 1")
+    let boxBreakTexture = SKTexture(imageNamed: "box-hit 1")
+    let nutPickTexture = SKTexture(imageNamed: "nut-hit 1")
 
     init(nutType: NutType, at position: CGPoint){
         let nutTexture = nutType == .normal ? nutTexture1 : boxTexture
@@ -60,7 +61,7 @@ class GoldenNutSprite: SKSpriteNode {
         }
     }
     func animateNutPick(){
-        let boxTexture = SKTexture(imageNamed: "BrokenBox 1")
+        let boxTexture = boxBreakTexture
         let goldBox = SKSpriteNode(texture: boxTexture, color: .white, size: self.size)
         goldBox.position = self.position
         goldBox.zPosition = self.zPosition
@@ -73,7 +74,7 @@ class GoldenNutSprite: SKSpriteNode {
         parent?.addChild(goldBox)
     }
     func animateNormalNutPick(){
-        let nutText = SKTexture(imageNamed: "NutPickUp")
+        let nutText = nutPickTexture
         let nutPick = SKSpriteNode(texture: nutTexture2, color: .white, size: self.size)
         nutPick.position = self.position
         nutPick.zPosition = self.zPosition
