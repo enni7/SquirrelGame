@@ -11,10 +11,9 @@ import SpriteKit
 extension ArcadeGameScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        if squirrel.isInAir == false {
+        if squirrel.isInAir == false && squirrel.isJumping == false {
             self.run(jumpSound)
             squirrel.jump()
-            physicsWorld.gravity = CGVector(dx: -physicsWorld.gravity.dx, dy: 0)
         } else {
             squirrel.dashDown()
         }

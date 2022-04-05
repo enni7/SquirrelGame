@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B200627F3D30B00D7490E /* SpinesSprite.swift */; };
 		95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95370BD027F3919B00B7EAEE /* TreesNode.swift */; };
+		9538364927FCDDE1004242F6 /* jumpTexturesLeft.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9538364827FCDDE1004242F6 /* jumpTexturesLeft.atlas */; };
 		953A3F7227F4526D009DCAF7 /* SequenceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953A3F7127F4526D009DCAF7 /* SequenceNode.swift */; };
 		9549DB1B27F667550019382F /* ArcadeGameScene+inputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549DB1A27F667550019382F /* ArcadeGameScene+inputs.swift */; };
 		955398A327F6CF9400A116F2 /* squirrelRunning1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 955398A127F6CF9400A116F2 /* squirrelRunning1.atlas */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		952B200627F3D30B00D7490E /* SpinesSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinesSprite.swift; sourceTree = "<group>"; };
 		95370BD027F3919B00B7EAEE /* TreesNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreesNode.swift; sourceTree = "<group>"; };
+		9538364827FCDDE1004242F6 /* jumpTexturesLeft.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = jumpTexturesLeft.atlas; path = ../../../../Desktop/SquirrelAssets/squirrel/jumpTexturesLeft.atlas; sourceTree = "<group>"; };
 		953A3F7127F4526D009DCAF7 /* SequenceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceNode.swift; sourceTree = "<group>"; };
 		9549DB1A27F667550019382F /* ArcadeGameScene+inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArcadeGameScene+inputs.swift"; sourceTree = "<group>"; };
 		955398A127F6CF9400A116F2 /* squirrelRunning1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = squirrelRunning1.atlas; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				95E2124F27F37BCA00FB9C6D /* Game */,
 				95E2125127F37C4400FB9C6D /* Supporting Files */,
 				95E2122F27F37A3300FB9C6D /* Assets.xcassets */,
+				9538364827FCDDE1004242F6 /* jumpTexturesLeft.atlas */,
 				955398A127F6CF9400A116F2 /* squirrelRunning1.atlas */,
 				955398A227F6CF9400A116F2 /* squirrelRunning2.atlas */,
 				9567854C27F5FB8100C493A9 /* MyParticle.sks */,
@@ -253,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9538364927FCDDE1004242F6 /* jumpTexturesLeft.atlas in Resources */,
 				95812A6D27F49EE400B79C32 /* PixelLoop.m4a in Resources */,
 				95DD7CF827F6ED850058A38D /* Jumping.m4a in Resources */,
 				95E2125827F3817300FB9C6D /* nut+1.m4a in Resources */,

@@ -11,12 +11,15 @@ class SquirrelNode: SKSpriteNode {
     private var runningFramesOnLeft: [SKTexture] = []
     private var runningFramesOnRight: [SKTexture] = []
     private var firstTexture: SKTexture!
-    private var jumpTextureFromLeft: SKTexture!
-    private var jumpTextureFromRight: SKTexture!
+    private var jumpTextureFromLeft1: SKTexture!
+    private var jumpTextureFromRight1: SKTexture!
+    private var jumpAtlas: [SKTexture]!
     private var ballTexture = SKTexture(imageNamed: "squirrelball 1 3")
     private var dashTexture = SKTexture(imageNamed: "dash2")
-
+    
     var isInAir: Bool = false
+    var isJumping: Bool = false
+    var isLanding: Bool = false
     var isDashing: Bool = false
     var touchingWoodOnSide: TouchingWoodOnSide!
     var isAlive = true
@@ -36,7 +39,7 @@ class SquirrelNode: SKSpriteNode {
         self.runningFramesOnLeft = runFrames
         
         self.firstTexture = runningFramesOnLeft[0]
-        self.jumpTextureFromLeft = runningFramesOnLeft[1]
+        self.jumpTextureFromLeft1 = runningFramesOnLeft[1]
         
         let squirrelAnimatedAtlas2 = SKTextureAtlas(named: "squirrelRunning2")
         var runFrames2: [SKTexture] = []
@@ -47,7 +50,17 @@ class SquirrelNode: SKSpriteNode {
             runFrames2.append(squirrelAnimatedAtlas2.textureNamed(squirrelTextureName2))
         }
         self.runningFramesOnRight = runFrames2
-        self.jumpTextureFromRight = runningFramesOnRight[1]
+        self.jumpTextureFromRight1 = runningFramesOnRight[1]
+        
+        let squirrelJumpAtlas = SKTextureAtlas(named: "jumpTexturesLeft")
+        var jumpFrames: [SKTexture] = []
+        
+        let jumpImgNum = squirrelJumpAtlas.textureNames.count
+        for i in 1...jumpImgNum {
+            let squirrelJumpName = "jumpTexturesLeft\(i)@3x"
+            jumpFrames.append(squirrelJumpAtlas.textureNamed(squirrelJumpName))
+        }
+        self.jumpAtlas = jumpFrames
         
         super.init(texture: firstTexture, color: .white, size: CGSize(width: firstTexture.size().width * 2, height: firstTexture.size().height * 2))
         self.zPosition = 100
@@ -55,7 +68,7 @@ class SquirrelNode: SKSpriteNode {
         self.name = "bSquirrel"
         
         self.startingX = position.x
-
+        
         physicsBody = SKPhysicsBody(texture: firstTexture, size: CGSize(width: self.size.width * 0.95, height: self.size.height * 0.95))
         setUpPhysicBody()
     }
@@ -76,47 +89,97 @@ class SquirrelNode: SKSpriteNode {
         physicsBody?.collisionBitMask = PhysicsCategory.cSideWood
     }
     
+    func setUpXScale(){
+        if self.touchingWoodOnSide == .left {
+            self.run(SKAction.scaleX(to: 1, duration: 0))
+        } else {
+            self.run(SKAction.scaleX(to: -1, duration: 0))
+        }
+    }
+    
     func animateRun() {
         self.run(SKAction.repeatForever(
-            SKAction.animate(with: self.touchingWoodOnSide == .left ? runningFramesOnLeft : runningFramesOnRight,
+            SKAction.animate(with: runningFramesOnLeft,
                              timePerFrame: 0.15,
                              resize: false,
                              restore: false)),
                  withKey: "runningSquirrel")
     }
     func animateDashingDown() {
-        self.run(SKAction.repeatForever(
-            SKAction.animate(with: [ballTexture],
-                             timePerFrame: 0.15,
-                             resize: false,
-                             restore: false)),
+        self.run(SKAction.animate(with: [ballTexture],
+                                  timePerFrame: 0.15,
+                                  resize: false,
+                                  restore: false),
                  withKey: "dashingAnimation")
         self.run(SKAction.rotate(toAngle: 0, duration: 0.1, shortestUnitArc: true))
     }
-
-    func jump(){
-        if self.isInAir == false && self.isDashing == false {
-            self.physicsBody?.applyImpulse(CGVector(dx: touchingWoodOnSide == .left ? 350 : -350, dy: 0))
-            self.animateJump()
-        }
-    }
-    func animateJump(){
-        self.removeAction(forKey: "runningSquirrel")
-        self.texture = jumpTextureFromLeft
-        self.run(SKAction.rotate(toAngle: touchingWoodOnSide == .left ? .pi/6 : -.pi/6, duration: 0.1, shortestUnitArc: true)){
-            self.isInAir = true
-        }
-    }
     
-    func land(){
-        
+    func jump(){
+        if self.isInAir == false && self.isDashing == false && self.isJumping == false {
+            self.isJumping = true
+            let animate = SKAction.animate(with: jumpAtlas,
+                                           timePerFrame: 0.02,
+                                           resize: false,
+                                           restore: false)
+
+            let applyImpulse = SKAction.run {
+                self.physicsBody?.applyImpulse(CGVector(dx: self.touchingWoodOnSide == .left ? 350 : -350, dy: 0))
+            }
+            
+            let changeGravity = SKAction.run {
+                self.scene?.physicsWorld.gravity = CGVector(dx: -(self.scene?.physicsWorld.gravity.dx ?? -1), dy: 0)
+            }
+            
+            let rotationAct = SKAction.rotate(toAngle: touchingWoodOnSide == .left ? .pi/6 : -.pi/6, duration: 0.1, shortestUnitArc: true)
+            let setIsInAir = SKAction.run {
+                self.isInAir = true
+            }
+
+            let sequence = SKAction.sequence([animate, changeGravity, applyImpulse, rotationAct, setIsInAir])
+            self.removeAction(forKey: "runningSquirrel")
+            self.position.x = self.position.x - 10
+            
+            self.run(sequence, withKey: "jumpAnimation")
+        }
     }
+//    func animateJump(){
+//        self.removeAction(forKey: "runningSquirrel")
+//        self.run(SKAction.animate(with: jumpAtlas,
+//                                  timePerFrame: 0.15,
+//                                  resize: false,
+//                                  restore: false),
+//                 withKey: "jumpAnimation")
+//
+//        self.run(SKAction.rotate(toAngle: touchingWoodOnSide == .left ? .pi/6 : -.pi/6, duration: 0.1, shortestUnitArc: true)){
+//            self.isInAir = true
+//        }
+//    }
+    
     func animateLanding(){
-            self.isDashing = false
+        self.isDashing = false
+        self.removeAction(forKey: "jumpAnimation")
+
+        let animate = SKAction.animate(with: jumpAtlas,
+                                       timePerFrame: 0.02,
+                                       resize: false,
+                                       restore: false)
+
+        let rotationAct = SKAction.rotate(toAngle: 0, duration: 0.01, shortestUnitArc: true)
+
+        let run = SKAction.run {
+            if self.isJumping == false{
             self.animateRun()
-            self.physicsBody?.affectedByGravity = true
-//        self.run(SKAction.scaleX(to: abs(self.xScale) * (touchingWoodOnSide == .left ? 1 : -1), duration: 0.05))
-        self.run(SKAction.rotate(toAngle: 0, duration: 0.05, shortestUnitArc: true))
+            }
+        }
+
+        let seq = SKAction.sequence([rotationAct, animate, run])
+        self.physicsBody?.affectedByGravity = true
+
+        self.run(seq)
+
+//        cameraLittleBounce()
+    }
+    func cameraLittleBounce(){
         guard let sceneCamera = scene?.camera else {return}
         let moveLeft = SKAction.moveBy(x: -1, y: 0, duration: 0.1)
         let moveRight = SKAction.moveBy(x: 1, y: 0, duration: 0.1)
@@ -126,7 +189,7 @@ class SquirrelNode: SKSpriteNode {
     }
     
     func dashDown(){
-        if self.isInAir && self.isDashing == false {
+        if self.isJumping == true && self.isDashing == false {
             self.isDashing = true
             self.removeAction(forKey: "restoreY")
             self.physicsBody?.affectedByGravity = false
@@ -149,7 +212,7 @@ class SquirrelNode: SKSpriteNode {
     func animateUpBounce(){
         self.run(SKAction.rotate(toAngle: touchingWoodOnSide == .left ? .pi/1.6 : -.pi/1.6, duration: 0.1, shortestUnitArc: true))
     }
-
+    
     func restoreYPosition(){
         let action = SKAction.moveTo(y: 200, duration: 2.7)
         self.run(action, withKey: "restoreY")
@@ -157,24 +220,24 @@ class SquirrelNode: SKSpriteNode {
     
     func animateSquirrelDeath(){
         self.removeAllActions()
-//        self.physicsBody = nil
+        //        self.physicsBody = nil
         animateSceneDeath()
         
         let pat = UIBezierPath()
         pat.move(to: self.position)
         pat.addQuadCurve(to: CGPoint(x: 0, y: scene?.frame.minY ?? -444), controlPoint: CGPoint(x: isInAir ? 0 : -self.position.x * 0.5, y: (isInAir ? self.position.y : self.position.y + 150)))
-//        let follow = SKAction.follow(pat.cgPath, asOffset: false, orientToPath: false, duration: 0.3)
-//        follow.timingMode = .easeOut
-//        self.run(follow)
+        //        let follow = SKAction.follow(pat.cgPath, asOffset: false, orientToPath: false, duration: 0.3)
+        //        follow.timingMode = .easeOut
+        //        self.run(follow)
         
         let pat2 = UIBezierPath()
         pat2.move(to: self.position)
         pat2.addQuadCurve(to: CGPoint(x: 0, y: self.position.y + 70), controlPoint: CGPoint(x: self.position.x, y: (self.position.y + 70)))
         let follow2 = SKAction.follow(pat2.cgPath, asOffset: false, orientToPath: false, duration: 0.3)
         follow2.timingMode = .easeOut
-//        self.run(follow2)
+        //        self.run(follow2)
         physicsBody?.categoryBitMask = PhysicsCategory.iDeadSquirrel
-
+        
         let impulse = CGVector(dx: touchingWoodOnSide == .left ? 350 : -350, dy: 700)
         self.physicsBody?.applyImpulse(impulse)
         self.run(SKAction.rotate(byAngle: (touchingWoodOnSide == .left ? -.pi*5 : .pi*5) , duration: 0.7))
@@ -195,7 +258,7 @@ class SquirrelNode: SKSpriteNode {
         ])
         scene?.camera?.run(SKAction.repeat(shakeCam, count: 2))
     }
-                            
+    
     enum TouchingWoodOnSide {
         case left, right
     }

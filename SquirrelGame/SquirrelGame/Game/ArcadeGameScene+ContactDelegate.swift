@@ -19,14 +19,17 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
         if firstNode.physicsBody?.categoryBitMask == PhysicsCategory.bSquirrel {
         if secondNode.name == "cLeftWood" || secondNode.name == "cRightWood" || secondNode.name == "cMiddleWood" {
             if firstNode.name == "bSquirrel" {
-                if squirrel.isInAir == true {
-                    squirrel.isInAir = false
-                    if physicsWorld.gravity.dx > 0 {
-                        squirrel.touchingWoodOnSide = .right
-                    } else {
-                        squirrel.touchingWoodOnSide = .left
+                if squirrel.action(forKey: "jumpSquirrel") == nil {
+                    if squirrel.isInAir == true {
+                        squirrel.isInAir = false
+                        squirrel.isJumping = false
+                        if physicsWorld.gravity.dx > 0 {
+                            squirrel.touchingWoodOnSide = .right
+                        } else {
+                            squirrel.touchingWoodOnSide = .left
+                        }
+                        squirrel.animateLanding()
                     }
-                    squirrel.animateLanding()
                 }
             }
         }
@@ -42,8 +45,10 @@ extension ArcadeGameScene : SKPhysicsContactDelegate {
         }
         if secondNode.name == "eSpines" || secondNode.name == "gBranch" {
 //            squirrel.animateSquirrelDeath()
+            if squirrel.isAlive == true{
                         squirrel.isAlive = false
                         preFinish()
+            }
         }
         if secondNode.name == "dNutGold"{
             if squirrel.isDashing {

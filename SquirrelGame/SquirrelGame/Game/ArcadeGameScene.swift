@@ -49,6 +49,7 @@ class ArcadeGameScene: SKScene {
 
         // If the game over condition is met, the game will finish
         playerOutOnBottom()
+        squirrel.setUpXScale()
         
         // The first time the update function is called we must initialize the
         // lastUpdate variable
