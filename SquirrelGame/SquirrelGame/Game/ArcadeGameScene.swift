@@ -68,8 +68,8 @@ extension ArcadeGameScene {
     func inscreseSpeedAction() {
         let wait = SKAction.wait(forDuration: 7)
         let increse = SKAction.run {
-            self.speed = self.speed * 1.1
-            self.physicsWorld.speed = self.physicsWorld.speed * 1.04
+            self.speed = self.speed * 1.05
+            self.physicsWorld.speed = self.physicsWorld.speed * 1.02
         }
         let seq = SKAction.sequence([wait, increse])
         let infiniteIncrese = SKAction.repeatForever(seq)

@@ -16,4 +16,6 @@ struct PhysicsCategory {
     static let eSpines: UInt32 = 0b1000
     static let gBranch: UInt32 = 0b10000
     static let hParticle: UInt32 = 0b100000
+    static let iDeadSquirrel : UInt32 = 0b1000000
+
 }

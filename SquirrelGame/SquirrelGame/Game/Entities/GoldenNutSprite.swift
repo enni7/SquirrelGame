@@ -48,8 +48,8 @@ class GoldenNutSprite: SKSpriteNode {
         }
     }
     
-    func animateBoxBreakeParticles(){
-        animateNutPick(nutType: .gold)
+    func animateBoxBreak(){
+        animateNutPick()
         if let particle = SKEmitterNode(fileNamed: "MyParticle"){
             particle.name = "particle"
             particle.position = self.position
@@ -59,29 +59,7 @@ class GoldenNutSprite: SKSpriteNode {
             }
         }
     }
-    func animateNutPick(nutType: NutType){
-        let boxTexture = SKTexture(imageNamed: nutType == .gold ? "BrokenBox 1" : "NutPickUp")
-        let goldBox = SKSpriteNode(texture: boxTexture, color: .white, size: self.size)
-        goldBox.position = self.position
-        goldBox.zPosition = self.zPosition
-    
-        let animAlpha = SKAction.fadeAlpha(to: 0, duration: 0.1)
-        let animAlpha2 = SKAction.fadeAlpha(to: 1, duration: 0.1)
-        let seq = SKAction.sequence([animAlpha2, animAlpha])
-        goldBox.run(SKAction.repeat(seq, count: nutType == .normal ? 2 : 4))
-        parent?.addChild(goldBox)
-    }
-
-    
-    func animNormalNut(){
-        let animation = SKAction.animate(with: [nutTexture1, nutTexture2],
-                                         timePerFrame: 0.2,
-                                         resize: false,
-                                         restore: false)
-        let loop = SKAction.repeatForever(animation)
-        self.run(loop, withKey: "nutAnimation")
-    }
-    func animateNormalNutPick(){
+    func animateNutPick(){
         let boxTexture = SKTexture(imageNamed: "BrokenBox 1")
         let goldBox = SKSpriteNode(texture: boxTexture, color: .white, size: self.size)
         goldBox.position = self.position
@@ -91,7 +69,34 @@ class GoldenNutSprite: SKSpriteNode {
         let animAlpha2 = SKAction.fadeAlpha(to: 1, duration: 0.1)
         let seq = SKAction.sequence([animAlpha2, animAlpha])
         goldBox.run(SKAction.repeat(seq, count: 4))
+        
         parent?.addChild(goldBox)
+    }
+    func animateNormalNutPick(){
+        let nutText = SKTexture(imageNamed: "NutPickUp")
+        let nutPick = SKSpriteNode(texture: nutTexture2, color: .white, size: self.size)
+        nutPick.position = self.position
+        nutPick.zPosition = self.zPosition
+        
+        let flip1 = SKAction.scaleX(to: -1, duration: 0.2)
+        let flip2 = SKAction.scaleX(to: 1, duration: 0.2)
+        let flipSeq = SKAction.sequence([flip1, flip2])
+        
+        let changeText = SKAction.setTexture(nutText)
+        let fade = SKAction.fadeAlpha(to: 0, duration: 0.2)
+        let seq2 = SKAction.sequence([changeText, fade])
+        
+        nutPick.run(SKAction.sequence([flipSeq, seq2]))
+        parent?.addChild(nutPick)
+    }
+
+    func animNormalNut(){
+        let animation = SKAction.animate(with: [nutTexture1, nutTexture2],
+                                         timePerFrame: 0.2,
+                                         resize: false,
+                                         restore: false)
+        let loop = SKAction.repeatForever(animation)
+        self.run(loop, withKey: "nutAnimation")
     }
 }
 

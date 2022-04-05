@@ -110,7 +110,7 @@ struct FramesDatabase {
               rightBrunchesYArray:       [-30],
               
               normalNutsPositionsArray:  [CGPoint(x: -100, y: 170), CGPoint(x: 100, y: 170), CGPoint(x: 0, y: -10)],
-              boxNutPositionsArray:      [CGPoint(x: -100, y: -390)] ),
+              boxNutPositionsArray:      [CGPoint(x: -80, y: -390)] ),
 
         //7
 //        Frame(leftSpinesPositionsArray:  [(-20, 1)],
@@ -130,7 +130,7 @@ struct FramesDatabase {
               rightBrunchesYArray: [-120],
               
               normalNutsPositionsArray: [CGPoint(x: -100, y: 350), CGPoint(x: 100, y: 60), CGPoint(x: 100, y: -290)],
-              boxNutPositionsArray: [CGPoint(x: -100, y: -360)]),
+              boxNutPositionsArray: [CGPoint(x: -80, y: -360)]),
                 
         //easy mode
         Frame(leftSpinesPositionsArray:  [(300, 1)],
@@ -162,7 +162,7 @@ struct FramesDatabase {
               leftBrunchesYArray: [140],
               rightBrunchesYArray: [],
               normalNutsPositionsArray: [CGPoint(x: -100, y: 200)],
-              boxNutPositionsArray: [CGPoint(x: 100, y: -100)]),
+              boxNutPositionsArray: [CGPoint(x: 80, y: -100)]),
         //10
         Frame(leftSpinesPositionsArray: [(60, 2)],
               rightSpinesPositionsArray: [(-160, 3)],

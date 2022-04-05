@@ -50,7 +50,7 @@ class SquirrelNode: SKSpriteNode {
         self.jumpTextureFromRight = runningFramesOnRight[1]
         
         super.init(texture: firstTexture, color: .white, size: CGSize(width: firstTexture.size().width * 2, height: firstTexture.size().height * 2))
-        self.zPosition = 50
+        self.zPosition = 100
         self.position = position
         self.name = "bSquirrel"
         
@@ -72,7 +72,7 @@ class SquirrelNode: SKSpriteNode {
         
         physicsBody?.categoryBitMask = PhysicsCategory.bSquirrel
         
-        physicsBody?.contactTestBitMask = PhysicsCategory.cSideWood | PhysicsCategory.dGhianda
+        physicsBody?.contactTestBitMask = PhysicsCategory.cSideWood
         physicsBody?.collisionBitMask = PhysicsCategory.cSideWood
     }
     
@@ -153,6 +153,47 @@ class SquirrelNode: SKSpriteNode {
     func restoreYPosition(){
         let action = SKAction.moveTo(y: 200, duration: 2.7)
         self.run(action, withKey: "restoreY")
+    }
+    
+    func animateSquirrelDeath(){
+        self.removeAllActions()
+//        self.physicsBody = nil
+        animateSceneDeath()
+        
+        let pat = UIBezierPath()
+        pat.move(to: self.position)
+        pat.addQuadCurve(to: CGPoint(x: 0, y: scene?.frame.minY ?? -444), controlPoint: CGPoint(x: isInAir ? 0 : -self.position.x * 0.5, y: (isInAir ? self.position.y : self.position.y + 150)))
+//        let follow = SKAction.follow(pat.cgPath, asOffset: false, orientToPath: false, duration: 0.3)
+//        follow.timingMode = .easeOut
+//        self.run(follow)
+        
+        let pat2 = UIBezierPath()
+        pat2.move(to: self.position)
+        pat2.addQuadCurve(to: CGPoint(x: 0, y: self.position.y + 70), controlPoint: CGPoint(x: self.position.x, y: (self.position.y + 70)))
+        let follow2 = SKAction.follow(pat2.cgPath, asOffset: false, orientToPath: false, duration: 0.3)
+        follow2.timingMode = .easeOut
+//        self.run(follow2)
+        physicsBody?.categoryBitMask = PhysicsCategory.iDeadSquirrel
+
+        let impulse = CGVector(dx: touchingWoodOnSide == .left ? 350 : -350, dy: 700)
+        self.physicsBody?.applyImpulse(impulse)
+        self.run(SKAction.rotate(byAngle: (touchingWoodOnSide == .left ? -.pi*5 : .pi*5) , duration: 0.7))
+        
+    }
+    
+    func animateSceneDeath(){
+        scene?.speed = 0.2
+        scene?.physicsWorld.speed = 0.3
+        scene?.physicsWorld.gravity = CGVector(dx: 0, dy: -50)
+        let shakeCam = SKAction.sequence([
+            SKAction.move(by: CGVector(dx: 0.8, dy: 2), duration: 0.01),
+            SKAction.move(to: .zero, duration: 0.01),
+            SKAction.move(by: CGVector(dx: -1.5, dy: -0.7), duration: 0.01),
+            SKAction.move(to: .zero, duration: 0.01),
+            SKAction.move(by: CGVector(dx: 1.5, dy: 0.6), duration: 0.01),
+            SKAction.move(to: .zero, duration: 0.01),
+        ])
+        scene?.camera?.run(SKAction.repeat(shakeCam, count: 2))
     }
                             
     enum TouchingWoodOnSide {
