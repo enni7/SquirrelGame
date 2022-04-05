@@ -97,13 +97,12 @@ extension ArcadeGameScene {
         physicsWorld.speed = 1
     }
     private func setUpCamera() {
-        var cameraNode = SKCameraNode()
+        let cameraNode = SKCameraNode()
         self.addChild(cameraNode)
         self.camera = cameraNode
         
         cameraNode.position = .zero
         cameraNode.name = "camera"
-        print("camera \(self.camera?.position)")
     }
     
     
@@ -183,6 +182,9 @@ extension ArcadeGameScene {
     
     func finishGame() {
         self.gameLogic.finalScore = self.gameLogic.currentScore
+        if gameLogic.isBestScore() {
+            gameLogic.updateBestScore()
+        }
         self.gameLogic.isGameOver = true
     }
 }

@@ -49,7 +49,7 @@ struct MainScreenView: View {
                         .foregroundColor(.white)
                     
 //                    Text(bestScore.formatted())
-                    Text(gameLogic.finalScore.formatted())
+                    Text(bestScore.formatted())
                         .fontWeight(.semibold)
                     
                 }
