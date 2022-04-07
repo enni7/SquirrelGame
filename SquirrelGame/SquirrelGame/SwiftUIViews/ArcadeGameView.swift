@@ -18,30 +18,19 @@ struct ArcadeGameView: View {
     
     @State var backgroundMusicAV: AVAudioPlayer!
     
-    /**
-     * # The Game Logic
-     *     The game logic keeps track of the game variables
-     **/
+    // The Game Logic
     @StateObject var gameLogic: ArcadeGameLogic =  ArcadeGameLogic.shared
     
     // The game state is used to transition between the different states of the game
     @Binding var currentGameState: GameState
-    let notificationCenter = NotificationCenter.default
+    
+    @State var notificationCenter = NotificationCenter.default
 
     private var screenWidth: CGFloat { UIScreen.main.bounds.size.width }
     private var screenHeight: CGFloat { UIScreen.main.bounds.size.height }
     
-    /**
-     * # The Game Scene
-     **/
-    var arcadeGameScene: ArcadeGameScene {
-        let scene = ArcadeGameScene()
-        
-        scene.size = CGSize(width: screenWidth, height: screenHeight)
-        scene.scaleMode = .aspectFill
-        
-        return scene
-    }
+    // The Game Scene
+    let arcadeGameScene = ArcadeGameScene()
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -64,17 +53,15 @@ struct ArcadeGameView: View {
                 }
             }
         }
-        .onDisappear(perform: {
-            print("disappeared")
-        })
         .onAppear {
-//            gameLogic.restartGame()
+            arcadeGameScene.size = CGSize(width: screenWidth, height: screenHeight)
+            arcadeGameScene.scaleMode = .aspectFill
+
             if let sound = Bundle.main.path(forResource: "PixelLoop", ofType: "m4a") {
                 self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
                 backgroundMusicAV.numberOfLoops = -1
                 backgroundMusicAV.play()
             }
-            notificationCenter.addObserver(arcadeGameScene, selector: #selector(arcadeGameScene.pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
         }
     }
     

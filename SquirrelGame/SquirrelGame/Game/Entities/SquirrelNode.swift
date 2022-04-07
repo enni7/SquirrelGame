@@ -175,7 +175,7 @@ class SquirrelNode: SKSpriteNode {
         let seq = SKAction.sequence([rotationAct, animate, run])
         self.physicsBody?.affectedByGravity = true
 
-        self.run(seq)
+        self.run(seq, withKey: "landingSequence")
 
 //        cameraLittleBounce()
     }

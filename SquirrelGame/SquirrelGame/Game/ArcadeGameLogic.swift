@@ -60,7 +60,6 @@ class ArcadeGameLogic: ObservableObject {
     }
     
     func finishTheGame() {
-        self.finalScore = self.currentScore
         if self.isGameOver == false {
             self.isGameOver = true
         }

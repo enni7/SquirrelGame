@@ -14,7 +14,7 @@ extension ArcadeGameScene {
         if squirrel.isInAir == false && squirrel.isJumping == false {
             self.run(jumpSound)
             squirrel.jump()
-        } else {
+        } else if squirrel.action(forKey: "landingSequence") == nil {
             squirrel.dashDown()
         }
     }

@@ -32,13 +32,17 @@ class ArcadeGameScene: SKScene {
     
     
     override func didMove(to view: SKView) {
-        notificationCenter.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(resumeGame), name: UIApplication.didBecomeActiveNotification, object: nil)
         self.setUpGame()
         self.setUpPhysicsWorld()
         self.setUpCamera()
         self.frameSpawner.startLoopingFramesCreation()
         self.inscreseSpeedAction()
+
+        let wait = SKAction.wait(forDuration: 5)
+        let seq = SKAction.sequence([wait, SKAction.run {
+            print(self.children.count)
+        }])
+        self.run(SKAction.repeatForever(seq))
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -173,7 +177,10 @@ extension ArcadeGameScene {
         makeHaptic()
         self.run(gameOverSound)
         self.pauseTry()
-//        self.backgroundMusicAV.stop()
+        self.gameLogic.finalScore = self.gameLogic.currentScore
+        if gameLogic.isBestScore() {
+            gameLogic.updateBestScore()
+        }
         self.finishGame()
     }
     
@@ -182,10 +189,6 @@ extension ArcadeGameScene {
     }
     
     func finishGame() {
-        self.gameLogic.finalScore = self.gameLogic.currentScore
-        if gameLogic.isBestScore() {
-            gameLogic.updateBestScore()
-        }
         self.gameLogic.isGameOver = true
     }
 }
