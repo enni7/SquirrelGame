@@ -37,12 +37,12 @@ class ArcadeGameScene: SKScene {
         self.setUpCamera()
         self.frameSpawner.startLoopingFramesCreation()
         self.inscreseSpeedAction()
-
-        let wait = SKAction.wait(forDuration: 5)
-        let seq = SKAction.sequence([wait, SKAction.run {
-            print(self.children.count)
-        }])
-        self.run(SKAction.repeatForever(seq))
+//
+//        let wait = SKAction.wait(forDuration: 5)
+//        let seq = SKAction.sequence([wait, SKAction.run {
+//            print(self.children.count)
+//        }])
+//        self.run(SKAction.repeatForever(seq))
     }
     
     override func update(_ currentTime: TimeInterval) {

@@ -118,7 +118,7 @@ class SquirrelNode: SKSpriteNode {
         if self.isInAir == false && self.isDashing == false && self.isJumping == false {
             self.isJumping = true
             let animate = SKAction.animate(with: jumpAtlas,
-                                           timePerFrame: 0.02,
+                                           timePerFrame: 0.03,
                                            resize: false,
                                            restore: false)
 
@@ -160,7 +160,7 @@ class SquirrelNode: SKSpriteNode {
         self.removeAction(forKey: "jumpAnimation")
 
         let animate = SKAction.animate(with: jumpAtlas,
-                                       timePerFrame: 0.02,
+                                       timePerFrame: 0.03,
                                        resize: false,
                                        restore: false)
 

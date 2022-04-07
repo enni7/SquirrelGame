@@ -26,7 +26,7 @@ struct MainScreenView: View {
     let accentColor: Color = MainScreenProperties.accentColor
     var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
 
-    let bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
+    @State var bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
     var body: some View {
         ZStack{
             Image("background")
@@ -34,7 +34,6 @@ struct MainScreenView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
             VStack(alignment: .center, spacing: 16.0) {
-                Spacer()
                 Spacer()
                 Image("LOGO")
                     .resizable()
@@ -51,7 +50,6 @@ struct MainScreenView: View {
 //                    Text(bestScore.formatted())
                     Text(bestScore.formatted())
                         .fontWeight(.semibold)
-                    
                 }
                 .font(.system(.title, design: .monospaced))
                 .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
