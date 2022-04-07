@@ -26,7 +26,7 @@ struct GameOverView: View {
                 Spacer()
                 VStack{
                     VStack{
-                        if gameLogic.isBestScore(){
+                        if gameLogic.isNewRecord(){
                         Text("NEW RECORD!")
                             .bold()
                             .padding(.vertical,5)
@@ -86,6 +86,11 @@ struct GameOverView: View {
                         .onAppear {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                                 disabled = false
+                            }
+                        }
+                        .onDisappear{
+                            if gameLogic.isNewRecord() {
+                            gameLogic.bestOld = gameLogic.finalScore
                             }
                         }
                     }.frame(width: 250)

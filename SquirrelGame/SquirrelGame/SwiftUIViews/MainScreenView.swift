@@ -98,10 +98,6 @@ struct MainScreenView: View {
         }
         .statusBar(hidden: true)
         .onAppear {
-            if UserDefaults.standard.contains(key: "bestScore") == false {
-                UserDefaults.standard.set(0, forKey: "bestScore")
-            }
-
             if let sound = Bundle.main.path(forResource: "bensound-cute", ofType: "mp3") {
                 self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
                 if self.backgroundMusicAV.isPlaying == false {

@@ -18,7 +18,10 @@ class ArcadeGameLogic: ObservableObject {
     //Final score
     @Published var finalScore: Int = 0
 
-    let bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
+    var bestOld: Int = 0
+    var bestScore: Int {
+        return UserDefaults.standard.integer(forKey: "bestScore")
+    }
     
     // Single instance of the class
     static let shared: ArcadeGameLogic = ArcadeGameLogic()
@@ -45,6 +48,14 @@ class ArcadeGameLogic: ObservableObject {
         self.setUpGame()
     }
         
+    func isNewRecord() -> Bool {
+        if finalScore > bestOld {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func isBestScore() -> Bool {
         if finalScore > bestScore {
             return true
