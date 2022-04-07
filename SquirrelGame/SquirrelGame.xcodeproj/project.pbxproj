@@ -17,6 +17,7 @@
 		9567854D27F5FB8100C493A9 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9567854C27F5FB8100C493A9 /* MyParticle.sks */; };
 		9567855127F6127E00C493A9 /* Game over.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9567855027F6127E00C493A9 /* Game over.m4a */; };
 		956ABFA727F9B35F001E42F1 /* DoHyeon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 956ABFA627F9B35F001E42F1 /* DoHyeon-Regular.ttf */; };
+		9573758427FF44C00031D5F7 /* UserDefault+contain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9573758327FF44C00031D5F7 /* UserDefault+contain.swift */; };
 		95812A6D27F49EE400B79C32 /* PixelLoop.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95812A6C27F49E6200B79C32 /* PixelLoop.m4a */; };
 		9589F75227F4794100FF1B53 /* GoldenNutSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */; };
 		95DD7CF827F6ED850058A38D /* Jumping.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95DD7CF727F6ED850058A38D /* Jumping.m4a */; };
@@ -51,6 +52,7 @@
 		9567854C27F5FB8100C493A9 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		9567855027F6127E00C493A9 /* Game over.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Game over.m4a"; sourceTree = "<group>"; };
 		956ABFA627F9B35F001E42F1 /* DoHyeon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DoHyeon-Regular.ttf"; sourceTree = "<group>"; };
+		9573758327FF44C00031D5F7 /* UserDefault+contain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+contain.swift"; sourceTree = "<group>"; };
 		95812A6C27F49E6200B79C32 /* PixelLoop.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = PixelLoop.m4a; sourceTree = "<group>"; };
 		95812A6E27F4A28700B79C32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenNutSprite.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				95E2124927F37B9300FB9C6D /* PhysicsCategory.swift */,
 				95E2123927F37B2D00FB9C6D /* Constants.swift */,
+				9573758327FF44C00031D5F7 /* UserDefault+contain.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				95E2124627F37B8100FB9C6D /* ArcadeGameLogic.swift in Sources */,
 				95E2124427F37B7800FB9C6D /* ArcadeGameScene.swift in Sources */,
 				95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */,
+				9573758427FF44C00031D5F7 /* UserDefault+contain.swift in Sources */,
 				95E2124227F37B6800FB9C6D /* GameScoreView.swift in Sources */,
 				952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */,
 				95E2123E27F37B5300FB9C6D /* ArcadeGameView.swift in Sources */,
