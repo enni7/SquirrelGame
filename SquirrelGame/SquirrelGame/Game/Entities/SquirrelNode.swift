@@ -192,6 +192,7 @@ class SquirrelNode: SKSpriteNode {
         if self.isJumping == true && self.isDashing == false {
             self.isDashing = true
             self.removeAction(forKey: "restoreY")
+            self.removeAction(forKey: "jumpAnimation")
             self.physicsBody?.affectedByGravity = false
             self.physicsBody?.velocity = CGVector(dx: 0, dy: -700)
             self.animateDownDash()
