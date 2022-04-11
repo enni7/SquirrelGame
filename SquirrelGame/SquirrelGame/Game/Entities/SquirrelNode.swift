@@ -142,18 +142,6 @@ class SquirrelNode: SKSpriteNode {
             self.run(sequence, withKey: "jumpAnimation")
         }
     }
-//    func animateJump(){
-//        self.removeAction(forKey: "runningSquirrel")
-//        self.run(SKAction.animate(with: jumpAtlas,
-//                                  timePerFrame: 0.15,
-//                                  resize: false,
-//                                  restore: false),
-//                 withKey: "jumpAnimation")
-//
-//        self.run(SKAction.rotate(toAngle: touchingWoodOnSide == .left ? .pi/6 : -.pi/6, duration: 0.1, shortestUnitArc: true)){
-//            self.isInAir = true
-//        }
-//    }
     
     func animateLanding(){
         self.isDashing = false
@@ -177,7 +165,7 @@ class SquirrelNode: SKSpriteNode {
 
         self.run(seq, withKey: "landingSequence")
 
-//        cameraLittleBounce()
+        cameraLittleBounce()
     }
     func cameraLittleBounce(){
         guard let sceneCamera = scene?.camera else {return}

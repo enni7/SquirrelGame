@@ -25,7 +25,7 @@ struct MainScreenView: View {
     // Change it on the Constants.swift file
     let accentColor: Color = MainScreenProperties.accentColor
     var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
-
+    
     @State var bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
     var body: some View {
         ZStack{
@@ -33,27 +33,30 @@ struct MainScreenView: View {
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
-            VStack(alignment: .center, spacing: 16.0) {
-                Spacer()
-                Image("LOGO")
-                    .resizable()
-                    .scaledToFit()
-                    .padding(.vertical)
-                    .padding(.horizontal, 40)
-                
-                Spacer()
+            VStack(alignment: .center) {
+                Group{
+                    Spacer()
+                    Spacer()
+                    Image("LOGO")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(20)
+                    
+                    Spacer()
+                    Spacer()
+                }
                 VStack {
                     Text("YOUR BEST")
-                        .fontWeight(.semibold)
+                        .fontWeight(.medium)
                         .foregroundColor(.white)
                     
-//                    Text(bestScore.formatted())
+                    //                    Text(bestScore.formatted())
                     Text(bestScore.formatted())
                         .fontWeight(.semibold)
                 }
                 .font(.system(.title, design: .monospaced))
                 .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-                .padding(15)
+                .padding()
                 .background(Color(uiColor: UIColor(named: "darkBrown")!))
                 .cornerRadius(15)
                 .padding()
@@ -66,18 +69,18 @@ struct MainScreenView: View {
                             Image(systemName: "\(instruction.icon)")
                                 .font(.system(.title, design: .monospaced))
                                 .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-                                .padding(10)
-                                Text("\(instruction.title)")
+                                .padding([.vertical, .leading])
+                            Text("\(instruction.title)")
                                 .multilineTextAlignment(.leading)
-//                                    .font(.custom("BMDoHyeon-Regular.ttf", size: 24))
-                                    .foregroundColor(.white)
-                                    .font(.system(.title3, design: .monospaced))
+                                .foregroundColor(.white)
+                                .font(.system(.title3, design: .monospaced))
+                                .padding(10)
                         }
-                        .padding(.vertical)
                     }
                 }
+                .padding(6)
                 .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
-                .padding(.horizontal, 40)
+                .padding()
                 Spacer()
                 
                 Button {
@@ -92,6 +95,7 @@ struct MainScreenView: View {
                     
                 }
                 .cornerRadius(15)
+                .padding()
                 Spacer()
             }
             .padding()
@@ -101,9 +105,9 @@ struct MainScreenView: View {
             if let sound = Bundle.main.path(forResource: "bensound-cute", ofType: "mp3") {
                 self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
                 if self.backgroundMusicAV.isPlaying == false {
-
-                backgroundMusicAV.numberOfLoops = -1
-                backgroundMusicAV.play()
+                    
+                    backgroundMusicAV.numberOfLoops = -1
+                    //                backgroundMusicAV.play()
                 }
             }
         }
