@@ -28,11 +28,6 @@ struct MainScreenView: View {
     
     @State var bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
     var body: some View {
-        ZStack{
-            Image("background")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
             VStack(alignment: .center) {
                 Group{
                     Spacer()
@@ -41,7 +36,6 @@ struct MainScreenView: View {
                         .resizable()
                         .scaledToFit()
                         .padding(20)
-                    
                     Spacer()
                     Spacer()
                 }
@@ -50,19 +44,18 @@ struct MainScreenView: View {
                         .fontWeight(.medium)
                         .foregroundColor(.white)
                     
-                    //                    Text(bestScore.formatted())
                     Text(bestScore.formatted())
                         .fontWeight(.semibold)
+                        .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
                 }
                 .font(.system(.title, design: .monospaced))
-                .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
                 .padding()
                 .background(Color(uiColor: UIColor(named: "darkBrown")!))
                 .cornerRadius(15)
                 .padding()
                 
                 Spacer()
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 16) {
                     ForEach(self.gameInstructions, id: \.title) { instruction in
                         
                         HStack{
@@ -75,13 +68,13 @@ struct MainScreenView: View {
                                 .foregroundColor(.white)
                                 .font(.system(.title3, design: .monospaced))
                                 .padding(10)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                 }
                 .padding(6)
                 .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
-                .padding()
-                Spacer()
+                .padding(20)
                 
                 Button {
                     withAnimation { self.startGame() }
@@ -99,7 +92,12 @@ struct MainScreenView: View {
                 Spacer()
             }
             .padding()
-        }
+            .background {
+                Image("background")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            }
         .statusBar(hidden: true)
         .onAppear {
             if let sound = Bundle.main.path(forResource: "bensound-cute", ofType: "mp3") {
@@ -107,7 +105,7 @@ struct MainScreenView: View {
                 if self.backgroundMusicAV.isPlaying == false {
                     
                     backgroundMusicAV.numberOfLoops = -1
-                    //                backgroundMusicAV.play()
+                                    backgroundMusicAV.play()
                 }
             }
         }

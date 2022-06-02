@@ -9,8 +9,7 @@ import SwiftUI
 
 /**
  * # ContentView
- *
- *   This view is responsible for managing the states of the game, presenting the proper view.
+ *   Manages the states of the game, presenting the proper view.
  **/
 
 struct ContentView: View {
@@ -28,7 +27,8 @@ struct ContentView: View {
         case .mainScreen:
             MainScreenView(currentGameState: $currentGameState)
                 .environmentObject(gameLogic)
-        
+                .ignoresSafeArea()
+            
         case .playing:
             ArcadeGameView(currentGameState: $currentGameState)
                 .environmentObject(gameLogic)
