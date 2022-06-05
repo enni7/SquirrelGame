@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95214746284CA24C005A84EF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95214745284CA24C005A84EF /* GameKit.framework */; };
 		9525126B27FECFEB00FD8C7F /* jumpTexturesLeft.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9525126A27FECFEB00FD8C7F /* jumpTexturesLeft.atlas */; };
 		952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B200627F3D30B00D7490E /* SpinesSprite.swift */; };
 		95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95370BD027F3919B00B7EAEE /* TreesNode.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		95214745284CA24C005A84EF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		9525126A27FECFEB00FD8C7F /* jumpTexturesLeft.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = jumpTexturesLeft.atlas; sourceTree = "<group>"; };
 		952B200627F3D30B00D7490E /* SpinesSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinesSprite.swift; sourceTree = "<group>"; };
 		95370BD027F3919B00B7EAEE /* TreesNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreesNode.swift; sourceTree = "<group>"; };
@@ -83,12 +85,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95214746284CA24C005A84EF /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		95214744284CA24C005A84EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95214745284CA24C005A84EF /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		95370BD227F391A000B7EAEE /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +117,7 @@
 			children = (
 				95E2122A27F37A3200FB9C6D /* SquirrelGame */,
 				95E2122927F37A3200FB9C6D /* Products */,
+				95214744284CA24C005A84EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -440,6 +452,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "RuNut!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
@@ -472,6 +485,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "RuNut!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
