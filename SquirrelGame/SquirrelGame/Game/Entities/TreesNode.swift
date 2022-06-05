@@ -30,7 +30,7 @@ class TreesNode: SKNode {
     
     func createWood(){
         
-        leftWood = SKShapeNode(rectOf: CGSize(width: 60, height: screenSize.height))
+        leftWood = SKShapeNode(rectOf: CGSize(width: 60, height: 896))
         leftWood.name = "cLeftWood"
         leftWood.fillColor = .white
         leftWood.fillTexture = SKTexture(imageNamed: "WoodLeft")
@@ -46,7 +46,7 @@ class TreesNode: SKNode {
         
         addChild(leftWood)
         
-        rightWood = SKShapeNode(rectOf: CGSize(width: 60, height: screenSize.height))
+        rightWood = SKShapeNode(rectOf: CGSize(width: 60, height: 896))
         rightWood.name = "cRightWood"
         rightWood.fillColor = .white
         rightWood.fillTexture = SKTexture(imageNamed: "WoodRight")
