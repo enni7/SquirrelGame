@@ -40,21 +40,6 @@ struct MainScreenView: View {
                     Spacer()
                 }
                 Spacer()
-//                Button {
-//                    showLeaderBoard()
-//                } label: {
-//                    Image(systemName: "crown")
-//                        .font(.title)
-//                        .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-//                        .padding(8)
-//                        .background(Color(uiColor: UIColor(named: "darkBrown")!))
-//                        .cornerRadius(10)
-//                        .padding(.top)
-//                }
-                .alert("Game Center account not found", isPresented: $presentGameCenterAlert) {
-                } message: {
-                    Text("Please login to Game Center from settings to see the leaderboard.")
-                }
                 
                 VStack(alignment: .trailing, spacing: 8){
                     HStack{
@@ -91,9 +76,11 @@ struct MainScreenView: View {
                         .background(Color(uiColor: UIColor(named: "lighterBrown")!))
                         .cornerRadius(15)
                     }
-
+                    .alert("Game Center account not found", isPresented: $presentGameCenterAlert) {
+                    } message: {
+                        Text("Please login to Game Center from settings to see the leaderboard.")
+                    }
                     .padding(.bottom, 50)
-
 
                 VStack(alignment: .leading, spacing: 16) {
                     ForEach(self.gameInstructions, id: \.title) { instruction in
@@ -135,7 +122,6 @@ struct MainScreenView: View {
                     
                 }
                 .cornerRadius(15)
-//                .shadow(color: .brown, radius: 1.5, x: 0, y: 0)
                 .padding()
                 Spacer()
             }

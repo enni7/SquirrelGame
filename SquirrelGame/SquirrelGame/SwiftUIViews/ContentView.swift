@@ -83,16 +83,15 @@ struct ContentView: View {
             }
             if localPlayer.isAuthenticated {
                 GKAccessPoint.shared.location = .topLeading
-//                GKAccessPoint.shared.isActive = true
                 print(("GKLocalPlayer.local.AUTHENTICATED"))
-                checkAndSetCurrentBestInLeaderboard()
+                checkAndSetCurrentBestAndRankInLeaderboard()
             } else {
                 print("User not authenticated")
             }
         }
     }
     
-    func checkAndSetCurrentBestInLeaderboard() {
+    func checkAndSetCurrentBestAndRankInLeaderboard() {
         GKLeaderboard.loadLeaderboards(IDs: ["runut_highscoreLeaderboard1"]) { leaderboards, error in
             guard let leaderboard = leaderboards?.first else {
                 return
