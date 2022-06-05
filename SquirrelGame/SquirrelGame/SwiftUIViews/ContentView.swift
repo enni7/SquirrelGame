@@ -7,6 +7,7 @@
 
 import AVFoundation
 import SwiftUI
+import GameKit
 
 /**
  * # ContentView
@@ -14,7 +15,7 @@ import SwiftUI
  **/
 
 struct ContentView: View {
-    
+
     @State var backgroundMusicAV : AVAudioPlayer!
 
     // The navigation of the app is based on the state of the game.
@@ -46,6 +47,7 @@ struct ContentView: View {
         .ignoresSafeArea(.all, edges: .all)
         .onAppear {
             self.playMusic(forMenu: true)
+            authenticateGKLocalPlayer()
         }
         .onChange(of: currentGameState) { newValue in
             if newValue == .playing {
@@ -68,6 +70,45 @@ struct ContentView: View {
             }
         }
     }
+    
+    func authenticateGKLocalPlayer(){
+        print("authenticating!")
+        let localPlayer = GKLocalPlayer.local
+        localPlayer.authenticateHandler = {(_, error) -> Void in
+            localPlayer.authenticateHandler = { _, error in
+                guard error == nil else {
+                    print("Some error occurred during GKAuthentication.")
+                    return
+                }
+            }
+            if localPlayer.isAuthenticated {
+                GKAccessPoint.shared.location = .topLeading
+//                GKAccessPoint.shared.isActive = true
+                print(("GKLocalPlayer.local.AUTHENTICATED"))
+                checkAndSetCurrentBestInLeaderboard()
+            } else {
+                print("User not authenticated")
+            }
+        }
+    }
+    
+    func checkAndSetCurrentBestInLeaderboard() {
+        GKLeaderboard.loadLeaderboards(IDs: ["runut_highscoreLeaderboard1"]) { leaderboards, error in
+            guard let leaderboard = leaderboards?.first else {
+                return
+            }
+            leaderboard.loadEntries(for: [GKLocalPlayer.local], timeScope: .allTime) { entry, entriesArr, error in
+                let entryScore = entry?.score
+                if UserDefaults.standard.integer(forKey: "bestScore") > 0 {
+                    if entryScore == nil || entryScore ?? 0 < UserDefaults.standard.integer(forKey: "bestScore") {
+                        gameLogic.updateGameCenterScore(score: UserDefaults.standard.integer(forKey: "bestScore"))
+                        print("Leaderboard updated with previous best score.")
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {

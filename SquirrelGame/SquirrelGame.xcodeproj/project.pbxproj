@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		95214746284CA24C005A84EF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95214745284CA24C005A84EF /* GameKit.framework */; };
+		95214748284CB6EF005A84EF /* GameKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95214747284CB6EF005A84EF /* GameKitHelper.swift */; };
 		9525126B27FECFEB00FD8C7F /* jumpTexturesLeft.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9525126A27FECFEB00FD8C7F /* jumpTexturesLeft.atlas */; };
 		952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B200627F3D30B00D7490E /* SpinesSprite.swift */; };
 		95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95370BD027F3919B00B7EAEE /* TreesNode.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		95214745284CA24C005A84EF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		95214747284CB6EF005A84EF /* GameKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitHelper.swift; sourceTree = "<group>"; };
 		9525126A27FECFEB00FD8C7F /* jumpTexturesLeft.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = jumpTexturesLeft.atlas; sourceTree = "<group>"; };
 		952B200627F3D30B00D7490E /* SpinesSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinesSprite.swift; sourceTree = "<group>"; };
 		95370BD027F3919B00B7EAEE /* TreesNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreesNode.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				95812A6E27F4A28700B79C32 /* Info.plist */,
 				95E2122B27F37A3200FB9C6D /* SquirrelGameApp.swift */,
+				95214747284CB6EF005A84EF /* GameKitHelper.swift */,
 				95E2125027F37BD400FB9C6D /* SwiftUIViews */,
 				95E2124F27F37BCA00FB9C6D /* Game */,
 				95E2125127F37C4400FB9C6D /* Supporting Files */,
@@ -308,6 +311,7 @@
 				95E2122C27F37A3200FB9C6D /* SquirrelGameApp.swift in Sources */,
 				95E2123A27F37B2D00FB9C6D /* Constants.swift in Sources */,
 				95E2124827F37B8A00FB9C6D /* SquirrelNode.swift in Sources */,
+				95214748284CB6EF005A84EF /* GameKitHelper.swift in Sources */,
 				953A3F7227F4526D009DCAF7 /* SequenceNode.swift in Sources */,
 				95E2124C27F37B9F00FB9C6D /* ArcadeGameScene+ContactDelegate.swift in Sources */,
 				95E2124E27F37BAF00FB9C6D /* GameOverView.swift in Sources */,

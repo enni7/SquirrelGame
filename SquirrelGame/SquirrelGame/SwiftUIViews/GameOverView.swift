@@ -7,6 +7,7 @@
 
 import AVFoundation
 import SwiftUI
+import GameKit
 
 struct GameOverView: View {
     
@@ -98,8 +99,12 @@ struct GameOverView: View {
             }
         }
         .statusBar(hidden: true)
+        .onAppear {
+            gameLogic.updateGameCenterScoreWithFinalScore()
+        }
     }
     
+
     private func backToMainScreen() {
         self.currentGameState = .mainScreen
     }

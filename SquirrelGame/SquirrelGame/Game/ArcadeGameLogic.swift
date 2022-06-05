@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GameKit
 
 class ArcadeGameLogic: ObservableObject {
     
@@ -75,5 +76,18 @@ class ArcadeGameLogic: ObservableObject {
         if self.isGameOver == false {
             self.isGameOver = true
         }
+    }
+    
+    func updateGameCenterScore(score: Int){
+        if GKLocalPlayer.local.isAuthenticated {
+            GKLeaderboard.submitScore(score, context: 0, player: GKLocalPlayer.local, leaderboardIDs: ["runut_highscoreLeaderboard1"]) { error in
+                if let error = error {
+                    print("An error occurred during the leaderboard update. \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    func updateGameCenterScoreWithFinalScore(){
+        updateGameCenterScore(score: finalScore)
     }
 }

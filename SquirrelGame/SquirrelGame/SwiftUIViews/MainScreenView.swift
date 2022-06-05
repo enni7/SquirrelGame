@@ -7,6 +7,7 @@
 
 import AVFoundation
 import SwiftUI
+import GameKit
 
 
 struct MainScreenView: View {
@@ -24,6 +25,8 @@ struct MainScreenView: View {
     let accentColor: Color = MainScreenProperties.accentColor
     var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
     
+    @State var presentGameCenterAlert = false
+    
     @State var bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
     var body: some View {
             VStack(alignment: .center) {
@@ -37,6 +40,22 @@ struct MainScreenView: View {
                     Spacer()
                     Spacer()
                 }
+                Button {
+                    showLeaderBoard()
+                } label: {
+                    Image(systemName: "crown")
+                        .font(.title)
+                        .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+                        .padding(8)
+                        .background(Color(uiColor: UIColor(named: "darkBrown")!))
+                        .cornerRadius(10)
+                        .padding(.top)
+                }
+                .alert("Game Center account not found", isPresented: $presentGameCenterAlert) {
+                } message: {
+                    Text("Please login to Game Center from settings to see the leaderboard.")
+                }
+
                 VStack {
                     Text("YOUR BEST")
                         .fontWeight(.medium)
@@ -99,6 +118,15 @@ struct MainScreenView: View {
         .statusBar(hidden: true)
     }
     
+    func showLeaderBoard(){
+        if GKLocalPlayer.local.isAuthenticated {
+            GKAccessPoint.shared.trigger(state: .leaderboards) {
+                //
+            }
+        } else {
+            presentGameCenterAlert.toggle()
+        }
+    }
     private func startGame() {
         print("- Starting the game...")
         self.currentGameState = .playing
