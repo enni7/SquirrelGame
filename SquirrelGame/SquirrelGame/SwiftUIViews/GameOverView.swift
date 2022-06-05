@@ -12,7 +12,6 @@ struct GameOverView: View {
     
     @Binding var currentGameState: GameState
     var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
-    @State var backgroundMusicAV : AVAudioPlayer!
     @State var disabled: Bool = true
     
     var body: some View {
@@ -99,26 +98,13 @@ struct GameOverView: View {
             }
         }
         .statusBar(hidden: true)
-        .onAppear {
-
-            if let sound = Bundle.main.path(forResource: "bensound-cute", ofType: "mp3") {
-                self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
-                if self.backgroundMusicAV.isPlaying == false {
-
-                backgroundMusicAV.numberOfLoops = -1
-                backgroundMusicAV.play()
-            }
-            }
-        }
     }
     
     private func backToMainScreen() {
-        backgroundMusicAV.stop()
         self.currentGameState = .mainScreen
     }
     
     private func restartGame() {
-        backgroundMusicAV.stop()
         self.currentGameState = .playing
     }
 }

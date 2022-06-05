@@ -10,9 +10,7 @@ import SwiftUI
 
 
 struct MainScreenView: View {
-    
-    @State var backgroundMusicAV : AVAudioPlayer!
-    
+        
     // The game state is used to transition between the different states of the game
     @Binding var currentGameState: GameState
     
@@ -99,21 +97,10 @@ struct MainScreenView: View {
                     .ignoresSafeArea()
             }
         .statusBar(hidden: true)
-        .onAppear {
-            if let sound = Bundle.main.path(forResource: "bensound-cute", ofType: "mp3") {
-                self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
-                if self.backgroundMusicAV.isPlaying == false {
-                    
-                    backgroundMusicAV.numberOfLoops = -1
-                                    backgroundMusicAV.play()
-                }
-            }
-        }
     }
     
     private func startGame() {
         print("- Starting the game...")
-        self.backgroundMusicAV.stop()
         self.currentGameState = .playing
     }
 }

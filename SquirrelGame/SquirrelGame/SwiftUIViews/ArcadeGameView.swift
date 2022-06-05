@@ -15,9 +15,7 @@ import SpriteKit
  **/
 
 struct ArcadeGameView: View {
-    
-    @State var backgroundMusicAV: AVAudioPlayer!
-    
+        
     // The Game Logic
     @StateObject var gameLogic: ArcadeGameLogic =  ArcadeGameLogic.shared
     
@@ -56,12 +54,6 @@ struct ArcadeGameView: View {
         .onAppear {
             arcadeGameScene.size = CGSize(width: screenWidth, height: screenHeight)
             arcadeGameScene.scaleMode = .aspectFill
-
-            if let sound = Bundle.main.path(forResource: "PixelLoop", ofType: "m4a") {
-                self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
-                backgroundMusicAV.numberOfLoops = -1
-                backgroundMusicAV.play()
-            }
         }
     }
     
@@ -70,7 +62,6 @@ struct ArcadeGameView: View {
      * At the moment it is not being used, but it could be used in a Pause menu for example.
      */
     private func presentMainScreen() {
-        self.backgroundMusicAV.stop()
         self.currentGameState = .mainScreen
     }
     
@@ -79,7 +70,6 @@ struct ArcadeGameView: View {
      * It changes the current game state to present the GameOverView.
      */
     private func presentGameOverScreen() {
-        self.backgroundMusicAV.stop()
         self.currentGameState = .gameOver
     }
     

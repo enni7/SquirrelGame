@@ -5,6 +5,7 @@
 //  Created by Anna Izzo on 29/03/22.
 //
 
+import AVFoundation
 import SwiftUI
 
 /**
@@ -14,6 +15,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State var backgroundMusicAV : AVAudioPlayer!
+
     // The navigation of the app is based on the state of the game.
     // Each state presents a different view on the SwiftUI app structure
     @State var currentGameState: GameState = .mainScreen
@@ -22,7 +25,7 @@ struct ContentView: View {
     @StateObject var gameLogic: ArcadeGameLogic = ArcadeGameLogic()
     
     var body: some View {
-        
+        ZStack{
         switch currentGameState {
         case .mainScreen:
             MainScreenView(currentGameState: $currentGameState)
@@ -38,6 +41,31 @@ struct ContentView: View {
             GameOverView(currentGameState: $currentGameState)
                 .environmentObject(gameLogic)
                 .ignoresSafeArea()
+        }
+        }
+        .ignoresSafeArea(.all, edges: .all)
+        .onAppear {
+            self.playMusic(forMenu: true)
+        }
+        .onChange(of: currentGameState) { newValue in
+            if newValue == .playing {
+                self.backgroundMusicAV.stop()
+                self.playMusic(forMenu: false)
+            } else if newValue == .gameOver {
+                self.backgroundMusicAV.stop()
+                self.playMusic(forMenu: true)
+            }
+        }
+    }
+    
+    func playMusic(forMenu trueIfMenu: Bool){
+        if let sound = Bundle.main.path(forResource: trueIfMenu ? "bensound-cute" : "PixelLoop", ofType: trueIfMenu ? "mp3" : "m4a") {
+            self.backgroundMusicAV = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+            if self.backgroundMusicAV.isPlaying == false {
+                
+                backgroundMusicAV.numberOfLoops = -1
+                                backgroundMusicAV.play()
+            }
         }
     }
 }
