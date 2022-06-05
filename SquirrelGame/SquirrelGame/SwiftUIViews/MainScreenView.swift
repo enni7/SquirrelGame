@@ -23,55 +23,78 @@ struct MainScreenView: View {
     
     // Change it on the Constants.swift file
     let accentColor: Color = MainScreenProperties.accentColor
-    var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
+    @StateObject var gameLogic = ArcadeGameLogic.shared
     
     @State var presentGameCenterAlert = false
     
     @State var bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
+    @State var isAnimatingColor = false
     var body: some View {
             VStack(alignment: .center) {
                 Group{
-                    Spacer()
                     Spacer()
                     Image("LOGO")
                         .resizable()
                         .scaledToFit()
                         .padding(20)
                     Spacer()
-                    Spacer()
                 }
-                Button {
-                    showLeaderBoard()
-                } label: {
-                    Image(systemName: "crown")
-                        .font(.title)
-                        .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-                        .padding(8)
-                        .background(Color(uiColor: UIColor(named: "darkBrown")!))
-                        .cornerRadius(10)
-                        .padding(.top)
-                }
+                Spacer()
+//                Button {
+//                    showLeaderBoard()
+//                } label: {
+//                    Image(systemName: "crown")
+//                        .font(.title)
+//                        .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+//                        .padding(8)
+//                        .background(Color(uiColor: UIColor(named: "darkBrown")!))
+//                        .cornerRadius(10)
+//                        .padding(.top)
+//                }
                 .alert("Game Center account not found", isPresented: $presentGameCenterAlert) {
                 } message: {
                     Text("Please login to Game Center from settings to see the leaderboard.")
                 }
-
-                VStack {
-                    Text("YOUR BEST")
-                        .fontWeight(.medium)
-                        .foregroundColor(.white)
-                    
-                    Text(bestScore.formatted())
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-                }
-                .font(.system(.title, design: .monospaced))
-                .padding()
-                .background(Color(uiColor: UIColor(named: "darkBrown")!))
-                .cornerRadius(15)
-                .padding()
                 
-                Spacer()
+                VStack(alignment: .trailing, spacing: 8){
+                    HStack{
+                        Text("YOUR BEST")
+                            .fontWeight(.medium)
+                            .foregroundColor(.white)
+                        Spacer()
+                        Text(bestScore.formatted())
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+                            .padding(.trailing, 24)
+                    }
+                    .font(.system(.title, design: .monospaced))
+                    .padding(14)
+                    .background(Color(uiColor: UIColor(named: "darkBrown")!))
+                    .cornerRadius(15)
+                    
+                    Button {
+                        showLeaderBoard()
+                    } label: {
+                        HStack{
+                            Text("RANKING")
+                                .fontWeight(.medium)
+                                .foregroundColor(.white)
+                            Spacer()
+                            
+                            Text("#\(gameLogic.globalRank.formatted())")
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!))
+                                .padding(.trailing, 24)
+                        }
+                        .font(.system(.title, design: .monospaced))
+                        .padding(14)
+                        .background(Color(uiColor: UIColor(named: "lighterBrown")!))
+                        .cornerRadius(15)
+                    }
+
+                    .padding(.bottom, 50)
+
+
                 VStack(alignment: .leading, spacing: 16) {
                     ForEach(self.gameInstructions, id: \.title) { instruction in
                         
@@ -91,6 +114,7 @@ struct MainScreenView: View {
                 }
                 .padding(6)
                 .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
+                }
                 .padding(20)
                 
                 Button {
@@ -99,16 +123,24 @@ struct MainScreenView: View {
                     Text("START")
                         .bold()
                         .font(.system(.title, design: .monospaced))
-                        .foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!))
+                        .foregroundColor(.white)
+                        .colorMultiply(isAnimatingColor ? .white : Color(uiColor: UIColor(named: "darkBrown")!))
                         .padding()
                         .background(Color(uiColor: UIColor(named: "lighterBrown")!))
+                        .onAppear{
+                            withAnimation(.spring(response: 0.06, dampingFraction: 2.5).repeatForever(autoreverses: true)) {
+                                self.isAnimatingColor = true
+                            }
+                        }
                     
                 }
                 .cornerRadius(15)
+//                .shadow(color: .brown, radius: 1.5, x: 0, y: 0)
                 .padding()
                 Spacer()
             }
             .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background {
                 Image("background")
                     .resizable()
@@ -127,6 +159,7 @@ struct MainScreenView: View {
             presentGameCenterAlert.toggle()
         }
     }
+    
     private func startGame() {
         print("- Starting the game...")
         self.currentGameState = .playing

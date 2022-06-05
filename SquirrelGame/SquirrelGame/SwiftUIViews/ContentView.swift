@@ -23,8 +23,8 @@ struct ContentView: View {
     @State var currentGameState: GameState = .mainScreen
     
     // The game logic is a singleton object shared among the different views of the application
-    @StateObject var gameLogic: ArcadeGameLogic = ArcadeGameLogic()
-    
+    @StateObject var gameLogic: ArcadeGameLogic =  ArcadeGameLogic.shared
+
     var body: some View {
         ZStack{
         switch currentGameState {
@@ -103,8 +103,12 @@ struct ContentView: View {
                     if entryScore == nil || entryScore ?? 0 < UserDefaults.standard.integer(forKey: "bestScore") {
                         gameLogic.updateGameCenterScore(score: UserDefaults.standard.integer(forKey: "bestScore"))
                         print("Leaderboard updated with previous best score.")
+                        
                     }
                 }
+                let entryRank = entry?.rank
+                print("RANK GLOBAL IS \(String(describing: entryRank)).")
+                gameLogic.globalRank = entryRank ?? 0
             }
         }
     }
