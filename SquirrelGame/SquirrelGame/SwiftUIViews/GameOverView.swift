@@ -101,6 +101,7 @@ struct GameOverView: View {
         .statusBar(hidden: true)
         .onAppear {
             gameLogic.updateGameCenterScoreWithFinalScore()
+            gameLogic.updateSelfRankWithLeaderboard()
         }
     }
     

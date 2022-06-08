@@ -28,6 +28,7 @@ struct MainScreenView: View {
     @State var presentGameCenterAlert = false
     
     @State var bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
+    
     @State var isAnimatingColor = false
     var body: some View {
             VStack(alignment: .center) {
@@ -47,7 +48,7 @@ struct MainScreenView: View {
                             .fontWeight(.medium)
                             .foregroundColor(.white)
                         Spacer()
-                        Text(bestScore.formatted())
+                        Text(gameLogic.bestScore.formatted())
                             .fontWeight(.semibold)
                             .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
                             .padding(.trailing, 24)

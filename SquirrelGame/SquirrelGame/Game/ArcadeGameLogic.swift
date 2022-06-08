@@ -22,12 +22,67 @@ class ArcadeGameLogic: ObservableObject {
     var bestOld = UserDefaults.standard.integer(forKey: "bestScore")
     
     var bestScore: Int {
-        return UserDefaults.standard.integer(forKey: "bestScore")
+        get {
+            return UserDefaults.standard.integer(forKey: "bestScore")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "bestScore")
+        }
     }
     
     // Single instance of the class
     static let shared: ArcadeGameLogic = ArcadeGameLogic()
     
+    private init () {
+
+    }
+    
+    func authenticateGKLocalPlayer() {
+        print("authenticating!")
+        let localPlayer = GKLocalPlayer.local
+        
+        localPlayer.authenticateHandler = { _, error in
+            if error != nil {
+                // Player could not be authenticated.
+                print("Some error occurred during GKAuthentication.")
+                return
+            }
+            
+            if localPlayer.isAuthenticated {
+                GKAccessPoint.shared.location = .topLeading
+                print(("GKLocalPlayer.local.AUTHENTICATED"))
+                self.checkAndSetCurrentBestAndRankInLeaderboard()
+            } else {
+                print("User not authenticated")
+            }
+        }
+    }
+
+    func checkAndSetCurrentBestAndRankInLeaderboard() {
+        GKLeaderboard.loadLeaderboards(IDs: ["runut_highscoreLeaderboard1"]) { leaderboards, error in
+            guard let leaderboard = leaderboards?.first else {
+                return
+            }
+            leaderboard.loadEntries(for: [GKLocalPlayer.local], timeScope: .allTime) { entry, entriesArr, error in
+                let entryScore = entry?.score
+                if self.bestScore > 0 {
+                    if entryScore == nil || entryScore ?? 0 < self.bestScore {
+                        self.updateGameCenterScore(score: self.bestScore)
+                        print("Leaderboard updated with previous best score.")
+                        
+                    } else if entryScore ?? 0 > self.bestScore {
+                        self.bestScore = entryScore ?? 0
+                    }
+                } else {
+                    self.bestScore = 0
+                }
+                let entryRank = entry?.rank
+                print("RANK GLOBAL IS \(String(describing: entryRank)).")
+                self.globalRank = entryRank ?? 0
+            }
+        }
+    }
+
     // Function responsible to set up the game before it starts.
     func setUpGame() {
                 
@@ -68,7 +123,7 @@ class ArcadeGameLogic: ObservableObject {
     
     func updateBestScore() {
         if isBestScore() {
-            UserDefaults.standard.set(finalScore, forKey: "bestScore")
+            bestScore = finalScore
         }
     }
     
@@ -89,5 +144,17 @@ class ArcadeGameLogic: ObservableObject {
     }
     func updateGameCenterScoreWithFinalScore(){
         updateGameCenterScore(score: finalScore)
+    }
+    func updateSelfRankWithLeaderboard(){
+        GKLeaderboard.loadLeaderboards(IDs: ["runut_highscoreLeaderboard1"]) { leaderboards, error in
+            guard let leaderboard = leaderboards?.first else {
+                return
+            }
+            leaderboard.loadEntries(for: [GKLocalPlayer.local], timeScope: .allTime) { entry, entriesArr, error in
+                let entryRank = entry?.rank
+                print("RANK GLOBAL IS \(String(describing: entryRank)).")
+                self.globalRank = entryRank ?? 0
+            }
+        }
     }
 }

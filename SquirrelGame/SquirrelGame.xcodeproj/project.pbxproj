@@ -41,6 +41,7 @@
 		95E2125327F37CAA00FB9C6D /* squirrelRunning.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */; };
 		95E2125827F3817300FB9C6D /* nut+1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125527F3817300FB9C6D /* nut+1.m4a */; };
 		95E2125A27F3817300FB9C6D /* bensound-cute.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 95E2125727F3817300FB9C6D /* bensound-cute.mp3 */; };
+		95F48852285009DA000D41CA /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F48851285009DA000D41CA /* TutorialView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		95E2125227F37CAA00FB9C6D /* squirrelRunning.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = squirrelRunning.atlas; sourceTree = "<group>"; };
 		95E2125527F3817300FB9C6D /* nut+1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "nut+1.m4a"; sourceTree = "<group>"; };
 		95E2125727F3817300FB9C6D /* bensound-cute.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-cute.mp3"; sourceTree = "<group>"; };
+		95F48851285009DA000D41CA /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				95370BD027F3919B00B7EAEE /* TreesNode.swift */,
 				9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */,
 				952B200627F3D30B00D7490E /* SpinesSprite.swift */,
+				95F48851285009DA000D41CA /* TutorialView.swift */,
 				953A3F7127F4526D009DCAF7 /* SequenceNode.swift */,
 			);
 			path = Entities;
@@ -306,6 +309,7 @@
 				952B200727F3D30B00D7490E /* SpinesSprite.swift in Sources */,
 				95E2123E27F37B5300FB9C6D /* ArcadeGameView.swift in Sources */,
 				9549DB1B27F667550019382F /* ArcadeGameScene+inputs.swift in Sources */,
+				95F48852285009DA000D41CA /* TutorialView.swift in Sources */,
 				95E2124A27F37B9300FB9C6D /* PhysicsCategory.swift in Sources */,
 				95E2122E27F37A3200FB9C6D /* ContentView.swift in Sources */,
 				95E2122C27F37A3200FB9C6D /* SquirrelGameApp.swift in Sources */,
