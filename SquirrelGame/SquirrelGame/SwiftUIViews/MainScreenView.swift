@@ -26,9 +26,9 @@ struct MainScreenView: View {
     @StateObject var gameLogic = ArcadeGameLogic.shared
     
     @State var presentGameCenterAlert = false
-    @State var presentTutorial = false
+    @State var presentTutorial = true
     @State var tutorialPage = 0
-    @State var tutorialSetted = false
+//    @State var tutorialSetted = false
     
     @State var bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
     
@@ -154,11 +154,13 @@ struct MainScreenView: View {
             
             if presentTutorial{
                 VStack{
-                    TutorialView(tutorialPage: $tutorialPage, showTutorial: $presentTutorial)
+                    TutorialTabView(isInGameView: false, tutorialPage: 1, presentTutorial: $presentTutorial)
+//                    TutorialView(tutorialPage: $tutorialPage, showTutorial: $presentTutorial)
                     
                         .padding(.vertical, 50)
                         .padding(.horizontal, 30)
                 }
+                .background(.black.opacity(0.4))
                 .transition(.opacity)
             }
         }

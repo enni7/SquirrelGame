@@ -1,0 +1,51 @@
+//
+//  TutorialPage.swift
+//  SquirrelGame
+//
+//  Created by Anna Izzo on 08/06/22.
+//
+
+import SwiftUI
+
+struct TutorialPage: View {
+    @State var tutorialPage: Int
+        
+    var image: String{
+        if tutorialPage == 2 {
+            return "tutorial1"
+        } else {
+            return "tutorial2"
+        }
+    }
+    
+    var textDescription : String {
+        if tutorialPage == 2 {
+            return "Tap while you’re on a nut box to break it, but if you fail Aki the squirrel will fall down!"
+        } else {
+            return "Tap to jump on the other tree"
+        }
+    }
+    var body: some View {
+        VStack(spacing: 0){
+            Image(image)
+                .resizable()
+                .scaledToFit()
+            Text(textDescription)
+                .fontWeight(.medium)
+                .multilineTextAlignment(.center)
+                .font(.system(.callout, design: .monospaced))
+                .foregroundColor(Color("darkerBrown"))
+                .padding(4)
+                .frame(maxWidth: .infinity)
+                .frame(height: 130)
+            
+                .background(Color("lightYellow"))
+        }
+    }
+}
+
+struct TutorialPage_Previews: PreviewProvider {
+    static var previews: some View {
+        TutorialPage(tutorialPage: 1)
+    }
+}

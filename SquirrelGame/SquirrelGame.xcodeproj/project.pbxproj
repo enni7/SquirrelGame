@@ -22,6 +22,8 @@
 		9573758427FF44C00031D5F7 /* UserDefault+contain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9573758327FF44C00031D5F7 /* UserDefault+contain.swift */; };
 		95812A6D27F49EE400B79C32 /* PixelLoop.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95812A6C27F49E6200B79C32 /* PixelLoop.m4a */; };
 		9589F75227F4794100FF1B53 /* GoldenNutSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */; };
+		959395AE2850B09500B37812 /* TutorialTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959395AD2850B09500B37812 /* TutorialTabView.swift */; };
+		959395B02850B8B900B37812 /* TutorialPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959395AF2850B8B900B37812 /* TutorialPage.swift */; };
 		95DD7CF827F6ED850058A38D /* Jumping.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95DD7CF727F6ED850058A38D /* Jumping.m4a */; };
 		95DD7CFA27F6ED8C0058A38D /* nut box.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 95DD7CF927F6ED8C0058A38D /* nut box.m4a */; };
 		95E2122C27F37A3200FB9C6D /* SquirrelGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E2122B27F37A3200FB9C6D /* SquirrelGameApp.swift */; };
@@ -61,6 +63,8 @@
 		95812A6C27F49E6200B79C32 /* PixelLoop.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = PixelLoop.m4a; sourceTree = "<group>"; };
 		95812A6E27F4A28700B79C32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenNutSprite.swift; sourceTree = "<group>"; };
+		959395AD2850B09500B37812 /* TutorialTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialTabView.swift; sourceTree = "<group>"; };
+		959395AF2850B8B900B37812 /* TutorialPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPage.swift; sourceTree = "<group>"; };
 		95DD7CF727F6ED850058A38D /* Jumping.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jumping.m4a; sourceTree = "<group>"; };
 		95DD7CF927F6ED8C0058A38D /* nut box.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "nut box.m4a"; sourceTree = "<group>"; };
 		95E2122827F37A3200FB9C6D /* SquirrelGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SquirrelGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,7 +115,6 @@
 				95370BD027F3919B00B7EAEE /* TreesNode.swift */,
 				9589F75127F4794100FF1B53 /* GoldenNutSprite.swift */,
 				952B200627F3D30B00D7490E /* SpinesSprite.swift */,
-				95F48851285009DA000D41CA /* TutorialView.swift */,
 				953A3F7127F4526D009DCAF7 /* SequenceNode.swift */,
 			);
 			path = Entities;
@@ -184,6 +187,9 @@
 				95E2124D27F37BAF00FB9C6D /* GameOverView.swift */,
 				95E2123D27F37B5300FB9C6D /* ArcadeGameView.swift */,
 				95E2124127F37B6800FB9C6D /* GameScoreView.swift */,
+				959395AD2850B09500B37812 /* TutorialTabView.swift */,
+				959395AF2850B8B900B37812 /* TutorialPage.swift */,
+				95F48851285009DA000D41CA /* TutorialView.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -303,6 +309,7 @@
 			files = (
 				95E2124627F37B8100FB9C6D /* ArcadeGameLogic.swift in Sources */,
 				95E2124427F37B7800FB9C6D /* ArcadeGameScene.swift in Sources */,
+				959395B02850B8B900B37812 /* TutorialPage.swift in Sources */,
 				95370BD127F3919B00B7EAEE /* TreesNode.swift in Sources */,
 				9573758427FF44C00031D5F7 /* UserDefault+contain.swift in Sources */,
 				95E2124227F37B6800FB9C6D /* GameScoreView.swift in Sources */,
@@ -319,6 +326,7 @@
 				953A3F7227F4526D009DCAF7 /* SequenceNode.swift in Sources */,
 				95E2124C27F37B9F00FB9C6D /* ArcadeGameScene+ContactDelegate.swift in Sources */,
 				95E2124E27F37BAF00FB9C6D /* GameOverView.swift in Sources */,
+				959395AE2850B09500B37812 /* TutorialTabView.swift in Sources */,
 				95E2123C27F37B4300FB9C6D /* MainScreenView.swift in Sources */,
 				9589F75227F4794100FF1B53 /* GoldenNutSprite.swift in Sources */,
 			);
