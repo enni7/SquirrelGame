@@ -27,7 +27,7 @@ struct MainScreenView: View {
     
     @State var presentGameCenterAlert = false
     @State var presentTutorial = false
-    @State var tutorialPage = 1
+    @State var tutorialPage = 0
     @State var tutorialSetted = false
     
     @State var bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
@@ -127,7 +127,7 @@ struct MainScreenView: View {
                 Spacer()
                 Button {
                     withAnimation {
-                        if tutorialPage != 1 && tutorialPage != 2 {
+                        if tutorialPage != 1 && tutorialPage != 2  && UserDefaults.standard.bool(forKey: "didLaunchBefore") {
                             self.startGame()
                         }
                     }
@@ -171,11 +171,13 @@ struct MainScreenView: View {
         }
         .statusBar(hidden: true)
         .onAppear{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                tutorialPage = 1
-                withAnimation {
-                    presentTutorial = true
-                }
+            if UserDefaults.standard.bool(forKey: "didLaunchBefore") == false {
+                    tutorialPage = 1
+                    withAnimation {
+                        presentTutorial = true
+                    }
+                UserDefaults.standard.set(true, forKey: "didLaunchBefore")
+
             }
         }
     }
