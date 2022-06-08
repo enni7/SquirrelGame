@@ -72,6 +72,12 @@ struct ArcadeGameView: View {
     private func presentGameOverScreen() {
         self.currentGameState = .gameOver
     }
+    private func pauseGame(){
+        self.arcadeGameScene.isPaused = true
+    }
+    private func unpauseGame(){
+        self.arcadeGameScene.isPaused = false
+    }
     
 }
 

@@ -19,6 +19,8 @@ class ArcadeGameLogic: ObservableObject {
     //Final score
     @Published var finalScore: Int = 0
     @Published var globalRank: Int = 0
+    @Published var presentTutorial: Bool = false
+    
     var bestOld = UserDefaults.standard.integer(forKey: "bestScore")
     
     var bestScore: Int {

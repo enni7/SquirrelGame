@@ -26,42 +26,26 @@ struct MainScreenView: View {
     @StateObject var gameLogic = ArcadeGameLogic.shared
     
     @State var presentGameCenterAlert = false
-    @State var presentTutorial = true
-    @State var tutorialPage = 0
-//    @State var tutorialSetted = false
     
+    @State var tutorialPage = 0
+    @State var scaleTutorial = 0.0
+    @State var opacityLayer = 0.0
+    @State var tutorialOpacity = 0.0
     @State var bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
     
     @State var isAnimatingColor = false
     var body: some View {
         ZStack{
             VStack(alignment: .center) {
+                Spacer()
+                    .frame(maxHeight: UIScreen.main.bounds.height * 0.15)
                 VStack{
-                    VStack{
                     Image("LOGO")
                         .resizable()
                         .scaledToFit()
-                    HStack{
-                        Spacer()
-                        Button {
-                            tutorialPage = 1
-                            presentTutorial = true
-                        } label: {
-                            Image(systemName: "questionmark")
-                                .font(.system(size: 20, weight: .bold, design: .monospaced))
-                                .foregroundColor(Color("darkBrown"))
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 10)
-                                .background(Color("lighterBrown").cornerRadius(8))
-                                .padding(.vertical)
-                        }
-
-                    }
-                    }
-                    .padding(20)
-                    .padding(.top, 50)
-
                 }
+                .padding(.horizontal, 20)
+                Spacer()
                 Spacer()
                 VStack(alignment: .trailing, spacing: 8){
                     HStack{
@@ -97,37 +81,43 @@ struct MainScreenView: View {
                         .padding(14)
                         .background(Color(uiColor: UIColor(named: "lighterBrown")!))
                         .cornerRadius(15)
+                        .shadow(color: Color("darkerBrown").opacity(0.5), radius: 1, x: 0, y: 0)
                     }
+                    
                     .alert("Game Center account not found", isPresented: $presentGameCenterAlert) {
                     } message: {
                         Text("Please login to Game Center from settings to see the leaderboard.")
                     }
-//                    .padding(.bottom, 50)
-//                    VStack(alignment: .leading, spacing: 16) {
-//                        ForEach(self.gameInstructions, id: \.title) { instruction in
-//
-//                            HStack{
-//                                Image(systemName: "\(instruction.icon)")
-//                                    .font(.system(.title, design: .monospaced))
-//                                    .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-//                                    .padding([.vertical, .leading])
-//                                Text("\(instruction.title)")
-//                                    .multilineTextAlignment(.leading)
-//                                    .foregroundColor(.white)
-//                                    .font(.system(.title3, design: .monospaced))
-//                                    .padding(10)
-//                                    .fixedSize(horizontal: false, vertical: true)
-//                            }
-//                        }
-//                    }
-//                    .padding(6)
-//                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
+                    
+                    /*-----Previous instructions
+                     //                    .padding(.bottom, 50)
+                     //                    VStack(alignment: .leading, spacing: 16) {
+                     //                        ForEach(self.gameInstructions, id: \.title) { instruction in
+                     //
+                     //                            HStack{
+                     //                                Image(systemName: "\(instruction.icon)")
+                     //                                    .font(.system(.title, design: .monospaced))
+                     //                                    .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+                     //                                    .padding([.vertical, .leading])
+                     //                                Text("\(instruction.title)")
+                     //                                    .multilineTextAlignment(.leading)
+                     //                                    .foregroundColor(.white)
+                     //                                    .font(.system(.title3, design: .monospaced))
+                     //                                    .padding(10)
+                     //                                    .fixedSize(horizontal: false, vertical: true)
+                     //                            }
+                     //                        }
+                     //                    }
+                     //                    .padding(6)
+                     //                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
+                     */
                 }
                 .padding(20)
                 Spacer()
+                Spacer()
                 Button {
                     withAnimation {
-                        if tutorialPage != 1 && tutorialPage != 2  && UserDefaults.standard.bool(forKey: "didLaunchBefore") {
+                        if gameLogic.presentTutorial == false {
                             self.startGame()
                         }
                     }
@@ -144,25 +134,43 @@ struct MainScreenView: View {
                                 self.isAnimatingColor = true
                             }
                         }
-                    
                 }
                 .cornerRadius(15)
+                .shadow(color: Color("darkerBrown").opacity(0.5), radius: 1, x: 0, y: 0)
                 .padding()
-                .padding(.bottom, 30)
-            }
-            .padding()
-            
-            if presentTutorial{
-                VStack{
-                    TutorialTabView(isInGameView: false, tutorialPage: 1, presentTutorial: $presentTutorial)
-//                    TutorialView(tutorialPage: $tutorialPage, showTutorial: $presentTutorial)
-                    
-                        .padding(.vertical, 50)
-                        .padding(.horizontal, 30)
+                Button {
+                    withAnimation {
+                        gameLogic.presentTutorial = true
+                    }
+                    tutorialPage = 1
+                } label: {
+                    Image(systemName: "questionmark")
+                        .font(.system(size: 20, weight: .bold, design: .monospaced))
+                        .foregroundColor(Color("lightYellow"))
+                        .frame(width: 24, height: 24)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 10)
+                        .background(Color("darkBrown").cornerRadius(8))
+                        .shadow(color: Color("darkerBrown").opacity(0.5), radius: 1.1, x: 0, y: 0)
                 }
-                .background(.black.opacity(0.4))
-                .transition(.opacity)
+                Spacer()
+                    .frame(height: UIScreen.main.bounds.height * 0.08)
             }
+            .padding(.horizontal)
+            
+            Color.white
+                .opacity(opacityLayer)
+            
+            //            if gameLogic.presentTutorial{
+            VStack{
+                TutorialTabView(isInGameView: false, tutorialPage: 1, buttonText: "GOT IT")
+                    .frame(maxHeight: UIScreen.main.bounds.height * 0.76)
+                    .padding(.vertical, 50)
+                    .padding(.horizontal, 30)
+            }
+            .scaleEffect(scaleTutorial, anchor: UnitPoint(x: 0.5, y: 1))
+            .opacity(tutorialOpacity)
+            //            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background {
@@ -174,12 +182,24 @@ struct MainScreenView: View {
         .statusBar(hidden: true)
         .onAppear{
             if UserDefaults.standard.bool(forKey: "didLaunchBefore") == false {
-                    tutorialPage = 1
-                    withAnimation {
-                        presentTutorial = true
-                    }
+                tutorialPage = 1
+                withAnimation {
+                    gameLogic.presentTutorial = true
+                }
                 UserDefaults.standard.set(true, forKey: "didLaunchBefore")
-
+            }
+        }
+        .onChange(of: gameLogic.presentTutorial) { newValue in
+            withAnimation(.easeInOut( duration: 0.3)) {
+                if newValue {
+                    scaleTutorial = 1
+                    opacityLayer = 0.22
+                    tutorialOpacity = 1
+                } else {
+                    scaleTutorial = 0
+                    opacityLayer = 0
+                    tutorialOpacity = 0
+                }
             }
         }
     }

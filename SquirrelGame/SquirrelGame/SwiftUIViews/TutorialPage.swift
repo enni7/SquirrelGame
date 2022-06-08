@@ -12,9 +12,9 @@ struct TutorialPage: View {
         
     var image: String{
         if tutorialPage == 2 {
-            return "tutorial1"
+            return "tutorial22"
         } else {
-            return "tutorial2"
+            return "tutorial11"
         }
     }
     
@@ -27,19 +27,24 @@ struct TutorialPage: View {
     }
     var body: some View {
         VStack(spacing: 0){
-            Image(image)
-                .resizable()
-                .scaledToFit()
-            Text(textDescription)
-                .fontWeight(.medium)
-                .multilineTextAlignment(.center)
-                .font(.system(.callout, design: .monospaced))
-                .foregroundColor(Color("darkerBrown"))
-                .padding(4)
-                .frame(maxWidth: .infinity)
-                .frame(height: 130)
-            
-                .background(Color("lightYellow"))
+            GeometryReader(){ geo in
+                VStack(spacing: 0){
+                Image(image)
+                    .resizable()
+                    .scaledToFit()
+//                    .frame(width: geo.size.width)
+                    .clipped()
+
+//                Text(textDescription)
+//                    .fontWeight(.medium)
+//                    .multilineTextAlignment(.center)
+//                    .font(.system(.callout, design: .monospaced))
+//                    .foregroundColor(Color("darkerBrown"))
+//                    .padding(4)
+//                    .frame(width: geo.size.width, height: geo.size.height * 0.2)
+//                    .background(Color("lightYellow"))
+                }
+            }
         }
     }
 }
