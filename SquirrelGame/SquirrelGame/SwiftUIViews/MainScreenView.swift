@@ -26,7 +26,9 @@ struct MainScreenView: View {
     @StateObject var gameLogic = ArcadeGameLogic.shared
     
     @State var presentGameCenterAlert = false
-    @State var presentTutorial = true
+    @State var presentTutorial = false
+    @State var tutorialPage = 1
+    @State var tutorialSetted = false
     
     @State var bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
     
@@ -34,16 +36,33 @@ struct MainScreenView: View {
     var body: some View {
         ZStack{
             VStack(alignment: .center) {
-                Group{
-                    Spacer()
+                VStack{
+                    VStack{
                     Image("LOGO")
                         .resizable()
                         .scaledToFit()
-                        .padding(20)
-                    Spacer()
+                    HStack{
+                        Spacer()
+                        Button {
+                            tutorialPage = 1
+                            presentTutorial = true
+                        } label: {
+                            Image(systemName: "questionmark")
+                                .font(.system(size: 20, weight: .bold, design: .monospaced))
+                                .foregroundColor(Color("darkBrown"))
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 10)
+                                .background(Color("lighterBrown").cornerRadius(8))
+                                .padding(.vertical)
+                        }
+
+                    }
+                    }
+                    .padding(20)
+                    .padding(.top, 50)
+
                 }
                 Spacer()
-                
                 VStack(alignment: .trailing, spacing: 8){
                     HStack{
                         Text("YOUR BEST")
@@ -83,32 +102,35 @@ struct MainScreenView: View {
                     } message: {
                         Text("Please login to Game Center from settings to see the leaderboard.")
                     }
-                    .padding(.bottom, 50)
-                    
-                    VStack(alignment: .leading, spacing: 16) {
-                        ForEach(self.gameInstructions, id: \.title) { instruction in
-                            
-                            HStack{
-                                Image(systemName: "\(instruction.icon)")
-                                    .font(.system(.title, design: .monospaced))
-                                    .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-                                    .padding([.vertical, .leading])
-                                Text("\(instruction.title)")
-                                    .multilineTextAlignment(.leading)
-                                    .foregroundColor(.white)
-                                    .font(.system(.title3, design: .monospaced))
-                                    .padding(10)
-                                    .fixedSize(horizontal: false, vertical: true)
-                            }
-                        }
-                    }
-                    .padding(6)
-                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
+//                    .padding(.bottom, 50)
+//                    VStack(alignment: .leading, spacing: 16) {
+//                        ForEach(self.gameInstructions, id: \.title) { instruction in
+//
+//                            HStack{
+//                                Image(systemName: "\(instruction.icon)")
+//                                    .font(.system(.title, design: .monospaced))
+//                                    .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+//                                    .padding([.vertical, .leading])
+//                                Text("\(instruction.title)")
+//                                    .multilineTextAlignment(.leading)
+//                                    .foregroundColor(.white)
+//                                    .font(.system(.title3, design: .monospaced))
+//                                    .padding(10)
+//                                    .fixedSize(horizontal: false, vertical: true)
+//                            }
+//                        }
+//                    }
+//                    .padding(6)
+//                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
                 }
                 .padding(20)
-                
+                Spacer()
                 Button {
-                    withAnimation { self.startGame() }
+                    withAnimation {
+                        if tutorialPage != 1 && tutorialPage != 2 {
+                            self.startGame()
+                        }
+                    }
                 } label: {
                     Text("START")
                         .bold()
@@ -126,17 +148,18 @@ struct MainScreenView: View {
                 }
                 .cornerRadius(15)
                 .padding()
-                Spacer()
+                .padding(.bottom, 30)
             }
             .padding()
             
             if presentTutorial{
-
                 VStack{
-                    TutorialView()
+                    TutorialView(tutorialPage: $tutorialPage, showTutorial: $presentTutorial)
+                    
                         .padding(.vertical, 50)
                         .padding(.horizontal, 30)
                 }
+                .transition(.opacity)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -148,8 +171,11 @@ struct MainScreenView: View {
         }
         .statusBar(hidden: true)
         .onAppear{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                presentTutorial = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                tutorialPage = 1
+                withAnimation {
+                    presentTutorial = true
+                }
             }
         }
     }

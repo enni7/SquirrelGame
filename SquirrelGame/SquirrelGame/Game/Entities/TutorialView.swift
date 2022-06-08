@@ -10,7 +10,8 @@ import CoreGraphics
 import UIKit
 
 struct TutorialView: View {
-    @State var tutorialPage = 2
+    @Binding var tutorialPage: Int
+    @Binding var showTutorial: Bool
     var body: some View {
         VStack(spacing: 0){
             VStack(spacing: 0){
@@ -60,7 +61,7 @@ struct TutorialView: View {
             }
             .clipped()
             .padding([.horizontal, .top], 30)
-
+            
             
             VStack(spacing: 0){
                 HStack(spacing: 8){
@@ -74,10 +75,12 @@ struct TutorialView: View {
                 .padding(.vertical, 20)
                 Button {
                     if tutorialPage == 1 {
-                        tutorialPage = 2
-                    } else{
-                        tutorialPage = 1
-                    }
+                    tutorialPage += 1
+                } else {
+                    showTutorial = false
+                    tutorialPage = 0
+                }
+                    
                 } label: {
                     Text(tutorialPage == 1 ? "NEXT" : "PLAY")
                         .font(.system(.title2, design: .monospaced))
@@ -92,8 +95,9 @@ struct TutorialView: View {
         .animation(.easeInOut, value: tutorialPage)
     }
 }
+
 struct TutorialView_Previews: PreviewProvider {
     static var previews: some View {
-        TutorialView()
+        TutorialView(tutorialPage: .constant(1), showTutorial: .constant(true))
     }
 }
