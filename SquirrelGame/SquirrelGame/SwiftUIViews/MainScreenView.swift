@@ -11,7 +11,7 @@ import GameKit
 
 
 struct MainScreenView: View {
-        
+    
     // The game state is used to transition between the different states of the game
     @Binding var currentGameState: GameState
     
@@ -26,11 +26,13 @@ struct MainScreenView: View {
     @StateObject var gameLogic = ArcadeGameLogic.shared
     
     @State var presentGameCenterAlert = false
+    @State var presentTutorial = true
     
     @State var bestScore: Int = UserDefaults.standard.integer(forKey: "bestScore")
     
     @State var isAnimatingColor = false
     var body: some View {
+        ZStack{
             VStack(alignment: .center) {
                 Group{
                     Spacer()
@@ -82,26 +84,26 @@ struct MainScreenView: View {
                         Text("Please login to Game Center from settings to see the leaderboard.")
                     }
                     .padding(.bottom, 50)
-
-                VStack(alignment: .leading, spacing: 16) {
-                    ForEach(self.gameInstructions, id: \.title) { instruction in
-                        
-                        HStack{
-                            Image(systemName: "\(instruction.icon)")
-                                .font(.system(.title, design: .monospaced))
-                                .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
-                                .padding([.vertical, .leading])
-                            Text("\(instruction.title)")
-                                .multilineTextAlignment(.leading)
-                                .foregroundColor(.white)
-                                .font(.system(.title3, design: .monospaced))
-                                .padding(10)
-                                .fixedSize(horizontal: false, vertical: true)
+                    
+                    VStack(alignment: .leading, spacing: 16) {
+                        ForEach(self.gameInstructions, id: \.title) { instruction in
+                            
+                            HStack{
+                                Image(systemName: "\(instruction.icon)")
+                                    .font(.system(.title, design: .monospaced))
+                                    .foregroundColor(Color(uiColor: UIColor(named: "lighterBrown")!))
+                                    .padding([.vertical, .leading])
+                                Text("\(instruction.title)")
+                                    .multilineTextAlignment(.leading)
+                                    .foregroundColor(.white)
+                                    .font(.system(.title3, design: .monospaced))
+                                    .padding(10)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
                         }
                     }
-                }
-                .padding(6)
-                .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
+                    .padding(6)
+                    .background(Rectangle().cornerRadius(15).foregroundColor(Color(uiColor: UIColor(named: "darkBrown")!)))
                 }
                 .padding(20)
                 
@@ -127,14 +129,29 @@ struct MainScreenView: View {
                 Spacer()
             }
             .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background {
-                Image("background")
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
+            
+            if presentTutorial{
+
+                VStack{
+                    TutorialView()
+                        .padding(.vertical, 50)
+                        .padding(.horizontal, 30)
+                }
             }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background {
+            Image("background")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+        }
         .statusBar(hidden: true)
+        .onAppear{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                presentTutorial = true
+            }
+        }
     }
     
     func showLeaderBoard(){
