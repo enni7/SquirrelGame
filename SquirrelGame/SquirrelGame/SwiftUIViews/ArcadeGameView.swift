@@ -15,20 +15,20 @@ import SpriteKit
  **/
 
 struct ArcadeGameView: View {
-        
+    @Environment(\.scenePhase) var scenePhase
     // The Game Logic
     @StateObject var gameLogic: ArcadeGameLogic =  ArcadeGameLogic.shared
     
     // The game state is used to transition between the different states of the game
     @Binding var currentGameState: GameState
     
-    @State var notificationCenter = NotificationCenter.default
+//    @State var notificationCenter = NotificationCenter.default
 
     private var screenWidth: CGFloat { UIScreen.main.bounds.size.width }
     private var screenHeight: CGFloat { UIScreen.main.bounds.size.height }
     
     // The Game Scene
-    let arcadeGameScene = ArcadeGameScene()
+    @StateObject var arcadeGameScene = ArcadeGameScene()
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -78,7 +78,6 @@ struct ArcadeGameView: View {
     private func unpauseGame(){
         self.arcadeGameScene.isPaused = false
     }
-    
 }
 
 struct GameView_Previews: PreviewProvider {

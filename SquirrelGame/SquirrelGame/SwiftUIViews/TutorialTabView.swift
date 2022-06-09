@@ -11,7 +11,7 @@ struct TutorialTabView: View {
     @StateObject var gameLogic = ArcadeGameLogic.shared
     @State var isInGameView: Bool
     @State var tutorialPage: Int
-    
+    var playFunc: () -> Void
     @State var buttonText: String
     var tint : Color {
         if isInGameView && tutorialPage == 1 {
@@ -41,9 +41,17 @@ struct TutorialTabView: View {
                 .tabViewStyle(.page)
                 .padding(.horizontal, 30)
                 Button() {
+                    if isInGameView{
+                        gameLogic.presentTutorial = false
+                        tutorialPage = 0
+                        withAnimation {
+                            playFunc()
+                        }
+                    } else {
                     gameLogic.presentTutorial = false
-                    
                     tutorialPage = 0
+                        
+                    }
                 } label: {
                     Text(buttonText)
                         .font(.system(.title2, design: .monospaced))
@@ -76,8 +84,8 @@ struct TutorialTabView: View {
     }
 }
 
-struct TutorialTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        TutorialTabView(isInGameView: true, tutorialPage: 1, buttonText: "SKIP")
-    }
-}
+//struct TutorialTabView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TutorialTabView(isInGameView: true, tutorialPage: 1, buttonText: "SKIP", playFunc: () -> Void)
+//    }
+//}

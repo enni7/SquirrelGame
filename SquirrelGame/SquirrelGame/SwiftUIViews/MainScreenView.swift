@@ -171,7 +171,7 @@ struct MainScreenView: View {
             
             //            if gameLogic.presentTutorial{
             VStack{
-                TutorialTabView(isInGameView: UserDefaults.standard.bool(forKey: "didLaunchBefore") ? false : true, tutorialPage: 1, buttonText: UserDefaults.standard.bool(forKey: "didLaunchBefore") ? "GOT IT" : "SKIP")
+                TutorialTabView(isInGameView: UserDefaults.standard.bool(forKey: "didLaunchBefore") ? false : true, tutorialPage: 1, playFunc: startGame, buttonText: UserDefaults.standard.bool(forKey: "didLaunchBefore") ? "GOT IT" : "SKIP")
                     .frame(maxHeight: UIScreen.main.bounds.height * 0.76)
                     .padding(.vertical, 50)
                     .padding(.horizontal, 30)

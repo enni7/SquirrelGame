@@ -9,7 +9,8 @@ import AVFoundation
 import SpriteKit
 import SwiftUI
 
-class ArcadeGameScene: SKScene {
+
+class ArcadeGameScene: SKScene, ObservableObject {
     // The Game Logic that keeps track of the game variables
     var gameLogic: ArcadeGameLogic = ArcadeGameLogic.shared
     // Keeps track of when the last update happend.
@@ -30,8 +31,9 @@ class ArcadeGameScene: SKScene {
     let boxSound = SKAction.playSoundFileNamed(SoundFile.boxNut, waitForCompletion: false)
     let gameOverSound = SKAction.playSoundFileNamed(SoundFile.gameOver, waitForCompletion: true)
     
-    
     override func didMove(to view: SKView) {
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive(notification:)), name: UIApplication.willResignActiveNotification, object: nil)
+
         self.setUpGame()
         self.setUpPhysicsWorld()
         self.setUpCamera()
@@ -44,7 +46,10 @@ class ArcadeGameScene: SKScene {
 //        }])
 //        self.run(SKAction.repeatForever(seq))
     }
-    
+    @objc func applicationWillResignActive(notification: NSNotification) {
+        self.isPaused = true
+    }
+
     override func update(_ currentTime: TimeInterval) {
         
         if self.speed > 3 {
