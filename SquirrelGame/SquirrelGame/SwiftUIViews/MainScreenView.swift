@@ -116,6 +116,14 @@ struct MainScreenView: View {
                 Spacer()
                 Spacer()
                 Button {
+                    if UserDefaults.standard.bool(forKey: "didLaunchBefore") == false {
+                        tutorialPage = 1
+                        withAnimation {
+                            gameLogic.presentTutorial = true
+                        }
+                        UserDefaults.standard.set(true, forKey: "didLaunchBefore")
+                    }
+
                     withAnimation {
                         if gameLogic.presentTutorial == false {
                             self.startGame()
@@ -180,15 +188,6 @@ struct MainScreenView: View {
                 .ignoresSafeArea()
         }
         .statusBar(hidden: true)
-        .onAppear{
-            if UserDefaults.standard.bool(forKey: "didLaunchBefore") == false {
-                tutorialPage = 1
-                withAnimation {
-                    gameLogic.presentTutorial = true
-                }
-                UserDefaults.standard.set(true, forKey: "didLaunchBefore")
-            }
-        }
         .onChange(of: gameLogic.presentTutorial) { newValue in
             withAnimation(.easeInOut( duration: 0.3)) {
                 if newValue {
