@@ -34,6 +34,7 @@ struct TutorialPage: View {
                     .scaledToFit()
 //                    .frame(width: geo.size.width)
                     .clipped()
+                    .position(x: geo.size.width / 2, y: geo.size.height / 2)
 
 //                Text(textDescription)
 //                    .fontWeight(.medium)
