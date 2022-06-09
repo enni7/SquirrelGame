@@ -9,24 +9,13 @@ import SwiftUI
 
 struct TutorialTabView: View {
     @StateObject var gameLogic = ArcadeGameLogic.shared
-    @State var isInGameView: Bool
-    @State var tutorialPage: Int
+    @Binding var isInGameView: Bool
+    @Binding var tutorialPage: Int
     var playFunc: () -> Void
-    @State var buttonText: String
-    var tint : Color {
-        if isInGameView && tutorialPage == 1 {
-            return .clear
-        } else {
-            return  Color("lighterBrown")
-        }
-    }
-    var textButtonColor : Color {
-        if isInGameView && tutorialPage == 1 {
-            return Color("lighterBrown")
-        } else {
-            return Color("darkBrown")
-        }
-    }
+    @State var buttonText: String = ""
+    @State var tint : Color = .clear
+    @State var textButtonColor : Color = .white
+    
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0){
@@ -77,9 +66,18 @@ struct TutorialTabView: View {
         .onChange(of: tutorialPage) { newValue in
             if !isInGameView{
                 buttonText = "GOT IT"
+                
             } else {
                 buttonText = newValue == 1 ? "SKIP" : "PLAY"
             }
+            if isInGameView && tutorialPage == 1 {
+                tint = .clear
+                textButtonColor = Color("lighterBrown")
+            } else {
+                tint = Color("lighterBrown")
+                textButtonColor = Color("darkBrown")
+            }
+
         }
     }
 }

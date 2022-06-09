@@ -25,6 +25,9 @@ struct MainScreenView: View {
     let accentColor: Color = MainScreenProperties.accentColor
     @StateObject var gameLogic = ArcadeGameLogic.shared
     
+    @State var isInGameView = false
+    var buttonFirstText: String
+    { return isInGameView ? "SKIP" : "GOT IT"}
     @State var presentGameCenterAlert = false
     
     @State var tutorialPage = 0
@@ -117,6 +120,7 @@ struct MainScreenView: View {
                 Spacer()
                 Button {
                     if UserDefaults.standard.bool(forKey: "didLaunchBefore") == false {
+                        isInGameView = true
                         tutorialPage = 1
                         withAnimation {
                             gameLogic.presentTutorial = true
@@ -147,10 +151,11 @@ struct MainScreenView: View {
                 .shadow(color: Color("darkerBrown").opacity(0.5), radius: 1, x: 0, y: 0)
                 .padding()
                 Button {
+                    tutorialPage = 1
+                    isInGameView = false
                     withAnimation {
                         gameLogic.presentTutorial = true
                     }
-                    tutorialPage = 1
                 } label: {
                     Image(systemName: "questionmark")
                         .font(.system(size: 20, weight: .bold, design: .monospaced))
@@ -171,7 +176,7 @@ struct MainScreenView: View {
             
             //            if gameLogic.presentTutorial{
             VStack{
-                TutorialTabView(isInGameView: UserDefaults.standard.bool(forKey: "didLaunchBefore") ? false : true, tutorialPage: 1, playFunc: startGame, buttonText: UserDefaults.standard.bool(forKey: "didLaunchBefore") ? "GOT IT" : "SKIP")
+                TutorialTabView(isInGameView: $isInGameView, tutorialPage: $tutorialPage, playFunc: startGame)
                     .frame(maxHeight: UIScreen.main.bounds.height * 0.76)
                     .padding(.vertical, 50)
                     .padding(.horizontal, 30)
