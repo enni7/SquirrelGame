@@ -12,9 +12,9 @@ struct TutorialPage: View {
         
     var image: String{
         if tutorialPage == 2 {
-            return "tutorial22"
+            return "Tutorial222"
         } else {
-            return "tutorial11"
+            return "Tutorial111"
         }
     }
     
